@@ -35,14 +35,13 @@ export default class Navbar extends Component {
     let acc = document.getElementsByClassName("accordion");
     let i = 0;
     for (i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function () {
+      acc[i].addEventListener("mouseover", function () {
         this.classList.toggle("active");
-        // let panel = this.nextElementSibling;
-        // if (panel.style.display === "block") {
-        //   panel.style.display = "none";
-        // } else {
-        //   panel.style.display = "block";
-        // }
+      });
+    }
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("mouseout", function () {
+        this.classList.remove("active");
       });
     }
   }
