@@ -6,6 +6,7 @@
 :root {
   --primaryColor: #af9a7d;
   --mainWhite: #fff;
+  --mainTransparent: #0005;
   --offWhite: #f7f7f7;
   --mainBlack: #222;
   --mainGrey: #ececec;
@@ -14,13 +15,14 @@
   --mainSpacing: 3px;
   --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
   --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+  --navbar-background-color: transparent;
 }
 
 /* globals */
 body {
-  padding-top: 66px;
+  padding-top: 0px;
   color: var(--mainBlack);
-  background: var(--mainWhite);
+  background: var(--mainTransparent);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.4;
 }
@@ -30,10 +32,11 @@ body {
 .navbar {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 0px;
   width: 100%;
-  padding: 0.75rem 2rem;
-  background: var(--offWhite);
+  padding: 2rem 2rem;
+  background-color: var(--navbar-background-color);
+
   z-index: 1;
 }
 .nav-header {
@@ -59,8 +62,8 @@ body {
 .nav-links a {
   display: block;
   text-decoration: none;
-  padding: 1rem 0;
-  color: var(--mainBlack);
+  /* padding: 1rem 0; */
+  color: var(--mainWhite);
   transition: var(--mainTransition);
   text-align: center;
   font-size: 1rem;
@@ -72,7 +75,7 @@ body {
 }
 
 .show-nav {
-  height: 300px;
+  height: 200px;
 }
 
 @media screen and (min-width: 768px) {
@@ -91,7 +94,11 @@ body {
   }
   .nav-links a {
     margin: 0 1rem;
-    padding: 0.5rem 0;
+    /* padding: 0.5rem 0;*/
   }
 }
-/* end of navbar */
+/* end of Navbar */
+
+/* Hero */
+
+/* end of Hero*/
