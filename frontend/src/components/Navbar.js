@@ -10,6 +10,33 @@ export default class Navbar extends Component {
   handleToggle = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
+
+  documentStyle = document.documentElement.style;
+  initalNavbarBackgroundColor = "transparent";
+  scrolledNavbarBackgroundColor = "var(--mainTransparent)";
+
+  handleScroll = () => {
+    if (window.scrollY === 0) {
+      this.documentStyle.setProperty(
+        "--navbar-background-color",
+        this.initalNavbarBackgroundColor
+      );
+    } else {
+      this.documentStyle.setProperty(
+        "--navbar-background-color",
+        this.scrolledNavbarBackgroundColor
+      );
+    }
+  };
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
   render() {
     return (
       <nav className="navbar">
@@ -35,9 +62,9 @@ export default class Navbar extends Component {
             <li>
               <Link to="/courses">Courses</Link>
             </li>
-           <li>
-             <Link to="/">options</Link>
-           </li>
+            <li>
+              <Link to="/">Options</Link>
+            </li>
           </ul>
         </div>
       </nav>
