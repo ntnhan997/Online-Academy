@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -23,7 +24,8 @@ body {
   padding-top: 0px;
   color: var(--mainBlack);
   background: var(--mainTransparent);
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+  font-family: "Nunito", sans-serif;
   line-height: 1.4;
 }
 /* end of globals */
@@ -36,7 +38,6 @@ body {
   width: 100%;
   padding: 2rem 2rem;
   background-color: var(--navbar-background-color);
-
   z-index: 1;
 }
 .nav-header {
@@ -55,7 +56,6 @@ body {
 }
 .nav-icon:hover {
   color: var(--primaryColor);
-  
 }
 .nav-links {
   height: 0;
@@ -67,13 +67,12 @@ body {
   display: block;
   text-decoration: none;
   /* padding: 1rem 0; */
-  color: var(--mainWhite);
+  color: cyan;
   transition: var(--mainTransition);
   text-align: center;
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: var(--mainSpacing);
-  
 }
 .nav-links a:hover {
   color: var(--primaryColor);
@@ -96,10 +95,38 @@ body {
 
 /*end of add plus minus icon toggle*/
 
+/*dropdown menu*/
+.nav-links .drop-menu {
+  list-style-type: none;
+  background: #242526;
+  width: 180px;
+  top: 105px;
+  line-height: 45px;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.nav-links li:hover .drop-menu {
+  top: 100px;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s linear;
+}
+
+.drop-menu li a {
+  width: 100%;
+  display: block;
+  padding-right: 2rem;
+  font-weight: 400;
+}
+/*end of dropdown menu*/
+
 .show-nav {
   height: 200px;
 }
 
+/*display hiden nav-btn with screen 768*/
 @media screen and (min-width: 768px) {
   .nav-btn {
     display: none;
