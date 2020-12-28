@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 :root {
-  --primaryColor: #af9a7d;
+  --primaryColor: #ff3c00;
   --mainWhite: #fff;
   --mainTransparent: #0005;
   --offWhite: #f7f7f7;
@@ -50,8 +50,12 @@ body {
   outline: none;
 }
 .nav-icon {
-  font-size: 1.5rem;
+  font-size: 2rem;
+  color: rgba(21, 9, 75, 0.932);
+}
+.nav-icon:hover {
   color: var(--primaryColor);
+  
 }
 .nav-links {
   height: 0;
@@ -69,10 +73,28 @@ body {
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: var(--mainSpacing);
+  
 }
 .nav-links a:hover {
   color: var(--primaryColor);
 }
+/*add plus minus icon toggle*/
+
+.accordion:after {
+  content: "\002B";
+  color: var(--mainWhite);
+  font-size: 12px;
+  float: right;
+  margin-left: 0.3rem;
+  margin-top: 0.3rem;
+}
+
+.active:after {
+  content: "\2212"; /* Unicode character for "minus" sign (-) */
+  color: #ff3c00;
+}
+
+/*end of add plus minus icon toggle*/
 
 .show-nav {
   height: 200px;

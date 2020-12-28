@@ -31,6 +31,20 @@ export default class Navbar extends Component {
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
+
+    let acc = document.getElementsByClassName("accordion");
+    let i = 0;
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        // let panel = this.nextElementSibling;
+        // if (panel.style.display === "block") {
+        //   panel.style.display = "none";
+        // } else {
+        //   panel.style.display = "block";
+        // }
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -57,13 +71,26 @@ export default class Navbar extends Component {
             className={this.state.isOpen ? "nav-links show-nav" : "nav-links"}
           >
             <li>
-              <Link to="/">Home</Link>
+              <Link className="accordion" to="/">
+                Home
+              </Link>
+             
             </li>
             <li>
-              <Link to="/courses">Courses</Link>
+              <Link className="accordion" to="/Courses">
+                Courses
+              </Link>
+              {/* <div class="panel">
+                <p>Lorem ipsum...</p>
+              </div> */}
             </li>
             <li>
-              <Link to="/">Options</Link>
+              <Link className="accordion" to="/">
+                Options
+              </Link>
+              {/* <div class="panel">
+                <p>Lorem ipsum...</p>
+              </div> */}
             </li>
           </ul>
         </div>
