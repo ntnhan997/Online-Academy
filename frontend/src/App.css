@@ -99,16 +99,16 @@ body {
 .nav-links .drop-menu {
   list-style-type: none;
   background: #242526;
-  width: 180px;
-  top: 105px;
+  width: 14rem;
+  top: 6.5rem;
   line-height: 45px;
   position: absolute;
   opacity: 0;
   visibility: hidden;
+  transition: all 1s ease-in-out;
 }
-
 .nav-links li:hover .drop-menu {
-  top: 100px;
+  top: 6.45rem;
   opacity: 1;
   visibility: visible;
   transition: all 0.3s linear;
