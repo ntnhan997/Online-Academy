@@ -75,22 +75,23 @@ export default class Navbar extends Component {
               </Link>
             </li>
             <li>
-              <Link className="accordion" to="/">
-                Courses
-              </Link>
+              <Link className="accordion">Courses</Link>
               <ul className="drop-menu">
                 <li>
-                  <Link className="" to="/">
-                    Drop menu 1
+                  <Link className="" to="/categories/development">
+                    Development
                   </Link>
-                  <Link className="" to="/">
-                    Drop menu 2
+                  <Link className="" to="/categories/design">
+                    Design
                   </Link>
-                  <Link className="" to="/">
-                    Drop menu 3
+                  <Link className="" to="/categories/marketing">
+                    Marketing
                   </Link>
-                  <Link className="" to="/">
-                    Drop menu 4
+                  <Link className="" to="/categories/lifestyle">
+                    Lifestyle
+                  </Link>
+                  <Link className="" to="/categories/health-and-fitness">
+                    Health & Fitness
                   </Link>
                 </li>
               </ul>
