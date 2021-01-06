@@ -34,6 +34,7 @@ const ContentColumn = styled.div``;
 const Title = styled.span`
   font-size: 24px;
   font-weight: 900;
+  cursor: pointer;
   display: block;
   margin-bottom: 8px;
   color: ${props => props.color};

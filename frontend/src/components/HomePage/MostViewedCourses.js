@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import Card03 from "./Card03";
+import Card03 from "../Card03";
 
-import "./HomePage/style.css";
+import "./style.css";
 
-const ListLatestCourse = () => {
+const MostViewedCourses = () => {
 
   const [dataCard] = useState([
     {
@@ -92,11 +92,11 @@ const ListLatestCourse = () => {
   ]);
   return (
     <div className="ListLatestCourse">
-      <h3>New Courses</h3>
+      <h3>Most Viewed Courses</h3>
       <OwlCarousel className="owl-theme" loop margin={10} lazyLoad items={4} dots={false}>
         {
           dataCard.map(item => {
-            return <Card03 key = {item.courseId}
+            return <Card03 key = {item.courseId} className="cardCourse"
                 title = {item.title}
                 subtitle = {item.category}
                 tag = {item.price}
@@ -111,4 +111,4 @@ const ListLatestCourse = () => {
   );
 };
 
-export default ListLatestCourse;
+export default MostViewedCourses;
