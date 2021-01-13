@@ -2,50 +2,50 @@ import React from "react";
 import bootstrap from "../images/bootstrap.png";
 export default function Card() {
   return (
-    <div class="card_item">
-      <div class="product-grid">
-        <div class="product-image">
-          <a href="#">
-            <img class="pic-1" src={bootstrap} />
+    <div className="card_item">
+      <div className="product-grid">
+        <div className="product-image">
+          <a href="fb.com">
+            <img className="pic-1" src={bootstrap} alt="bootstrap" />
           </a>
-          <span class="product-new-label">Sale</span>
-          <span class="product-discount-label">20%</span>
+          <span className="product-new-label">Sale</span>
+          <span className="product-discount-label">20%</span>
         </div>
-        <div class="middle">
-          <ul class="social">
+        <div className="middle">
+          <ul className="social">
             <li>
-              <a href="" data-tip="Quick View">
-                <i class="fa fa-search"></i>
+              <a href data-tip="Quick View">
+                <i className="fa fa-search" />
               </a>
             </li>
             <li>
-              <a href="" data-tip="Add to Wishlist">
-                <i class="fa fa-shopping-bag"></i>
+              <a href data-tip="Add to Wishlist">
+                <i className="fa fa-shopping-bag" />
               </a>
             </li>
             <li>
-              <a href="" data-tip="Add to Cart">
-                <i class="fa fa-shopping-cart"></i>
+              <a href data-tip="Add to Cart">
+                <i className="fa fa-shopping-cart" />
               </a>
             </li>
           </ul>
         </div>
-        <ul class="rating">
-          <li class="fa fa-star"></li>
-          <li class="fa fa-star"></li>
-          <li class="fa fa-star"></li>
-          <li class="fa fa-star"></li>
-          <li class="fa fa-star disable"></li>
+        <ul className="rating">
+          <li className="fa fa-star" />
+          <li className="fa fa-star" />
+          <li className="fa fa-star" />
+          <li className="fa fa-star" />
+          <li className="fa fa-star disable" />
         </ul>
-        <div class="product-content">
-          <h3 class="title">
-            <a href="#">Women's Blouse</a>
+        <div className="product-content">
+          <h3 className="title">
+            <a href="fb.com">Women's Blouse</a>
           </h3>
-          <div class="price">
+          <div className="price">
             $16.00
             <span>$20.00</span>
           </div>
-          <a class="add-to-cart" href="">
+          <a className="add-to-cart" href>
             + Add To Cart
           </a>
         </div>
