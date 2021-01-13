@@ -1,8 +1,10 @@
 .ListLatestCourse {
     width: 100%;
-    padding: 0 3.7rem;
+    padding: 0rem 3.7rem;
     z-index: 9;
     position: relative;
+    border-radius: 1px solid #fff;
+    margin: 2rem 0;
 }
 
 .cardCourse {

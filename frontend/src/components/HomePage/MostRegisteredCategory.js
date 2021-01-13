@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import Card03 from "../Card03";
 
 import "./style.css";
+import { PopularWrapper } from "./PopularStyle";
+import Card from '../Card';
 
 const MostRegisteredCategory = () => {
 
@@ -93,17 +94,18 @@ const MostRegisteredCategory = () => {
   return (
     <div className="ListLatestCourse">
       <h3>Most Registered Category</h3>
-      <OwlCarousel className="owl-theme" loop margin={10} lazyLoad items={4} dots={false}>
+      <OwlCarousel className="owl-theme" loop margin={10} lazyLoad items={4} dots={false} nav navText={['<-Prev','Next->']}>
         {
           dataCard.map(item => {
-            return <Card03 key = {item.courseId} className="cardCourse"
-                title = {item.title}
-                subtitle = {item.category}
-                tag = {item.price}
-                bgPhoto = {item.bgPhoto}
-                totalReviews={item.totalReviews}
-                ratingAverage = {item.ratingAverage}
-            />
+            return <PopularWrapper><Card key = {item.courseId} className="cardCourse"
+            id = {item.courseId}
+            title = {item.title}
+            category = {item.category}
+            price = {item.price}
+            bgPhoto = {item.bgPhoto}
+            totalReviews={item.totalReviews}
+            ratingAverage = {item.ratingAverage}
+        /></PopularWrapper>
           })
         }
       </OwlCarousel>

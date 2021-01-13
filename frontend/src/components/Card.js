@@ -1,15 +1,21 @@
 import React from "react";
 import bootstrap from "../images/bootstrap.png";
-export default function Card() {
+
+import Rating from '@material-ui/lab/Rating';
+import {Link} from "react-router-dom";
+
+
+export default function Card(props) {
+  const {id, title, price,category, bgPhoto, totalReviews, ratingAverage} = props;
   return (
     <div className="card_item">
       <div className="product-grid">
         <div className="product-image">
           <a href="fb.com">
-            <img className="pic-1" src={bootstrap} alt="bootstrap" />
+            <img className="pic-1" src={bgPhoto ? bgPhoto: bootstrap} alt="bootstrap" />
           </a>
-          <span className="product-new-label">Sale</span>
-          <span className="product-discount-label">20%</span>
+          <span className="product-new-label">{price ? price + "$" : "Sale"}</span>
+          <span className="product-discount-label">0%</span>
         </div>
         <div className="middle">
           <ul className="social">
@@ -31,19 +37,15 @@ export default function Card() {
           </ul>
         </div>
         <ul className="rating">
-          <li className="fa fa-star" />
-          <li className="fa fa-star" />
-          <li className="fa fa-star" />
-          <li className="fa fa-star" />
-          <li className="fa fa-star disable" />
+          <Rating name="half-rating" defaultValue={ratingAverage? ratingAverage: 1} precision={0.5} readOnly/><p>({totalReviews ? totalReviews : 0} Reviews)</p>
         </ul>
         <div className="product-content">
           <h3 className="title">
-            <a href="fb.com">Women's Blouse</a>
+            <Link to={"/categories/LapTrinh/" + id}>{title ? title : "title"}</Link>
           </h3>
           <div className="price">
-            $16.00
-            <span>$20.00</span>
+            Lorem
+            <p>{category? category: "category"}</p>
           </div>
           <a className="add-to-cart" href>
             + Add To Cart
