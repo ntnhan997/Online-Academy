@@ -6,7 +6,7 @@ export default function Card() {
         <div className="col-md-3 col-sm-6">
           <div className="product-grid">
             <div className="product-image">
-              <a href="#">
+              <a href="goo.com">
                 <img className="pic-1" src={bootstrap} alt="bootstrap" />
               </a>
               <span className="product-new-label">Sale</span>
@@ -15,17 +15,17 @@ export default function Card() {
             <div className="middle">
               <ul className="social">
                 <li>
-                  <a href data-tip="Quick View">
+                  <a href="goo.com" data-tip="Quick View">
                     <i className="fa fa-search" />
                   </a>
                 </li>
                 <li>
-                  <a href data-tip="Add to Wishlist">
+                  <a href="goo.com" data-tip="Add to Wishlist">
                     <i className="fa fa-shopping-bag" />
                   </a>
                 </li>
                 <li>
-                  <a href data-tip="Add to Cart">
+                  <a href="goo.com" data-tip="Add to Cart">
                     <i className="fa fa-shopping-cart" />
                   </a>
                 </li>
@@ -40,7 +40,7 @@ export default function Card() {
             </ul>
             <div className="product-content">
               <h3 className="title">
-                <a href="#">Women's Blouse</a>
+                <a href="goo.com">Women's Blouse</a>
               </h3>
               <div className="price">
                 $16.00

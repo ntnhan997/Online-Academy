@@ -4,9 +4,13 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-
+import BookmarkIcon from '@material-ui/icons/Bookmark';
+import InboxIcon from '@material-ui/icons/Inbox';
+import PersonIcon from '@material-ui/icons/Person';
+import CommentIcon from '@material-ui/icons/Comment';
 
 import Rating from '@material-ui/lab/Rating';
+import CourseSuggestion from "../HomePage/CourseSuggestion";
 
 
 export default function Course(props) {
@@ -15,6 +19,8 @@ export default function Course(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+
 
 
   function TabPanel(props) {
@@ -66,29 +72,49 @@ export default function Course(props) {
         alt=""
       />
 
-      <div>
+      <div className="tabs">
         <AppBar position="static">
           <Tabs
             value={value}
             onChange={handleChange}
-            aria-label="simple tabs example"
             variant="fullWidth"
+            indicatorColor="primary"
           >
-            <Tab label="Item One"  />
-            <Tab label="Item Two"  />
-            <Tab label="Item Three"  />
+            <Tab label="Overview" icon={<BookmarkIcon />} />
+            <Tab label="Curriculum"  icon={<InboxIcon />}/>
+            <Tab label="Instructor" icon={<PersonIcon />} />
+            <Tab label="Reviews" icon={<CommentIcon />} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          Item One
+          <div class="box-tab">
+            <h3>COURSE DESCRIPTION</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur beatae eum aspernatur consequuntur rem veniam laborum veritatis velit a officiis nam harum unde temporibus neque, autem voluptate dolorum qui. Pariatur?</p>
+            <h3>COURSE DESCRIPTION</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur beatae eum aspernatur consequuntur rem veniam laborum veritatis velit a officiis nam harum unde temporibus neque, autem voluptate dolorum qui. Pariatur?</p>
+          </div>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
+          <div className="box-tab">
+            Curriculum is empty
+          </div>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          Item Three
+        <div className="box-tab">
+            avatar
+          </div>
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+        <div className="box-tab">
+            Review
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione animi facilis accusamus est! Ducimus nisi incidunt nobis molestiae, ea non voluptates? Delectus eveniet nobis laudantium, commodi inventore veritatis dignissimos officia.</p>
+          </div>
         </TabPanel>
       </div>
+
+      <CourseSuggestion />
+
+
     </div>
   );
 }
