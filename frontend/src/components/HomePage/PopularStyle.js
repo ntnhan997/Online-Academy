@@ -1,219 +1,191 @@
 import styled from "styled-components";
 
 export const PopularWrapper = styled.div`
-  .container {
-    width: 100%;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-
-  .row {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
-  }
-
-  .card {
-    -webkit-transition: ease all 0.3s;
-    transition: ease all 0.3s;
-    width: 300px;
-  }
-
-  .warpper {
-    margin: 60px 10px 10px;
-    padding-top: 300px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+  
+  /*product card*/
+  .product-grid {
+    text-align: center;
+    padding: 0 0 72px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     position: relative;
-    -webkit-box-shadow: 0 0 20px 10px rgba(25, 25, 25, 0.1);
-    box-shadow: 0 0 20px 10px rgba(25, 25, 25, 0.1);
-    -webkit-transition: ease all 0.3s;
-    transition: ease all 0.3s;
+    z-index: -1;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
   }
 
-  .warpper:hover {
-    -webkit-transform: translateY(-10px);
-    transform: translateY(-10px);
+  .product-grid .product-image img {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: 0.5s ease;
+    backface-visibility: hidden;
   }
 
-  .warpper:hover .card_img {
-    height: 350px;
-  }
-
-  .warpper .heart {
+  .middle {
+    transition: 0.5s ease;
+    opacity: 0;
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .product-grid:hover .product-image {
+    opacity: 0.3;
+  }
+
+  .product-grid:hover .middle {
+    opacity: 1;
+  }
+
+  /*product card*/
+
+  /*social*/
+  .product-grid .social {
+    width: 150px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    opacity: 0;
+    transform: translateY(-50%) translateX(-50%);
+    position: absolute;
+    top: 60%;
+    left: 50%;
     z-index: 1;
-    width: 25px;
-    height: 25px;
+    transition: all 0.3s ease 0s;
+  }
+  .product-grid:hover .social {
+    opacity: 1;
+    top: 50%;
+  }
+  .product-grid .social li {
+    display: inline-block;
+  }
+  .product-grid .social li a {
     color: #fff;
-  }
-
-  .warpper .heart svg,
-  .warpper .heart path,
-  .warpper .heart circle {
-    stroke: currentColor;
-    fill: transparent;
-  }
-
-  .warpper .heart:hover {
-    cursor: pointer;
-  }
-
-  .color_bg {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 200px;
-  }
-
-  .color_bg.batman {
-    background-color: #b82d44;
-  }
-
-  .color_bg.blackpanter {
-    background-color: #1d1d1d;
-  }
-
-  .color_bg.arthur {
-    background-color: #153a82;
-  }
-
-  .color_bg.kashima {
-    background-color: #3f4a69;
-  }
-
-  .card_img {
-    background-size: contain;
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    position: absolute;
-    bottom: calc(100% - 300px);
-    width: 100%;
-    height: 300px;
-    -webkit-transition: ease all 0.3s;
-    transition: ease all 0.3s;
-  }
-
-  .cardInfo {
-    display: block;
-    padding: 20px 10px 5px 10px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    font-family: "Roboto";
-    color: #666;
-  }
-
-  .cardInfo h1 {
-    font-size: 20px;
-    text-transform: uppercase;
+    background-color: #333;
+    font-size: 16px;
+    line-height: 40px;
     text-align: center;
-    font-weight: bold;
-    line-height: 1.3;
-    margin-bottom: 10px;
-  }
-
-  .cardInfo p {
-    width: 100%;
-    font-size: 14px;
-    text-align: center;
-  }
-
-  .action {
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    padding: 15px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    margin-top: 15px;
-  }
-
-  .priceGroup {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-  }
-
-  .priceGroup .price {
-    font-size: 18px;
-    color: #000;
-    text-align: left;
-  }
-
-  .priceGroup .price.old_price {
-    color: red;
-    font-size: 15px;
-    text-decoration: line-through;
-    text-align: left;
-  }
-
-  .priceGroup .price.newPrice {
-    color: #000;
-    font-size: 25px;
-    font-weight: 800;
-  }
-
-  .cart {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
+    height: 40px;
+    width: 40px;
+    margin: 0 2px;
+    display: block;
     position: relative;
-    width: 35px;
-    height: 35px;
+    transition: all 0.3s ease-in-out;
+  }
+  /*end social*/
+
+  /*sale */
+  .product-grid .product-discount-label,
+  .product-grid .product-new-label {
+    color: #fff;
+    background-color: #ef5777;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 0;
   }
 
-  .cart:hover {
-    cursor: pointer;
+  .product-grid .product-discount-label {
+    background-color: #333;
+    left: auto;
+    right: 0;
+  }
+  /*end sale*/
+
+  /*rating*/
+  .product-grid .rating {
+    color: #ffd200;
+    font-size: 12px;
+    padding: 12px 0 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    z-index: -1;
   }
 
-  .cart svg,
-  .cart path,
-  .cart circle {
-    stroke: currentColor;
-    fill: transparent;
-    -webkit-transition-delay: 0.2s;
-    transition-delay: 0.2s;
+  .product-grid .rating li.disable {
+    color: rgba(0, 0, 0, 0.2);
+  }
+  /*end rating*/
+
+  /*content card*/
+  .product-grid .product-content {
+    background-color: #fff;
+    text-align: center;
+    padding: 12px 0;
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -30px;
+    z-index: 1;
+    transition: all 0.3s;
+  }
+
+  .product-grid:hover .product-content {
+    bottom: 0px;
+  }
+  /*end content card*/
+
+  /*title*/
+  .product-grid .title {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    margin: 0 0 10px;
+    transition: all 0.3s ease 0s;
+  }
+
+  .product-grid .title a {
+    color: #828282;
+  }
+
+  .product-grid .title a:hover,
+  .product-grid:hover .title a {
+    color: #ef5777;
+  }
+  /*end title*/
+
+  /*price*/
+  .product-grid .price {
+    color: #333333;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    margin-bottom: 8px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .product-grid .price span {
+    color: #999;
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration: line-through;
+    margin-left: 3px;
+    display: inline-block;
+  }
+  /*end price*/
+
+  /*add to card*/
+  .product-grid .add-to-cart {
+    color: #000;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  /*end add to card*/
+
+  @media only screen and (max-width: 990px) {
+    .product-grid {
+      margin-bottom: 30px;
+    }
   }
 `;

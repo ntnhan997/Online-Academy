@@ -76,7 +76,7 @@ export const HomeWrapper = styled.div`
     content: "\f054"; /*f105*/
     font-size: 22 px;
   }
-  
+
   /*arrow L&R position*/
   .slides .slick-prev {
     left: 2%;
