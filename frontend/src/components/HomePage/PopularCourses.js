@@ -5,9 +5,9 @@ import Card from ".././Card";
 export default function PopularCourses() {
   return (
     <PopularWrapper>
-      <h1>Popular Courses</h1>
-      <div className="container">
-        <div className="row">
+      <div className="wrapper">
+        <h1>Popular Courses</h1>
+        <div className="cards_wrap">
           <Card />
           <Card />
           <Card />

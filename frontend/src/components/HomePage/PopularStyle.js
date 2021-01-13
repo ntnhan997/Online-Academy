@@ -5,20 +5,42 @@ export const PopularWrapper = styled.div`
   body {
     font-family: "Poppins", sans-serif;
     min-height: 100vh;
+  }
+
+  .wrapper {
+    width: 100%;
+    margin: 10px auto;
+  }
+  .wrapper h1 {
+    padding: 10px 70px;
+  }
+
+  .cards_wrap {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0 30px;
+  }
+
+  .cards_wrap .card_item {
+    width: 20%;
   }
 
   /*product card*/
   .product-grid {
+    border-radius: 10px;
     text-align: center;
     padding: 0 0 72px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     overflow: hidden;
     position: relative;
     z-index: 1;
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .product-grid:hover {
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
   }
 
   .product-grid .product-image img {
@@ -111,7 +133,7 @@ export const PopularWrapper = styled.div`
   .product-grid .rating {
     color: #ffd200;
     font-size: 12px;
-    padding: 12px 0 0;
+    padding-bottom: 50px;
     margin: 0;
     list-style: none;
     position: relative;
@@ -193,6 +215,24 @@ export const PopularWrapper = styled.div`
   @media only screen and (max-width: 990px) {
     .product-grid {
       margin-bottom: 30px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .cards_wrap .card_item {
+      width: 33.3%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cards_wrap .card_item {
+      width: 50%;
+    }
+  }
+
+  @media (max-width: 528px) {
+    .cards_wrap .card_item {
+      width: 100%;
     }
   }
 `;
