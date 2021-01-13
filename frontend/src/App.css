@@ -1,256 +1,243 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap");
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    --primaryColor: #ff3c00;
-    --mainWhite: #fff;
-    --mainTransparent: #0005;
-    --offWhite: #f7f7f7;
-    --mainBlack: #222;
-    --mainGrey: #ececec;
-    --darkGrey: #cfcfcf;
-    --mainTransition: all 0.3s linear;
-    --mainSpacing: 3px;
-    --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
-    --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
-    --navbar-background-color: transparent;
+  --primaryColor: #ff3c00;
+  --mainWhite: #fff;
+  --mainTransparent: #0005;
+  --offWhite: #f7f7f7;
+  --mainBlack: #222;
+  --mainGrey: #ececec;
+  --darkGrey: #cfcfcf;
+  --mainTransition: all 0.3s linear;
+  --mainSpacing: 3px;
+  --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+  --navbar-background-color: transparent;
 }
-
 
 /* globals */
 
 body {
-    padding-top: 0px;
-    color: var(--mainBlack);
-    background: var(--mainTransparent);
-    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
-    font-family: "Nunito", sans-serif;
-    line-height: 1.4;
+  padding-top: 0px;
+  color: var(--mainBlack);
+  background: var(--mainTransparent);
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+  font-family: "Nunito", sans-serif;
+  line-height: 1.4;
 }
 
-
 /* end of globals */
-
 
 /* Navbar */
 
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0px;
-    width: 100%;
-    padding: 2rem 2rem;
-    background-color: var(--navbar-background-color);
-    z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0px;
+  width: 100%;
+  padding: 2rem 2rem;
+  background-color: var(--navbar-background-color);
+  z-index: 10;
 }
 
 .nav-header {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .nav-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    outline: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
 }
 
 .nav-icon {
-    font-size: 2rem;
-    color: rgba(21, 9, 75, 0.932);
+  font-size: 2rem;
+  color: rgba(21, 9, 75, 0.932);
 }
 
 .nav-icon:hover {
-    color: var(--primaryColor);
+  color: var(--primaryColor);
 }
 
 .nav-links {
-    height: 0;
-    overflow: hidden;
-    transition: var(--mainTransition);
-    list-style-type: none;
+  height: 0;
+  overflow: hidden;
+  transition: var(--mainTransition);
+  list-style-type: none;
 }
 
 .nav-links a {
-    display: block;
-    text-decoration: none;
-    /* padding: 1rem 0; */
-    color: cyan;
-    transition: var(--mainTransition);
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: var(--mainSpacing);
+  display: block;
+  text-decoration: none;
+  /* padding: 1rem 0; */
+  color: cyan;
+  transition: var(--mainTransition);
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: var(--mainSpacing);
 }
 
 .nav-links a:hover {
-    color: var(--primaryColor);
+  color: var(--primaryColor);
 }
-
 
 /*add plus minus icon toggle*/
 
 .accordion:after {
-    content: "\002B";
-    color: var(--mainWhite);
-    font-size: 12px;
-    float: right;
-    margin-left: 0.3rem;
-    margin-top: 0.3rem;
+  content: "\002B";
+  color: var(--mainWhite);
+  font-size: 12px;
+  float: right;
+  margin-left: 0.3rem;
+  margin-top: 0.3rem;
 }
 
 .active:after {
-    content: "\2212";
-    /* Unicode character for "minus" sign (-) */
-    color: #ff3c00;
+  content: "\2212";
+  /* Unicode character for "minus" sign (-) */
+  color: #ff3c00;
 }
 
-
 /*end of add plus minus icon toggle*/
-
 
 /*dropdown menu*/
 
 .nav-links .drop-menu {
-    list-style-type: none;
-    background: #242526;
-    width: 14rem;
-    top: 6.5rem;
-    line-height: 45px;
-    position: absolute;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 1s ease-in-out;
+  list-style-type: none;
+  background: #242526;
+  width: 14rem;
+  top: 6.5rem;
+  line-height: 45px;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 1s ease-in-out;
 }
 
 .nav-links li:hover .drop-menu {
-    top: 6.45rem;
-    opacity: 1;
-    visibility: visible;
-    transition: all 0.3s linear;
+  top: 6.45rem;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s linear;
 }
 
 .drop-menu li a {
-    width: 100%;
-    display: block;
-    padding-right: 2rem;
-    font-weight: 400;
+  width: 100%;
+  display: block;
+  padding-right: 2rem;
+  font-weight: 400;
 }
-
 
 /*end of dropdown menu*/
 
 .show-nav {
-    height: 200px;
+  height: 200px;
 }
-
 
 /*display hiden nav-btn with screen 768*/
 
 @media screen and (min-width: 768px) {
-    .nav-btn {
-        display: none;
-    }
-    .nav-center {
-        max-width: 1170px;
-        margin: 0 auto;
-        display: flex;
-    }
-    .nav-links {
-        height: auto;
-        display: flex;
-        margin-left: 4rem;
-    }
-    .nav-links a {
-        margin: 0 1rem;
-        /* padding: 0.5rem 0;*/
-    }
+  .nav-btn {
+    display: none;
+  }
+  .nav-center {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+  }
+  .nav-links {
+    height: auto;
+    display: flex;
+    margin-left: 4rem;
+  }
+  .nav-links a {
+    margin: 0 1rem;
+    /* padding: 0.5rem 0;*/
+  }
 }
-
 
 /* end of Navbar */
 
-
 /* Hero */
 
-
 /* end of Hero*/
-
 
 /* Course */
 
 .course {
-    position: absolute;
-    width: 100%;
-    top: 100px;
-    padding: 10px 70px;
-    background-color: #fff;
+  position: absolute;
+  width: 100%;
+  top: 100px;
+  padding: 10px 70px;
+  background-color: #fff;
 }
 
 .course h3 {
-    font-size: 30px;
-    padding: 30px 0;
+  font-size: 30px;
+  padding: 30px 0;
 }
 
 .course-header {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .course-header-left {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .course-header-left img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 .course-header-left-box p {
-    color: #ccc;
+  color: #ccc;
 }
-
 
 /* .course-header-left-box span {
     color: #7a7a7a;
 } */
 
 .course-header-left-box {
-    padding: 0 20px;
+  padding: 0 20px;
 }
 
 .course-header-right {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .course-header-right span {
-    color: #f24c0a;
-    font-size: 30px;
-    padding-right: 30px;
+  color: #f24c0a;
+  font-size: 30px;
+  padding-right: 30px;
 }
 
 .course-header-right button {
-    background-color: #ffb606;
-    padding: 10px 20px;
-    border: none;
-    outline: none;
-    cursor: pointer;
+  background-color: #ffb606;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .course-header-right button:hover {
-    background-color: #c48a04;
+  background-color: #c48a04;
 }
 
-.course>img {
-    width: 100%;
-    height: 500px;
-    padding: 10px 0;
+.course > img {
+  width: 100%;
+  height: 500px;
+  padding: 10px 0;
 }
