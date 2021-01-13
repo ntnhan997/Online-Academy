@@ -6,6 +6,7 @@ import Card03 from "../Card03";
 
 import "./style.css";
 
+
 const ListLatestCourse = () => {
 
   const [dataCard] = useState([
@@ -97,6 +98,7 @@ const ListLatestCourse = () => {
         {
           dataCard.map(item => {
             return <Card03 key = {item.courseId} className="cardCourse"
+                id = {item.courseId}
                 title = {item.title}
                 subtitle = {item.category}
                 tag = {item.price}

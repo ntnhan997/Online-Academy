@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import {Link} from 'react-router-dom';
+
 const Container = styled.div`
   position: relative;
   background-image: linear-gradient(
@@ -103,7 +105,8 @@ const Card03 = ({
   bottomIconSize = 1,
   bgPhoto,
   totalReviews,
-  ratingAverage
+  ratingAverage,
+  id
 }) => (
   <Container bgPhoto={bgPhoto}>
     {tag && (
@@ -115,7 +118,7 @@ const Card03 = ({
       <ContentColumn>
         {(title || subtitle) && (
           <>
-            <Title color={titleColor}>{title}</Title>
+            <Link to={"/categories/LapTrinh/" + id}><Title color={titleColor}>{title}</Title></Link>
             <Subtitle color={subtitleColor}>{subtitle}</Subtitle>
           </>
         )}

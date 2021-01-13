@@ -1,9 +1,9 @@
 import React from "react";
 import { PopularWrapper } from "./PopularStyle";
 import Card from ".././Card";
-import Card03 from ".././Card03";
+// import Card03 from ".././Card03";
 import arthur from "../../images/arthur.png";
-import batman from "../../images/batman.png";
+// import batman from "../../images/batman.png";
 import blackpanter from "../../images/blackpanter.png";
 import kashima from "../../images/kashima.png";
 
