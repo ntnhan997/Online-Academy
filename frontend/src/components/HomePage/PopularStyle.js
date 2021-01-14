@@ -2,9 +2,13 @@ import styled from "styled-components";
 
 export const PopularWrapper = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+  
   body {
     font-family: "Poppins", sans-serif;
     min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .wrapper {
@@ -27,7 +31,6 @@ export const PopularWrapper = styled.div`
     width: 20%;
   }
 
-  /*product card*/
   .product-grid {
     border-radius: 10px;
     text-align: center;
@@ -81,14 +84,13 @@ export const PopularWrapper = styled.div`
     opacity: 0;
     transform: translateY(-50%) translateX(-50%);
     position: absolute;
-    top: 60%;
-    left: 50%;
+    left: 70%;
     z-index: 1;
     transition: all 0.3s ease 0s;
   }
   .product-grid:hover .social {
     opacity: 1;
-    top: 50%;
+    top: 90%;
   }
   .product-grid .social li {
     display: inline-block;
@@ -105,6 +107,39 @@ export const PopularWrapper = styled.div`
     display: block;
     position: relative;
     transition: all 0.3s ease-in-out;
+  }
+  .product-grid .social li a:hover {
+    color: #fff;
+    background-color: #ef5777;
+  }
+  .product-grid .social li a:after,
+  .product-grid .social li a:before {
+    content: attr(data-tip);
+    color: #fff;
+    background-color: #000;
+    font-size: 12px;
+    letter-spacing: 1px;
+    line-height: 20px;
+    padding: 1px 5px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-50%);
+    position: absolute;
+    left: 50%;
+    top: -30px;
+  }
+  .product-grid .social li a:after {
+    content: "";
+    height: 15px;
+    width: 15px;
+    border-radius: 0;
+    transform: translateX(-50%) rotate(45deg);
+    top: -20px;
+    z-index: -1;
+  }
+  .product-grid .social li a:hover:after,
+  .product-grid .social li a:hover:before {
+    opacity: 1;
   }
   /*end social*/
 
@@ -129,32 +164,16 @@ export const PopularWrapper = styled.div`
   }
   /*end sale*/
 
-  /*rating*/
-  .product-grid .rating {
-    color: #ffd200;
-    font-size: 12px;
-    padding-bottom: 50px;
-    margin: 0;
-    list-style: none;
-    position: relative;
-    z-index: -1;
-  }
-
-  .product-grid .rating li.disable {
-    color: rgba(0, 0, 0, 0.2);
-  }
-  /*end rating*/
-
   /*content card*/
   .product-grid .product-content {
-    background-color: #fff;
-    text-align: center;
+    background-color: var(--mainTransparent);
+    text-align: left;
     padding: 12px 0;
     margin: 0 auto;
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -30px;
+    bottom: -145px;
     z-index: 1;
     transition: all 0.3s;
   }
@@ -164,18 +183,44 @@ export const PopularWrapper = styled.div`
   }
   /*end content card*/
 
+  /*tags*/
+  .tags {
+    position: relative;
+    margin-top: 5px;
+  }
+  .tags span {
+    padding: 2px 5px;
+    margin-right: 5px;
+    color: #fff;
+    display: inline-block;
+    border-radius: 4px;
+  }
+  .tags span.category {
+    background: #7206f7;
+  }
+  .tags span.branch {
+    background: #f70661;
+  }
+  /*end tags*/
+
   /*title*/
+
   .product-grid .title {
-    font-size: 13px;
+    font-size: 25px;
     font-weight: 400;
     letter-spacing: 0.5px;
     text-transform: capitalize;
-    margin: 0 0 10px;
     transition: all 0.3s ease 0s;
+  }
+  .product-grid .title a {
+    text-decoration: none;
   }
 
   .product-grid .title a {
-    color: #828282;
+    color: #fff;
+  }
+  .product-grid .title span {
+    color: #ff9800;
   }
 
   .product-grid .title a:hover,
@@ -184,33 +229,46 @@ export const PopularWrapper = styled.div`
   }
   /*end title*/
 
-  /*price*/
-  .product-grid .price {
-    color: #333333;
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: 0.6px;
-    margin-bottom: 8px;
-    text-align: center;
-    transition: all 0.3s;
-  }
-  .product-grid .price span {
-    color: #999;
-    font-size: 13px;
-    font-weight: 400;
-    text-decoration: line-through;
-    margin-left: 3px;
-    display: inline-block;
-  }
-  /*end price*/
-
-  /*add to card*/
-  .product-grid .add-to-cart {
+  /*info*/
+  .info {
     color: #000;
-    font-size: 13px;
-    font-weight: 600;
   }
-  /*end add to card*/
+  .info p {
+    margin: 15px 0 10px;
+  }
+  /*end info*/
+
+  /* lecterer */
+  .star {
+    position: relative;
+  }
+
+  .star h4 {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    color: #f7f406;
+  }
+  .star ul {
+    padding: 0;
+    display: flex;
+  }
+
+  .star ul li {
+    list-style: none;
+    width: 35px;
+    height: 35px;
+    background: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 6px;
+    border: 2px solid #fff;
+  }
+
+  .star ul li img {
+    width: 100%;
+  }
+  /* end of lecterer*/
 
   @media only screen and (max-width: 990px) {
     .product-grid {
@@ -226,13 +284,7 @@ export const PopularWrapper = styled.div`
 
   @media (max-width: 768px) {
     .cards_wrap .card_item {
-      width: 50%;
-    }
-  }
-
-  @media (max-width: 528px) {
-    .cards_wrap .card_item {
-      width: 100%;
+      width: 25%;
     }
   }
 `;

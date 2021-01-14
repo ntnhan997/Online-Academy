@@ -1,55 +1,93 @@
 import React from "react";
-import bootstrap from "../images/bootstrap.png";
-
-import Rating from '@material-ui/lab/Rating';
-import {Link} from "react-router-dom";
-
+import bootstrap from "../images/bootstrap.jpg";
+import l1 from "../images/l1.jpg";
+import l2 from "../images/l2.jpg";
+import Rating from "@material-ui/lab/Rating";
+import { Link } from "react-router-dom";
 
 export default function Card(props) {
-  const {id, title, price,category, bgPhoto, totalReviews, ratingAverage} = props;
+  const {
+    id,
+    title,
+    price,
+    category,
+    bgPhoto,
+    totalReviews,
+    ratingAverage,
+  } = props;
   return (
     <div className="card_item">
       <div className="product-grid">
         <div className="product-image">
           <a href="fb.com">
-            <img className="pic-1" src={bgPhoto ? bgPhoto: bootstrap} alt="bootstrap" />
+            <img
+              className="pic-1"
+              src={bgPhoto ? bgPhoto : bootstrap}
+              alt="bootstrap"
+            />
           </a>
-          <span className="product-new-label">{price ? price + "$" : "Sale"}</span>
+          <span className="product-new-label">
+            {price ? price + "$" : "Sale"}
+          </span>
           <span className="product-discount-label">0%</span>
         </div>
-        <div className="middle">
+        <div className="middle" />
+        <div className="product-content">
+          <h3 className="title">
+            <Link to={"/categories/LapTrinh/" + id}>
+              {title ? title : "Title Title(2021)"}
+            </Link>
+            <br />
+            <span>Created by aaa</span>
+          </h3>
           <ul className="social">
             <li>
-              <a href data-tip="Quick View">
+              <a href="fb.com" data-tip="View Details">
                 <i className="fa fa-search" />
               </a>
             </li>
             <li>
-              <a href data-tip="Add to Wishlist">
+              <a href="fb.com" data-tip="Add to Wishlist">
                 <i className="fa fa-shopping-bag" />
               </a>
             </li>
             <li>
-              <a href data-tip="Add to Cart">
+              <a href="fb.com" data-tip="Add to Cart">
                 <i className="fa fa-shopping-cart" />
               </a>
             </li>
           </ul>
-        </div>
-        <ul className="rating">
-          <Rating name="half-rating" defaultValue={ratingAverage? ratingAverage: 1} precision={0.5} readOnly/><p>({totalReviews ? totalReviews : 0} Reviews)</p>
-        </ul>
-        <div className="product-content">
-          <h3 className="title">
-            <Link to={"/categories/LapTrinh/" + id}>{title ? title : "title"}</Link>
-          </h3>
-          <div className="price">
-            Lorem
-            <p>{category? category: "category"}</p>
+          <div>
+            <Rating
+              name="half-rating"
+              defaultValue={ratingAverage ? ratingAverage : 1}
+              precision={0.5}
+              readOnly
+            />
+            {/* <br /> */}
+            <p>({totalReviews ? totalReviews : 0} Reviews)</p>
           </div>
-          <a className="add-to-cart" href>
-            + Add To Cart
-          </a>
+          <div className="tags">
+            <span className="category">{category ? category : "Category"}</span>
+            <span className="branch">Mobile</span>
+          </div>
+          <div className="info">
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Accusamus, voluptas.
+            </p>
+          </div>
+          <div className="star">
+            <h4>Lecturer</h4>
+            <ul>
+              <li>
+                <img src={l1} alt="aaaa" />
+              </li>
+              <li>
+                <img src={l2} alt="aaaa" />
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
