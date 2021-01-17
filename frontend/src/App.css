@@ -267,5 +267,22 @@ body {
     background-color: #ccc;
 }
 
+.box-tab {
+    min-height: 500px;
+}
+
 
 /* carousel owl */
+
+
+/* Accordion Course */
+
+.MuiAccordionDetails-root {
+    background-color: #ccc;
+    margin: 2px 0;
+    cursor: pointer;
+}
+
+.MuiAccordionDetails-root:hover {
+    background-color: rgb(179, 177, 177);
+}

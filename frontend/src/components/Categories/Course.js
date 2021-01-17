@@ -12,15 +12,66 @@ import CommentIcon from '@material-ui/icons/Comment';
 import Rating from '@material-ui/lab/Rating';
 import CourseSuggestion from "../HomePage/CourseSuggestion";
 
+import AccordionCourse from "../AccordionCourse";
+
 
 export default function Course(props) {
+
+
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-
+  const [data] = useState([
+    {
+      id: 0,
+      title: "Phần 1: Giới Thiệu",
+      total: 2,
+      time: "06:28",
+      lesson: [{
+        idLesson: 0,
+        titleLesson: "1. Lời Khuyên trước khóa học",
+        timeLesson: "04:20",
+        status: true
+      },
+      {
+        idLesson: 1,
+        titleLesson: "2. Cài đặt môi trường",
+        timeLesson: "02:20",
+        status: false
+      }
+    ]
+  },
+  {
+    id: 1,
+    title: "Phần 2: Làm quen",
+    total: 16,
+    time: "01:52:50",
+    lesson: [{
+      idLesson: 2,
+      titleLesson: "3. Cách sử dụng JS trong HTML",
+      timeLesson: "04:20",
+      status: false
+    },
+    {
+      idLesson: 3,
+      titleLesson: "4. Cài đặt môi trường",
+      timeLesson: "02:20",
+      status: false
+    },
+    {
+      idLesson: 4,
+      titleLesson: "5. Cài đặt môi trường",
+      timeLesson: "02:20",
+      status: false
+    }
+  ]
+  }
+  ])
+  
+  
 
 
   function TabPanel(props) {
@@ -95,14 +146,16 @@ export default function Course(props) {
           </div>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <div className="box-tab">
-            Curriculum is empty
+          <div className={"box-tab"}>
+            {data.map(item => {
+              return <AccordionCourse data={item}/>
+            })}
           </div>
         </TabPanel>
         <TabPanel value={value} index={2}>
         <div className="box-tab">
-            avatar
-          </div>
+            avatar...
+        </div>
         </TabPanel>
         <TabPanel value={value} index={3}>
         <div className="box-tab">

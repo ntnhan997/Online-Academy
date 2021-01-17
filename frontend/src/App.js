@@ -6,6 +6,8 @@ import HomePage from "./pages/HomePage";
 import Categories from "./pages/Categories";
 import Course from "./components/Categories/Course";
 
+import ".././node_modules/video-react/dist/video-react.css";
+
 function App() {
   return (
     <>
