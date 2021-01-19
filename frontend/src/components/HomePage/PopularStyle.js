@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const PopularWrapper = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-  
+
   body {
     font-family: "Poppins", sans-serif;
     min-height: 100vh;
@@ -21,7 +21,6 @@ export const PopularWrapper = styled.div`
 
   .cards_wrap {
     display: flex;
-    width: 100%;
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 0 30px;
@@ -34,7 +33,6 @@ export const PopularWrapper = styled.div`
   .product-grid {
     border-radius: 10px;
     text-align: center;
-    padding: 0 0 72px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     overflow: hidden;
     position: relative;
@@ -50,7 +48,9 @@ export const PopularWrapper = styled.div`
     opacity: 1;
     display: block;
     width: 100%;
-    height: auto;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size: cover;
     transition: 0.5s ease;
     backface-visibility: hidden;
   }
