@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import logo from "../images/logo.png";
-import { FaAlignRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
   state = {
     isOpen: false,
   };
+
   handleToggle = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
@@ -53,58 +52,156 @@ export default class Navbar extends Component {
   render() {
     return (
       <nav className="navbar">
-        <div className="nav-center">
-          <div className="nav-header">
-            <Link to="/">
-              <img src={logo} alt="educate logo" />
-            </Link>
-            <button
-              type="button"
-              className="nav-btn"
-              onClick={this.handleToggle}
-            >
-              <FaAlignRight className="nav-icon" />
-            </button>
+        <div className="container">
+          <input type="checkbox" name id="check" />
+          <div className="logo-container">
+            <h3 className="logo">
+              Online<span>Academy</span>
+            </h3>
           </div>
-          <ul
-            className={this.state.isOpen ? "nav-links show-nav" : "nav-links"}
-          >
-            <li>
-              <Link className="accordion" to="/">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link className="accordion">Courses</Link>
-              <ul className="drop-menu">
-                <li>
-                  <Link className="" to="/categories/development">
-                    Development
+          <div className="nav-btn">
+            <div className="nav-links">
+              <ul>
+                <li className="nav-link one">
+                  <Link to="/">Home</Link>
+                </li>
+                <li className="nav-link two">
+                  <Link to="/">
+                    Menu
+                    <i className="fas fa-caret-down" />
                   </Link>
-                  <Link className="" to="/categories/design">
-                    Design
+                  <div className="dropdown">
+                    <ul>
+                      <li className="dropdown-link">
+                        <Link to="/">Link 1</Link>
+                      </li>
+                      <li className="dropdown-link">
+                        <Link to="/">Link 2</Link>
+                      </li>
+                      <li className="dropdown-link">
+                        <Link to="/">
+                          Link 3<i className="fas fa-caret-down" />
+                        </Link>
+                        <div className="dropdown second">
+                          <ul>
+                            <li className="dropdown-link">
+                              <Link to="/">Link 1</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Link 2</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Link 3</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">
+                                More
+                                <i className="fas fa-caret-down" />
+                              </Link>
+                              <div className="dropdown second">
+                                <ul>
+                                  <li className="dropdown-link">
+                                    <Link to="/">Link 1</Link>
+                                  </li>
+                                  <li className="dropdown-link">
+                                    <Link to="/">Link 2</Link>
+                                  </li>
+                                  <li className="dropdown-link">
+                                    <Link to="/">Link 3</Link>
+                                  </li>
+                                  <div className="arrow" />
+                                </ul>
+                              </div>
+                            </li>
+                            <div className="arrow" />
+                          </ul>
+                        </div>
+                      </li>
+                      <li className="dropdown-link">
+                        <Link to="/">Link 4</Link>
+                      </li>
+                      <div className="arrow" />
+                    </ul>
+                  </div>
+                </li>
+                <li className="nav-link three">
+                  <Link to="/">
+                    Services
+                    <i className="fas fa-caret-down" />
                   </Link>
-                  <Link className="" to="/categories/marketing">
-                    Marketing
-                  </Link>
-                  <Link className="" to="/categories/lifestyle">
-                    Lifestyle
-                  </Link>
-                  <Link className="" to="/categories/health-and-fitness">
-                    Health & Fitness
-                  </Link>
+                  <div className="dropdown">
+                    <ul>
+                      <li className="dropdown-link">
+                        <Link to="/">Link 1</Link>
+                      </li>
+                      <li className="dropdown-link">
+                        <Link to="/">Link 2</Link>
+                      </li>
+                      <li className="dropdown-link">
+                        <Link to="/">
+                          Link 3<i className="fas fa-caret-down" />
+                        </Link>
+                        <div className="dropdown second">
+                          <ul>
+                            <li className="dropdown-link">
+                              <Link to="/">Link 1</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Link 2</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Link 3</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">
+                                More
+                                <i className="fas fa-caret-down" />
+                              </Link>
+                              <div className="dropdown second">
+                                <ul>
+                                  <li className="dropdown-link">
+                                    <Link to="/">Link 1</Link>
+                                  </li>
+                                  <li className="dropdown-link">
+                                    <Link to="/">Link 2</Link>
+                                  </li>
+                                  <li className="dropdown-link">
+                                    <Link to="/">Link 3</Link>
+                                  </li>
+                                  <div className="arrow" />
+                                </ul>
+                              </div>
+                            </li>
+                            <div className="arrow" />
+                          </ul>
+                        </div>
+                      </li>
+                      <li className="dropdown-link">
+                        <Link to="/">Link 4</Link>
+                      </li>
+                      <div className="arrow" />
+                    </ul>
+                  </div>
+                </li>
+                <li className="nav-link four">
+                  <Link to="/">About</Link>
                 </li>
               </ul>
-            </li>
-            <li>
-              <Link className="accordion" to="/">
-                Options
+            </div>
+            <div className="log-sign five">
+              <Link to="/" className="btn transparent">
+                Log in
               </Link>
-              {/* <div class="panel">
-                <p>Lorem ipsum...</p>
-              </div> */}
-            </li>
-          </ul>
+              <Link to="/" className="btn solid">
+                Sign up
+              </Link>
+            </div>
+          </div>
+          <div className="hamburger-menu-container">
+            <div className="hamburger-menu">
+              <div />
+            </div>
+          </div>
         </div>
       </nav>
     );
