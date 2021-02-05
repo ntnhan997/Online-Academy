@@ -1,31 +1,34 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import { Player } from 'video-react';
+// import { makeStyles } from '@material-ui/core/styles';
+// import Modal from '@material-ui/core/Modal';
+// import { Player } from 'video-react';
+
+import { useHistory } from "react-router-dom";
+
 
 import Typography from '@material-ui/core/Typography';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    position: 'absolute',
-    top: 50,
-    left: 50,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "800px",
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  }
-}));
+// const useStyles = makeStyles((theme) => ({
+//   paper: {
+//     position: 'absolute',
+//     top: 50,
+//     left: 50,
+//     display: "flex",
+//     justifyContent: "center",
+//     alignItems: "center",
+//     width: "800px",
+//     backgroundColor: theme.palette.background.paper,
+//     border: '2px solid #000',
+//     boxShadow: theme.shadows[5],
+//     padding: theme.spacing(2, 4, 3),
+//   }
+// }));
 
 export default function ModalVideo(props) {
-  const classes = useStyles();
+  // const classes = useStyles();
 
+    const history = useHistory();
     const [dataVideo] = useState([
         {
             idLesson: 0,
@@ -35,12 +38,12 @@ export default function ModalVideo(props) {
         {
             idLesson: 1,
             src: "http://media.w3.org/2010/05/bunny/movie.mp4",
-            status: false
+            status: true
         },
         {
             idLesson: 2,
             src : "http://media.w3.org/2010/05/sintel/trailer.mp4",
-            status: false
+            status: true
         },
         {
             idLesson: 3,
@@ -54,20 +57,19 @@ export default function ModalVideo(props) {
         }
     ])
 
-  // getModalStyle is not a pure function, we roll the style only on the first render
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+    const handleVideo = (status, id) => {
+      if(status === false){
+        alert("Da khoa");
+      }else{
+        history.push({
+          pathname: '/learning/javascript/' + id,
+      });
+      }
+    }
 
   return (
     <div>
-      <AccordionDetails onClick={dataVideo[props.data.idLesson].status ?  handleOpen : () => {}}>
+      <AccordionDetails onClick={() => handleVideo(dataVideo[props.data.idLesson].status, props.data.idLesson)}>
         <Typography className="lesson">
           <span>{props.data.titleLesson}</span>
           <span>{props.data.timeLesson}</span>
@@ -76,7 +78,7 @@ export default function ModalVideo(props) {
           </span>
         </Typography>
       </AccordionDetails>
-      <Modal
+      {/* <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
@@ -91,7 +93,7 @@ export default function ModalVideo(props) {
             
           />
         </div>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }

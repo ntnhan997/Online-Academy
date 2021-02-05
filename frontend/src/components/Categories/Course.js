@@ -12,11 +12,10 @@ import CommentIcon from '@material-ui/icons/Comment';
 import Rating from '@material-ui/lab/Rating';
 import CourseSuggestion from "../HomePage/CourseSuggestion";
 
-import AccordionCourse from "../AccordionCourse";
+import AccordionCourse from "./AccordionCourse";
 
 
 export default function Course(props) {
-
 
   const [value, setValue] = useState(0);
 

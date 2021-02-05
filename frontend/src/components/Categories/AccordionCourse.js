@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ModalVideo from './ModalVideo';
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
