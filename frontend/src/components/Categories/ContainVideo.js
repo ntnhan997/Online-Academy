@@ -130,7 +130,6 @@ export default function ContainVideo(){
             status: false
         }
     ])
-      
     return (
         
       <div className="containvideo">
