@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactPlayer from 'react-player/lazy';
+import { useDispatch, useSelector } from "react-redux";
 import {useParams } from "react-router-dom";
+import { WishList } from "../../actions/wishListAction";
 import AccordionCourse from "./AccordionCourse";
 
 export default function ContainVideo(){
+
+    const wishList = useSelector(state => state.wishList);
+    const {wishlists} = wishList;
+    const dispatch = useDispatch();
+    console.log(wishlists);
     const { id } = useParams();
     const [data] = useState([
         {
@@ -101,7 +108,11 @@ export default function ContainVideo(){
       ]
       }
       ])
-
+      useEffect(() => {
+        dispatch(WishList());
+        return () =>{
+        }
+    },[dispatch]);
 
       const [dataVideo] = useState([
         {
