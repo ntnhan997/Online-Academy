@@ -195,6 +195,9 @@ export default class Navbar extends Component {
               <Link to="/" className="btn solid">
                 Sign up
               </Link>
+              {/* <Link to="/wishlist" className="btn solid">
+                WishList
+              </Link> */}
             </div>
           </div>
           <div className="hamburger-menu-container">

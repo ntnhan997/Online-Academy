@@ -92,15 +92,15 @@ const wishList = [
     },
     {
         wishListId: 1,
-        courseId: 0,
+        courseId: 1,
         accountId: 1,
         Unlike_Favorite_Course: true
     },
     {
         wishListId: 2,
-        courseId: 0,
+        courseId: 2,
         accountId: 2,
-        Unlike_Favorite_Course: true
+        Unlike_Favorite_Course: false
     }
 ];
 

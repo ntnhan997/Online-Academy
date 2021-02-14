@@ -601,3 +601,11 @@ a {
     overflow: auto;
     height: 500px;
 }
+
+
+/* wishlist */
+
+.wishlist {
+    margin-top: 100px;
+    padding: 10px 70px;
+}

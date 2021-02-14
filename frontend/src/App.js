@@ -8,6 +8,7 @@ import Course from "./components/Categories/Course";
 import Footer from "./components/Footer";
 import ".././node_modules/video-react/dist/video-react.css";
 import ContainVideo from "./components/Categories/ContainVideo.js";
+import WishList from './components/WishList';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/categories/:name" component={Categories} />
           <Route exact path="/categories/:name/:id" component={Course} />
           <Route exact path="/learning/javascript/:id" component={ContainVideo} />
+          <Route exact path="/wishlist" component={WishList} />
         </Switch>
       </div>
       <div className="app-footer">
