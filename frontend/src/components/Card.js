@@ -14,6 +14,9 @@ export default function Card(props) {
     bgPhoto,
     totalReviews,
     ratingAverage,
+    descriptions,
+    TeacherName,
+    Avatar
   } = props;
   return (
     <div className="card_item">
@@ -38,7 +41,7 @@ export default function Card(props) {
               {title ? title : "Title Title(2021)"}
             </Link>
             <br />
-            <span>Created by aaa</span>
+            <span>Created by {TeacherName? TeacherName : "aaa"}</span>
           </h3>
           <ul className="social">
             <li>
@@ -46,21 +49,12 @@ export default function Card(props) {
                 <i className="fa fa-search" />
               </a>
             </li>
-            <li>
-              <a href="fb.com" data-tip="Add to Wishlist">
-                <i className="fa fa-shopping-bag" />
-              </a>
-            </li>
-            <li>
-              <a href="fb.com" data-tip="Add to Cart">
-                <i className="fa fa-shopping-cart" />
-              </a>
-            </li>
+            
           </ul>
           <div>
             <Rating
               name="half-rating"
-              defaultValue={ratingAverage ? ratingAverage : 1}
+              defaultValue={ratingAverage ? ratingAverage : 0}
               precision={0.5}
               readOnly
             />
@@ -69,23 +63,25 @@ export default function Card(props) {
           </div>
           <div className="tags">
             <span className="category">{category ? category : "Category"}</span>
-            <span className="branch">Mobile</span>
+            {/* <span className="branch">Mobile</span> */}
           </div>
           <div className="info">
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Accusamus, voluptas.
+              {
+                descriptions? descriptions : " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus, voluptas."
+              }
+             
             </p>
           </div>
           <div className="star">
             <h4>Lecturer</h4>
             <ul>
               <li>
-                <img src={l1} alt="aaaa" />
+                <img src={Avatar} alt="aaaa" />
               </li>
-              <li>
+              {/* <li>
                 <img src={l2} alt="aaaa" />
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
