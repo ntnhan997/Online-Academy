@@ -1,7 +1,7 @@
 import React from "react";
 import bootstrap from "../images/bootstrap.jpg";
-import l1 from "../images/l1.jpg";
-import l2 from "../images/l2.jpg";
+// import l1 from "../images/l1.jpg";
+// import l2 from "../images/l2.jpg";
 import Rating from "@material-ui/lab/Rating";
 import { Link } from "react-router-dom";
 
