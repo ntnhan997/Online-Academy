@@ -1,12 +1,12 @@
 import thunk from "redux-thunk";
 import {combineReducers , createStore, applyMiddleware, compose} from 'redux';
-import {wishListReducer} from "./reducers/wishListReducer";
 
+import {TopNumberViewsReducer} from "./reducers/courseReducer";
 
 const initialState = {};
 
 const reducer = combineReducers({
-    wishList: wishListReducer
+    listView: TopNumberViewsReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
