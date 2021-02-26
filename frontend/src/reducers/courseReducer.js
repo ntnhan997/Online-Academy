@@ -30,5 +30,18 @@ const TopCourseRegisteredReducer = (state = { topCourseRegisterLists: [] }, acti
     }
 }
 
+const TopCourseNewReducer = (state = { topCourseNewLists: [] }, action )=>{ 
+    switch(action.type){
+        case TOPCOURSEREGISTERED_REQUEST_LIST:
+            return {loading: true, topCourseNewLists: []};
+        case TOPCOURSEREGISTERED_SUCCESS_LIST: 
+            return {loading: false, topCourseNewLists: action.payload};
+        case TOPCOURSEREGISTERED_FAIL_LIST:
+            return {loading: false, error: action.payload};
+        default:
+            return state;
+    }
+}
 
-export {TopNumberViewsReducer, TopCourseRegisteredReducer}
+
+export {TopNumberViewsReducer, TopCourseRegisteredReducer, TopCourseNewReducer}
