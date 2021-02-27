@@ -192,7 +192,7 @@ export default class Navbar extends Component {
               <Link to="/" className="btn transparent">
                 Log in
               </Link>
-              <Link to="/" className="btn solid">
+              <Link to="/register" className="btn solid">
                 Sign up
               </Link>
               {/* <Link to="/wishlist" className="btn solid">

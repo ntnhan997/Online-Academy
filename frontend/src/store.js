@@ -5,13 +5,15 @@ import {TopNumberViewsReducer,
     TopCourseRegisteredReducer,
     TopCourseNewReducer
 } from "./reducers/courseReducer";
+import { ConfirmOTPReducer } from "./reducers/userReducer";
 
 const initialState = {};
 
 const reducer = combineReducers({
     listView: TopNumberViewsReducer,
     topCourseRegisterList: TopCourseRegisteredReducer,
-    topCourseNewList :TopCourseNewReducer
+    topCourseNewList :TopCourseNewReducer,
+    confirmOTP: ConfirmOTPReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
