@@ -1,4 +1,4 @@
-import {CONFIRM_OTP} from "../constants/userConstants";
+import {CONFIRM_OTP, USER_REGISTER_REQUEST} from "../constants/userConstants";
 
 
 const ConfirmOTPReducer = (state = { ConfirmOTP: {} }, action )=>{
@@ -10,4 +10,13 @@ const ConfirmOTPReducer = (state = { ConfirmOTP: {} }, action )=>{
     }
 };
 
-export {ConfirmOTPReducer}
+const RegisterReducer = ( state = { register: {} }, action) => {
+    switch(action.type){
+        case USER_REGISTER_REQUEST:
+            return {register: action.payload};
+        default:
+            return state;
+    }
+}
+
+export {ConfirmOTPReducer, RegisterReducer}

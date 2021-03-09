@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {requestOTP, confirmOTP} from '../actions/userAction';
+import {requestOTP, confirmOTP, RegisterUserAction} from '../actions/userAction';
 
 
 export default function RegisterUser() {
@@ -12,6 +12,10 @@ export default function RegisterUser() {
 
   const list = useSelector(state => state.confirmOTP);
   const {ConfirmOTP} = list;
+
+  const handleRegister = (userName,password,fullName,email) => {
+    dispatch(RegisterUserAction({userName,password,fullName,email}));
+  }
 
   const dispatch = useDispatch();
     return (
@@ -39,7 +43,7 @@ export default function RegisterUser() {
               <input type="text" onChange={(e) => setOTP(e.target.value)} disabled={ConfirmOTP.confirmOTP === true}/>
               <button type="button" onClick={() => dispatch(confirmOTP(otp))} disabled={ConfirmOTP.confirmOTP === true}>confirm</button>
             </li>
-            <button type="button" disabled={ConfirmOTP.confirmOTP !== true}>Register</button>
+            <button type="button" disabled={ConfirmOTP.confirmOTP !== true} onClick={() => handleRegister(userName,password,fullName,email)}>Register</button>
           </ul>
         </form>
       </div>

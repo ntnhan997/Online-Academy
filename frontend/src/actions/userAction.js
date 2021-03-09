@@ -1,4 +1,4 @@
-import {CONFIRM_OTP} from "../constants/userConstants";
+import {CONFIRM_OTP, USER_REGISTER_REQUEST} from "../constants/userConstants";
 
 import axios from "axios";
 
@@ -19,4 +19,18 @@ const confirmOTP = (otp) => async (dispatch) => {
     }
 }
 
-export {requestOTP, confirmOTP}
+const RegisterUserAction = (user) => async (dispatch) => {
+    try {
+        const data = await axios.post("/api/user/register", {
+            UserName: user.userName,
+            Password: user.password,
+            FullName: user.fullName,
+            Email: user.email
+        });
+        dispatch({type : USER_REGISTER_REQUEST, payload: data.data});
+    } catch (error) {
+        
+    }
+}
+
+export {requestOTP, confirmOTP, RegisterUserAction}
