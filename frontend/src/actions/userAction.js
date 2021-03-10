@@ -1,4 +1,4 @@
-import {CONFIRM_OTP, USER_REGISTER_REQUEST} from "../constants/userConstants";
+import {CONFIRM_OTP, USER_REGISTER_REQUEST, USER_LOGIN_REQUSET, USER_LOGOUT_REQUSET} from "../constants/userConstants";
 
 import axios from "axios";
 
@@ -33,4 +33,25 @@ const RegisterUserAction = (user) => async (dispatch) => {
     }
 }
 
-export {requestOTP, confirmOTP, RegisterUserAction}
+const LogInAction = (user) => async (dispatch) => {
+    try {
+        const data = await axios.post("/api/auth", {
+            UserName: user.userName,
+            Password: user.password
+        });
+        dispatch({type : USER_LOGIN_REQUSET, payload: data.data});
+        localStorage.setItem("accessToken_OA", JSON.stringify(data.data));
+    } catch (error) {
+        
+    }
+}
+
+const LogOut =() =>  async(dispatch) => {
+    try {
+        dispatch({type : USER_LOGIN_REQUSET, payload: null });
+    } catch (error) {
+        
+    }
+}
+
+export {requestOTP, confirmOTP, RegisterUserAction ,LogInAction, LogOut}

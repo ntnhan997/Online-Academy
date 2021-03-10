@@ -1,20 +1,24 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import parseJwt from "../utils";
+import store from "../store";
+import { LogOut } from "../actions/userAction";
 
-export default class Navbar extends Component {
-  state = {
-    isOpen: false,
-  };
+export default function Navbar(){
 
-  handleToggle = () => {
+  // user = useSelector(state => state.loginUser);
+  //const state = this.getCurrentStateFromStore();
+  const user = useSelector(state => state.loginUser);
+  const {users} = user;
+  const handleToggle = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
+  const documentStyle = document.documentElement.style;
+  const initalNavbarBackgroundColor = "transparent";
+  const scrolledNavbarBackgroundColor = "var(--mainTransparent)";
 
-  documentStyle = document.documentElement.style;
-  initalNavbarBackgroundColor = "transparent";
-  scrolledNavbarBackgroundColor = "var(--mainTransparent)";
-
-  handleScroll = () => {
+  const handleScroll = () => {
     if (window.scrollY === 0) {
       this.documentStyle.setProperty(
         "--navbar-background-color",
@@ -27,29 +31,66 @@ export default class Navbar extends Component {
       );
     }
   };
+  const dispatch = useDispatch();
 
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
+  const [check,setCheck] = useState(false);
 
-    let acc = document.getElementsByClassName("accordion");
-    let i = 0;
-    for (i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("mouseover", function () {
-        this.classList.toggle("active");
-      });
+  useEffect(() => {
+    if(check == true){
+      localStorage.removeItem("accessToken_OA");
+      dispatch(LogOut());
     }
-    for (i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("mouseout", function () {
-        this.classList.remove("active");
-      });
-    }
+    // if(localStorage.getItem("authenticated_OA") === null){
+    //   localStorage.setItem("authenticated_OA", false);
+    // }
+    window.addEventListener("scroll", handleScroll);
+
+      let acc = document.getElementsByClassName("accordion");
+      let i = 0;
+      for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("mouseover", function () {
+          this.classList.toggle("active");
+        });
+      }
+      for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("mouseout", function () {
+          this.classList.remove("active");
+        });
+      }
+      window.removeEventListener("scroll", handleScroll);
+  }, [check,users])
+  
+  // componentDidMount() {
+    
+  
+  //   window.addEventListener("scroll", this.handleScroll);
+
+  //   let acc = document.getElementsByClassName("accordion");
+  //   let i = 0;
+  //   for (i = 0; i < acc.length; i++) {
+  //     acc[i].addEventListener("mouseover", function () {
+  //       this.classList.toggle("active");
+  //     });
+  //   }
+  //   for (i = 0; i < acc.length; i++) {
+  //     acc[i].addEventListener("mouseout", function () {
+  //       this.classList.remove("active");
+  //     });
+  //   }
+  // }
+
+  const getCurrentStateFromStore = () => {
+    return {
+      loginUser: store.getState().loginUser.users,
+    };
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
+  // componentWillUnmount() {
+  //   window.removeEventListener("scroll", this.handleScroll);
+  // }
 
-  render() {
+    console.log(users);
+    // const usersss =  parseJwt(localStorage.getItem("accessToken_OA"));
     return (
       <nav className="navbar">
         <div className="container">
@@ -189,12 +230,25 @@ export default class Navbar extends Component {
               </ul>
             </div>
             <div className="log-sign five">
-              <Link to="/" className="btn transparent">
-                Log in
-              </Link>
-              <Link to="/register" className="btn solid">
-                Sign up
-              </Link>
+              {users != null ?(
+                <>
+                  <p>{parseJwt(users.accessToken).FullName}</p>
+                  <Link to="/login" className="btn transparent" onClick={() => setCheck(true)}>
+                    Log out
+                  </Link>
+                </>
+              ) :(
+                
+                <>
+                  <Link to="/login" className="btn transparent">
+                    Log in
+                  </Link>
+                  <Link to="/register" className="btn solid">
+                    Sign up
+                  </Link>
+                </>
+              )}
+
               {/* <Link to="/wishlist" className="btn solid">
                 WishList
               </Link> */}
@@ -208,5 +262,4 @@ export default class Navbar extends Component {
         </div>
       </nav>
     );
-  }
 }

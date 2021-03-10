@@ -5,16 +5,19 @@ import {TopNumberViewsReducer,
     TopCourseRegisteredReducer,
     TopCourseNewReducer
 } from "./reducers/courseReducer";
-import { ConfirmOTPReducer, RegisterReducer } from "./reducers/userReducer";
+import { ConfirmOTPReducer, LogInReducer, RegisterReducer } from "./reducers/userReducer";
 
-const initialState = {};
+
+const users = JSON.parse(localStorage.getItem("accessToken_OA")) || null;
+const initialState = {loginUser: {users}};
 
 const reducer = combineReducers({
     listView: TopNumberViewsReducer,
     topCourseRegisterList: TopCourseRegisteredReducer,
     topCourseNewList :TopCourseNewReducer,
     confirmOTP: ConfirmOTPReducer,
-    registerUser: RegisterReducer 
+    registerUser: RegisterReducer,
+    loginUser: LogInReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

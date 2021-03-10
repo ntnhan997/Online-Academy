@@ -620,3 +620,14 @@ a {
     width: 100%;
     justify-content: center;
 }
+
+
+/* log in */
+
+.login {
+    margin-top: 100px;
+    padding: 10px 70px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}

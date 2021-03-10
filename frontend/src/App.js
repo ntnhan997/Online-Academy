@@ -10,6 +10,7 @@ import ".././node_modules/video-react/dist/video-react.css";
 import ContainVideo from "./components/Categories/ContainVideo.js";
 import WishList from './components/WishList';
 import RegisterUser from "./components/RegisterUser";
+import LogIn from "./components/LogIn";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route exact path="/learning/javascript/:id" component={ContainVideo} />
           <Route exact path="/wishlist" component={WishList} />
           <Route exact path="/register" component={RegisterUser} />
+          <Route exact path="/login" component={LogIn} />
         </Switch>
       </div>
       <div className="app-footer">
