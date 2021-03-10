@@ -6,45 +6,57 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import "./style.css";
 import Card from "../Card";
 
-import {PopularWrapper} from './PopularStyle';
+import { PopularWrapper } from "./PopularStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { TopCourseViews } from "../../actions/courseAction";
 
 const ListLatestCourse = () => {
-
-  const list = useSelector(state => state.topCourseNewList);
-  const {topCourseNewLists} = list;
+  const list = useSelector((state) => state.topCourseNewList);
+  const { topCourseNewLists } = list;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(TopCourseViews());
-  },[dispatch])
+  }, [dispatch]);
 
   return (
     <div className="ListLatestCourse">
       <h3>New Courses</h3>
-      {
-        topCourseNewLists[0] ? 
-        <OwlCarousel className="owl-theme" loop margin={10} lazyLoad items={4} dots={false} nav navText={['<-Prev','Next->']}>
-        {
-          topCourseNewLists.map(item => {
-            return <PopularWrapper><Card key = {item.courseId} className="cardCourse"
-            id = {item.CourseId}
-            title = {item.CourseName}
-            category = {item.CategoryName}
-            price = {item.CoursePrice}
-            bgPhoto = {item.CourseImage}
-            totalReviews={item.CourseReviews}
-            ratingAverage = {item.CourseRatings}
-            descriptions = {item.CourseDescriptions}
-            TeacherName = {item.TeacherName}
-            Avatar = {item.Avatar}
-        /></PopularWrapper>
-          })
-        }
-      </OwlCarousel>
-        : "Loading..."
-      }   
+      {topCourseNewLists[0] ? (
+        <OwlCarousel
+          className="owl-theme"
+          loop
+          margin={10}
+          lazyLoad
+          items={4}
+          dots={false}
+          nav
+          navText={["<-Prev", "Next->"]}
+        >
+          {topCourseNewLists.map((item, index) => {
+            return (
+              <PopularWrapper key={index}>
+                <Card
+                  key={item.courseId}
+                  className="cardCourse"
+                  id={item.CourseId}
+                  title={item.CourseName}
+                  category={item.CategoryName}
+                  price={item.CoursePrice}
+                  bgPhoto={item.CourseImage}
+                  totalReviews={item.CourseReviews}
+                  ratingAverage={item.CourseRatings}
+                  descriptions={item.CourseDescriptions}
+                  TeacherName={item.TeacherName}
+                  Avatar={item.Avatar}
+                />
+              </PopularWrapper>
+            );
+          })}
+        </OwlCarousel>
+      ) : (
+        "Loading..."
+      )}
     </div>
   );
 };

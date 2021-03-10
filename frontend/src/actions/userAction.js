@@ -1,4 +1,4 @@
-import {CONFIRM_OTP, USER_REGISTER_REQUEST, USER_LOGIN_REQUSET, USER_LOGOUT_REQUSET} from "../constants/userConstants";
+import {CONFIRM_OTP, USER_REGISTER_REQUEST, USER_LOGIN_REQUSET} from "../constants/userConstants";
 
 import axios from "axios";
 

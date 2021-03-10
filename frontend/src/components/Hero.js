@@ -43,9 +43,9 @@ export default class Hero extends Component {
     return (
       <HomeWrapper>
         <Slider {...settings}>
-          {photos.map((photo) => {
+          {photos.map((photo, index) => {
             return (
-              <div>
+              <div key={index}>
                 <img width="100%" src={photo.url} alt="" />
               </div>
             );
