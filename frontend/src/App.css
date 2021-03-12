@@ -645,7 +645,6 @@ a {
 /* search full text */
 
 .search-fulltext {
-    margin-top: 100px;
     padding: 10px 70px;
     display: flex;
     flex-wrap: wrap;
@@ -678,4 +677,10 @@ a {
 
 .card-search {
     width: 500px;
+}
+
+.sort-search {
+    margin-top: 100px;
+    padding: 10px 70px;
+    background-color: #ccc;
 }
