@@ -640,3 +640,33 @@ a {
     width: 100%;
     justify-content: center;
 }
+
+
+/* search full text */
+
+.seach-fulltext {
+    margin-top: 100px;
+    padding: 10px 70px;
+}
+
+.input-search {
+    padding: 5px 10px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px #ccc solid;
+}
+
+.btn-search {
+    padding: 5px;
+    margin-left: 5px;
+    background-color: white;
+    border: 1px transparent solid;
+    outline: none;
+    cursor: pointer;
+    color: #69bde7;
+}
+
+.btn-search:hover {
+    background-color: transparent;
+    border: 1px white solid;
+}

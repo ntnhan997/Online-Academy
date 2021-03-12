@@ -11,6 +11,7 @@ import ContainVideo from "./components/Categories/ContainVideo.js";
 import WishListUser from "./components/WishList";
 import RegisterUser from "./components/RegisterUser";
 import LogIn from "./components/LogIn";
+import SearchFullText from "./components/SearchFullText";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route exact path="/wishlist" component={WishListUser} />
           <Route exact path="/register" component={RegisterUser} />
           <Route exact path="/login" component={LogIn} />
+          <Route exact path="/SearchFullText" component={SearchFullText} />
         </Switch>
       </div>
       <div className="app-footer">

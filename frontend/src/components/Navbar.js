@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import parseJwt from "../utils";
 import { LogOut } from "../actions/userAction";
 
@@ -9,8 +9,17 @@ export default function Navbar() {
   const { users } = user;
 
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const [check, setCheck] = useState(false);
+
+
+  const [search,setSearch] = useState("");
+
+  const handleSearch = (search) => {
+    if(search !== ""){
+      history.push("/SearchFullText/?result=" + search);
+    }
+  }
 
   useEffect(() => {
     if (check === true) {
@@ -67,8 +76,8 @@ export default function Navbar() {
                 <Link to="/">Home</Link>
               </li>
               <li className="nav-link two">
-                <Link to="/">
-                  Menu
+                <Link to="/SearchFullText">
+                  Categories
                   <i className="fas fa-caret-down" />
                 </Link>
                 <div className="dropdown">
@@ -105,7 +114,11 @@ export default function Navbar() {
                   </ul>
                 </div>
               </li>
-              <li className="nav-link three">
+              <li>
+                <input type="text" className="input-search" onChange={(e) => setSearch(e.target.value)}/>
+                <button type="button" className="btn-search" onClick={() => handleSearch(search)}>Search</button>
+              </li>
+              {/* <li className="nav-link three">
                 <Link to="/">
                   Services
                   <i className="fas fa-caret-down" />
@@ -143,10 +156,10 @@ export default function Navbar() {
                     <div className="arrow" />
                   </ul>
                 </div>
-              </li>
-              <li className="nav-link four">
+              </li> */}
+              {/* <li className="nav-link four">
                 <Link to="/">About</Link>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="log-sign five">
