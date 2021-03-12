@@ -14,7 +14,8 @@ export default function Card(props) {
     ratingAverage,
     descriptions,
     TeacherName,
-    Avatar
+    Avatar,
+    CategoryName
   } = props;
   return (
     <div className="card_item">
@@ -35,7 +36,7 @@ export default function Card(props) {
         <div className="middle" />
         <div className="product-content">
           <h3 className="title">
-            <Link to={"/categories/LapTrinh/" + id}>
+            <Link to={"/" + CategoryName + "/" + id}>
               {title ? title : "Title Title(2021)"}
             </Link>
             <br />

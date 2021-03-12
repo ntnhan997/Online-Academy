@@ -49,6 +49,7 @@ const ListLatestCourse = () => {
                   descriptions={item.CourseDescriptions}
                   TeacherName={item.TeacherName}
                   Avatar={item.Avatar}
+                  CategoryName = {item.CategoryName}
                 />
               </PopularWrapper>
             );

@@ -105,6 +105,7 @@ const CourseSuggestion = () => {
                 bgPhoto = {item.bgPhoto}
                 totalReviews={item.totalReviews}
                 ratingAverage = {item.ratingAverage}
+                CategoryName = {item.CategoryName}
             /></PopularWrapper>
           })
         }
