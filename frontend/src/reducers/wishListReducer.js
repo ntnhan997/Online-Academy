@@ -1,4 +1,4 @@
-import { ITEM_REQUEST_WISHLIST, ITEM_SUCCESS_WISHLIST, ITEM_FAIL_WISHLIST} from '../constants/wishListConstants';
+import { ITEM_REQUEST_WISHLIST, ITEM_SUCCESS_WISHLIST, ITEM_FAIL_WISHLIST, REMOVE_ITEM_WISHLIST} from '../constants/wishListConstants';
 
 
 const wishListReducer = (state = { wishlists: [] }, action )=>{
@@ -6,6 +6,8 @@ const wishListReducer = (state = { wishlists: [] }, action )=>{
     //     console.log(action.payload);
     // }
     switch(action.type){
+        case REMOVE_ITEM_WISHLIST:
+            return {loading: false, wishlists: action.payload};
         case ITEM_REQUEST_WISHLIST:
             return {loading: true, wishlists: []};
         case ITEM_SUCCESS_WISHLIST: 

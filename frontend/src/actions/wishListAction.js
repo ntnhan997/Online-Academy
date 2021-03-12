@@ -1,13 +1,18 @@
-import { ITEM_REQUEST_WISHLIST, ITEM_SUCCESS_WISHLIST, ITEM_FAIL_WISHLIST} from '../constants/wishListConstants';
-import {wishList} from '../dataTemp';
+import { ITEM_REQUEST_WISHLIST, ITEM_SUCCESS_WISHLIST, ITEM_FAIL_WISHLIST, REMOVE_ITEM_WISHLIST} from '../constants/wishListConstants';
 
+import axios from "axios";
 
 
 const WishList = () => async (dispatch) => {
     try {
         dispatch({type : ITEM_REQUEST_WISHLIST});
-        // const datas = await axios.get("/api/products");
-        dispatch({type: ITEM_SUCCESS_WISHLIST, payload: wishList});
+        const datas = await axios.get("/api/favoritecourse", {
+            headers :{
+                "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+            }
+        });
+        console.log(datas.data);
+        dispatch({type: ITEM_SUCCESS_WISHLIST, payload: datas.data});
     } catch (error) {
         dispatch({type: ITEM_FAIL_WISHLIST, payload: error});  
     }
@@ -28,15 +33,29 @@ const WishList = () => async (dispatch) => {
 // }
 
 
-// const removeFromCart = (productId) => (dispatch,getState) => {
-//     try {
-//         dispatch({type: CART_REMOVE_ITEM, payload: productId});
-//         const {cart: {cartItem}} = getState();
-//         Cookie.set("cartItem", JSON.stringify(cartItem));
-//     } catch (error) {
+const removeFromWishList = (CourseID) => async (dispatch) => {
+    try {
+        console.log(CourseID);
+        const datas = await axios.delete("/api/favoritecourse", {
+            headers :{
+            "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+        }, 
+            data: {
+                CourseID
+            }
+        }
+        )
+        const datawishlist = await axios.get("/api/favoritecourse", {
+            headers :{
+                "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+            }
+        });
+        console.log(datawishlist.data);
+        dispatch({type: REMOVE_ITEM_WISHLIST, payload: datawishlist.data});
+    } catch (error) {
         
-//     }
+    }
    
-// }
+}
 
-export {WishList}
+export {WishList, removeFromWishList}

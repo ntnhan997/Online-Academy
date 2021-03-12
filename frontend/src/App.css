@@ -608,6 +608,15 @@ a {
 .wishlist {
     margin-top: 100px;
     padding: 10px 70px;
+    display: flex;
+    align-items: center;
+    background-color: #ccc;
+    min-height: 500px;
+    flex-wrap: wrap;
+}
+
+.card-wishlist {
+    width: 400px;
 }
 
 

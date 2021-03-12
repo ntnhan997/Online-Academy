@@ -152,6 +152,12 @@ export default function Navbar() {
           <div className="log-sign five">
             {users != null ? (
               <>
+              <Link
+                  to="/wishlist"
+                className="btn solid"
+                >
+                  Wish List
+                </Link>
                 <p>{parseJwt(users.accessToken).FullName}</p>
                 <Link
                   to="/login"
@@ -171,10 +177,6 @@ export default function Navbar() {
                 </Link>
               </>
             )}
-
-            {/* <Link to="/wishlist" className="btn solid">
-                WishList
-              </Link> */}
           </div>
         </div>
         <div className="hamburger-menu-container">
