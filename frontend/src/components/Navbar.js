@@ -17,7 +17,7 @@ export default function Navbar() {
 
   const handleSearch = (search) => {
     if(search !== ""){
-      history.push("/SearchFullText/?result=" + search);
+      history.push("/Course/SearchFullText/result?name=" + search);
     }
   }
 

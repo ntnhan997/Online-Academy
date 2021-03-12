@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/wishlist" component={WishListUser} />
           <Route exact path="/register" component={RegisterUser} />
           <Route exact path="/login" component={LogIn} />
-          <Route exact path="/SearchFullText" component={SearchFullText} />
+          <Route exact path="/Course/SearchFullText/result" component={SearchFullText} />
         </Switch>
       </div>
       <div className="app-footer">

@@ -8,6 +8,7 @@ import {TopNumberViewsReducer,
 import { ConfirmOTPReducer, LogInReducer, RegisterReducer } from "./reducers/userReducer";
 
 import {wishListReducer} from "./reducers/wishListReducer";
+import { SearchReducer } from "./reducers/searchReducer";
 
 const users = JSON.parse(localStorage.getItem("accessToken_OA")) || null;
 const initialState = {loginUser: {users}};
@@ -19,7 +20,8 @@ const reducer = combineReducers({
     confirmOTP: ConfirmOTPReducer,
     registerUser: RegisterReducer,
     loginUser: LogInReducer,
-    wishList: wishListReducer
+    wishList: wishListReducer,
+    searchList: SearchReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

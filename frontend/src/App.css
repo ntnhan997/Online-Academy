@@ -644,9 +644,14 @@ a {
 
 /* search full text */
 
-.seach-fulltext {
+.search-fulltext {
     margin-top: 100px;
     padding: 10px 70px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #ccc;
+    min-height: 500px;
 }
 
 .input-search {
@@ -669,4 +674,8 @@ a {
 .btn-search:hover {
     background-color: transparent;
     border: 1px white solid;
+}
+
+.card-search {
+    width: 500px;
 }
