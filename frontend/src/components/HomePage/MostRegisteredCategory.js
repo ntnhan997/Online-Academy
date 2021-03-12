@@ -36,9 +36,9 @@ const MostRegisteredCategory = () => {
             return (
               <PopularWrapper key={index}>
                 <Card
-                  key={item.courseId}
+                  key={item.CourseID}
                   className="cardCourse"
-                  id={item.CourseId}
+                  id={item.CourseID}
                   title={item.CourseName}
                   category={item.CategoryName}
                   price={item.CoursePrice}

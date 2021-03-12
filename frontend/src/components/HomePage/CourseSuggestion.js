@@ -97,8 +97,8 @@ const CourseSuggestion = () => {
       <OwlCarousel className="owl-theme" loop margin={10} lazyLoad items={4} dots={false} nav navText={['<-Prev','Next->']}>
         {
           dataCard.map(item => {
-            return <PopularWrapper><Card key = {item.courseId} className="cardCourse"
-                id = {item.courseId}
+            return <PopularWrapper><Card key = {item.CourseID} className="cardCourse"
+                id = {item.CourseID}
                 title = {item.title}
                 category = {item.category}
                 price = {item.price}
