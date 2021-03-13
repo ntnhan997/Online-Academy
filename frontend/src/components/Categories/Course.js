@@ -14,12 +14,14 @@ import CourseSuggestion from "../HomePage/CourseSuggestion";
 
 import AccordionCourse from "./AccordionCourse";
 import { useDispatch, useSelector } from "react-redux";
-import { detailsCourseAction } from "../../actions/detailsCourseAction";
+import { commentCourseAction, detailsCourseAction } from "../../actions/detailsCourseAction";
 
 
 export default function Course(props) {
   const CourseId = props.match.params.id;
   const list = useSelector(state => state.detailsList);
+  const comment = useSelector(state => state.commentList);
+  const {comments} = comment;
   const {details} = list;
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
@@ -29,6 +31,7 @@ export default function Course(props) {
 
   useEffect(() => {
     dispatch(detailsCourseAction(CourseId));
+    dispatch(commentCourseAction(CourseId));
   }, [dispatch])
 
   const [data] = useState([
@@ -178,12 +181,16 @@ export default function Course(props) {
             <TabPanel value={value} index={3}>
               <div className="box-tab">
                 Review
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Ratione animi facilis accusamus est! Ducimus nisi incidunt
-                  nobis molestiae, ea non voluptates? Delectus eveniet nobis
-                  laudantium, commodi inventore veritatis dignissimos officia.
-                </p>
+                {
+                  comments.map((item, index) => {
+                    return (
+                      <div className="comment" key={index}>
+                        <p className="name-comment">{item.FullName + " --- " + item.DateOfComment}</p>
+                        <span>{item.Comment}</span>
+                      </div>
+                    )
+                  })
+                }
               </div>
             </TabPanel>
           </div>

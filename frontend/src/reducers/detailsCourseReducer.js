@@ -1,5 +1,6 @@
 import {
     DETAILS_REQUEST_COURSE,
+    COMMENT_REQUEST_COURSE
 
   } from "../constants/detailsCourseConstants";
 const DetailsCourseReducer = (state = { details: [] }, action )=>{
@@ -11,5 +12,14 @@ const DetailsCourseReducer = (state = { details: [] }, action )=>{
     }
 };
 
+const CommentCourseReducer = (state = { comments: [] }, action )=>{
+    switch(action.type){
+        case COMMENT_REQUEST_COURSE: 
+            return {loading: false, comments: action.payload};
+        default:
+            return state;
+    }
+};
 
-export {DetailsCourseReducer}
+
+export {DetailsCourseReducer, CommentCourseReducer}

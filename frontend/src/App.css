@@ -700,3 +700,17 @@ a {
     height: 20px;
     margin: 0px 5px;
 }
+
+
+/* comment */
+
+.comment {
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    margin: 5px;
+}
+
+.name-comment {
+    color: #69bde7;
+}
