@@ -14,7 +14,7 @@ import CourseSuggestion from "../HomePage/CourseSuggestion";
 
 import AccordionCourse from "./AccordionCourse";
 import { useDispatch, useSelector } from "react-redux";
-import { commentCourseAction, detailsCourseAction } from "../../actions/detailsCourseAction";
+import { commentCourseAction, detailsCourseAction, postCommentAction } from "../../actions/detailsCourseAction";
 
 
 export default function Course(props) {
@@ -24,6 +24,9 @@ export default function Course(props) {
   const {comments} = comment;
   const {details} = list;
   const [value, setValue] = useState(0);
+
+
+  const [postcomment, setComment] = useState("");
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -32,7 +35,13 @@ export default function Course(props) {
   useEffect(() => {
     dispatch(detailsCourseAction(CourseId));
     dispatch(commentCourseAction(CourseId));
+    
   }, [dispatch])
+
+  const handleComment = (CourseId,postcomment) => {
+    dispatch(postCommentAction(CourseId, postcomment));
+    setComment("");
+  }
 
   const [data] = useState([
     {
@@ -161,7 +170,7 @@ export default function Course(props) {
               </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-              <div class="box-tab">
+              <div className="box-tab">
                 <h3>COURSE DESCRIPTION</h3>
                 <p>
                   {details.CourseDescriptions}
@@ -169,9 +178,9 @@ export default function Course(props) {
               </div>
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <div className={"box-tab"}>
-                {data.map((item) => {
-                  return <AccordionCourse data={item} />;
+              <div className="box-tab">
+                {data.map((item,index) => {
+                  return <AccordionCourse data={item} key={index} />;
                 })}
               </div>
             </TabPanel>
@@ -194,7 +203,13 @@ export default function Course(props) {
               </div>
             </TabPanel>
           </div>
-
+          <div className="post-comment">
+            Post Comment
+            <br/>
+            <textarea rows="9" cols="100" value={postcomment} onChange={(e) => setComment(e.target.value)}>
+            </textarea>
+            <button type="button" className="btn-comment" onClick={() => handleComment(CourseId,postcomment)}>Send</button>
+          </div>
           <CourseSuggestion />
         </div>
       ) : (

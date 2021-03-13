@@ -22,5 +22,19 @@ import {
     } catch (error) {
     }
   };
-  export { detailsCourseAction, commentCourseAction };
+
+  const postCommentAction = (CourseID,Comment) => async (dispatch) => {
+    try {
+      await axios.post("/api/comment/",{CourseID,Comment}, {
+        headers :{
+          "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+      }
+      });
+      const data = await axios.get("/api/comment/" + CourseID);
+      dispatch({ type: COMMENT_REQUEST_COURSE, payload: data.data });
+      // commentCourseAction(CourseID);
+    } catch (error) {
+    }
+  };
+  export { detailsCourseAction, commentCourseAction, postCommentAction };
   

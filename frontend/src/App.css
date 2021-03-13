@@ -714,3 +714,12 @@ a {
 .name-comment {
     color: #69bde7;
 }
+
+.post-comment {
+    width: 80%;
+}
+
+.btn-comment {
+    padding: 10px 20px;
+    cursor: pointer;
+}
