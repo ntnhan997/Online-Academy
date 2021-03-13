@@ -53,7 +53,7 @@ export default function Card(props) {
           <div>
             <Rating
               name="half-rating"
-              defaultValue={ratingAverage ? ratingAverage : 0}
+              value={ratingAverage ? ratingAverage : 0}
               precision={0.5}
               readOnly
             />
