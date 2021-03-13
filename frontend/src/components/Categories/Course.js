@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -13,15 +13,23 @@ import Rating from '@material-ui/lab/Rating';
 import CourseSuggestion from "../HomePage/CourseSuggestion";
 
 import AccordionCourse from "./AccordionCourse";
+import { useDispatch, useSelector } from "react-redux";
+import { detailsCourseAction } from "../../actions/detailsCourseAction";
 
 
 export default function Course(props) {
-
+  const CourseId = props.match.params.id;
+  const list = useSelector(state => state.detailsList);
+  const {details} = list;
   const [value, setValue] = useState(0);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(detailsCourseAction(CourseId));
+  }, [dispatch])
 
   const [data] = useState([
     {
@@ -94,79 +102,97 @@ export default function Course(props) {
   }
 
   return (
-    <div className="course">
-      <h3>Become a PHP Master and Make Money Fast</h3>
-      <div className="course-header">
-        <div className="course-header-left">
-          <img src="https://www.w3schools.com/howto/img_avatar.png" alt="" />
-          <div className="course-header-left-box">
-            <p>Teacher</p>
-            <span>KENY WHITE</span>
+    <>
+      {details ? (
+        <div className="course">
+          <h3>{details.CourseName}</h3>
+          <div className="course-header">
+            <div className="course-header-left">
+              <img
+                src={details.Avatar || "https://www.w3schools.com/howto/img_avatar.png" }
+                alt=""
+              />
+              <div className="course-header-left-box">
+                <p>Teacher</p>
+                <span>{details.TeacherName}</span>
+              </div>
+              <div className="course-header-left-box">
+                <p>Categories</p>
+                <span>{details.CategoryName}</span>
+              </div>
+              <div className="course-header-left-box">
+                <p>Review</p>
+                <span>
+                  <Rating
+                    name="half-rating"
+                    value={details.CourseRatings}
+                    precision={0.1}
+                    readOnly
+                  />{" "}
+                  ({details.CourseReviews} REVIEW)
+                </span>
+              </div>
+            </div>
+            <div className="course-header-right">
+              <span>${details.CoursePrice}</span>
+              <button>BUY THIS COURSE</button>
+            </div>
           </div>
-          <div className="course-header-left-box">
-            <p>Categories</p>
-            <span>BACKEND</span>
+          <img
+            src={details.CourseImage}
+            alt=""
+          />
+
+          <div className="tabs">
+            <AppBar position="static">
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                variant="fullWidth"
+                indicatorColor="primary"
+              >
+                <Tab label="Overview" icon={<BookmarkIcon />} />
+                <Tab label="Curriculum" icon={<InboxIcon />} />
+                <Tab label="Instructor" icon={<PersonIcon />} />
+                <Tab label="Reviews" icon={<CommentIcon />} />
+              </Tabs>
+            </AppBar>
+            <TabPanel value={value} index={0}>
+              <div class="box-tab">
+                <h3>COURSE DESCRIPTION</h3>
+                <p>
+                  {details.CourseDescriptions}
+                </p>
+              </div>
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <div className={"box-tab"}>
+                {data.map((item) => {
+                  return <AccordionCourse data={item} />;
+                })}
+              </div>
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+              <div className="box-tab">avatar...</div>
+            </TabPanel>
+            <TabPanel value={value} index={3}>
+              <div className="box-tab">
+                Review
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Ratione animi facilis accusamus est! Ducimus nisi incidunt
+                  nobis molestiae, ea non voluptates? Delectus eveniet nobis
+                  laudantium, commodi inventore veritatis dignissimos officia.
+                </p>
+              </div>
+            </TabPanel>
           </div>
-          <div className="course-header-left-box">
-            <p>Review</p>
-            <span><Rating name="half-rating" defaultValue={2.5} precision={0.5} readOnly/> (1 REVIEW)</span>
-          </div>
+
+          <CourseSuggestion />
         </div>
-        <div className="course-header-right">
-          <span>$500</span>
-          <button>BUY THIS COURSE</button>
-        </div>
-      </div>
-      <img
-        src="https://educationwp.thimpress.com/demo-courses-hub/wp-content/uploads/sites/25/2015/06/course-2.jpg"
-        alt=""
-      />
-
-      <div className="tabs">
-        <AppBar position="static">
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            variant="fullWidth"
-            indicatorColor="primary"
-          >
-            <Tab label="Overview" icon={<BookmarkIcon />} />
-            <Tab label="Curriculum"  icon={<InboxIcon />}/>
-            <Tab label="Instructor" icon={<PersonIcon />} />
-            <Tab label="Reviews" icon={<CommentIcon />} />
-          </Tabs>
-        </AppBar>
-        <TabPanel value={value} index={0}>
-          <div class="box-tab">
-            <h3>COURSE DESCRIPTION</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur beatae eum aspernatur consequuntur rem veniam laborum veritatis velit a officiis nam harum unde temporibus neque, autem voluptate dolorum qui. Pariatur?</p>
-            <h3>COURSE DESCRIPTION</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur beatae eum aspernatur consequuntur rem veniam laborum veritatis velit a officiis nam harum unde temporibus neque, autem voluptate dolorum qui. Pariatur?</p>
-          </div>
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <div className={"box-tab"}>
-            {data.map(item => {
-              return <AccordionCourse data={item}/>
-            })}
-          </div>
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-        <div className="box-tab">
-            avatar...
-        </div>
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-        <div className="box-tab">
-            Review
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione animi facilis accusamus est! Ducimus nisi incidunt nobis molestiae, ea non voluptates? Delectus eveniet nobis laudantium, commodi inventore veritatis dignissimos officia.</p>
-          </div>
-        </TabPanel>
-      </div>
-
-      <CourseSuggestion />
-
-
-    </div>
+      ) : (
+        "Loading..."
+      )}
+    </>
   );
 }

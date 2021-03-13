@@ -9,6 +9,7 @@ import { ConfirmOTPReducer, LogInReducer, RegisterReducer } from "./reducers/use
 
 import {wishListReducer} from "./reducers/wishListReducer";
 import { SearchReducer } from "./reducers/searchReducer";
+import { DetailsCourseReducer } from "./reducers/detailsCourseReducer";
 
 const users = JSON.parse(localStorage.getItem("accessToken_OA")) || null;
 const initialState = {loginUser: {users}};
@@ -21,7 +22,8 @@ const reducer = combineReducers({
     registerUser: RegisterReducer,
     loginUser: LogInReducer,
     wishList: wishListReducer,
-    searchList: SearchReducer
+    searchList: SearchReducer,
+    detailsList: DetailsCourseReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
