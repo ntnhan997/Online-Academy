@@ -684,3 +684,19 @@ a {
     padding: 10px 70px;
     background-color: #ccc;
 }
+
+
+/* pagination */
+
+.pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 20px;
+}
+
+.numPage {
+    width: 20px;
+    height: 20px;
+    margin: 0px 5px;
+}

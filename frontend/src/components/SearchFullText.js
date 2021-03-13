@@ -11,6 +11,17 @@ export default function SearchFullText (){
     const {searchs} = list;
     const [price,setPrice] = useState(true);
     const [rating,setRating] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const newsPerPage = 2;
+    const indexOfLastNews = currentPage * newsPerPage;
+    const indexOfFirstNews = indexOfLastNews - newsPerPage;
+    const currentTodos =[...searchs.slice(indexOfFirstNews, indexOfLastNews)];
+    const page =[];
+    for(let index = 0; index < Math.ceil(searchs.length / newsPerPage); index++){
+        page.push(index);
+    }
+
+
     const dispatch = useDispatch();
     let url = location.search;
     if(price === true){
@@ -34,7 +45,7 @@ export default function SearchFullText (){
         </div>
         <div className="search-fulltext">
             {
-                searchs.map((item, index) => {
+                currentTodos.map((item, index) => {
                   return( <div className="card-search" key={index}>
                   <PopularWrapper key={index}>
                     <Card
@@ -57,6 +68,13 @@ export default function SearchFullText (){
                 })
         }
         </div>
+        <div className= "pagination">
+                    {
+                        page.map((x,index) => {
+                            return <button className="numPage" disabled={x === currentPage - 1} key={index} onClick={(e) => setCurrentPage(e.target.textContent)}>{x + 1}</button>
+                        })
+                    }
+                </div>
         </>
     )
 } 
