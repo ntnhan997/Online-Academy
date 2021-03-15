@@ -17,22 +17,22 @@ export default function Footer() {
             <ul className="sci">
               <li>
                 <a href="https://www.facebook.com/">
-                  <i className="fa fa-facebook" aria-hidden="+true"></i>
+                  <i className="fa fa-facebook" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
                 <a href="https://twitter.com/">
-                  <i className="fa fa-twitter" aria-hidden="+true"></i>
+                  <i className="fa fa-twitter" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
                 <a href="https://www.instagram.com/">
-                  <i className="fa fa-instagram" aria-hidden="+true"></i>
+                  <i className="fa fa-instagram" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
                 <a href="https://www.youtube.com/">
-                  <i className="fa fa-youtube-play" aria-hidden="+true"></i>
+                  <i className="fa fa-youtube-play" aria-hidden="true"></i>
                 </a>
               </li>
             </ul>
@@ -66,7 +66,7 @@ export default function Footer() {
               <div className="info">
                 <li>
                   <span>
-                    <i className="fa fa-map-marker" aria-hidden="+true"></i>
+                    <i className="fa fa-map-marker" aria-hidden="true"></i>
                   </span>
                   <span>
                     172 Tran Phu street <br />
@@ -75,7 +75,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <span>
-                    <i className="fa fa-phone" aria-hidden="+true"></i>
+                    <i className="fa fa-phone" aria-hidden="true"></i>
                   </span>
                   <p>
                     <a href="tel:123456789">+036 9966 9966</a>
@@ -85,7 +85,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <span>
-                    <i className="fa fa-envelope" aria-hidden="+true"></i>
+                    <i className="fa fa-envelope" aria-hidden="true"></i>
                   </span>
                   <p>
                     <a href="mailto:academy@email.com">academy@gmail.com</a>

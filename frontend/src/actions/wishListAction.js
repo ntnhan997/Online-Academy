@@ -11,7 +11,6 @@ const WishList = () => async (dispatch) => {
                 "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
             }
         });
-        console.log(datas.data);
         dispatch({type: ITEM_SUCCESS_WISHLIST, payload: datas.data});
     } catch (error) {
         dispatch({type: ITEM_FAIL_WISHLIST, payload: error});  
@@ -36,7 +35,7 @@ const WishList = () => async (dispatch) => {
 const removeFromWishList = (CourseID) => async (dispatch) => {
     try {
         console.log(CourseID);
-        const datas = await axios.delete("/api/favoritecourse", {
+        await axios.delete("/api/favoritecourse", {
             headers :{
             "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
         }, 
@@ -50,7 +49,6 @@ const removeFromWishList = (CourseID) => async (dispatch) => {
                 "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
             }
         });
-        console.log(datawishlist.data);
         dispatch({type: REMOVE_ITEM_WISHLIST, payload: datawishlist.data});
     } catch (error) {
         

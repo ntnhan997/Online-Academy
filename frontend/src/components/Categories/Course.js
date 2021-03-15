@@ -15,6 +15,7 @@ import CourseSuggestion from "../HomePage/CourseSuggestion";
 import AccordionCourse from "./AccordionCourse";
 import { useDispatch, useSelector } from "react-redux";
 import { commentCourseAction, detailsCourseAction, postCommentAction } from "../../actions/detailsCourseAction";
+import {getRatingUserAction, ratingAction } from "../../actions/courseAction";
 
 
 export default function Course(props) {
@@ -26,6 +27,12 @@ export default function Course(props) {
   const [value, setValue] = useState(0);
 
 
+  const ratingOfUser = useSelector(state => state.rating);
+  const {ratingUser} = ratingOfUser;
+
+  const [rating,setRating] = useState(0);
+
+
   const [postcomment, setComment] = useState("");
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -35,14 +42,23 @@ export default function Course(props) {
   useEffect(() => {
     dispatch(detailsCourseAction(CourseId));
     dispatch(commentCourseAction(CourseId));
+    dispatch(getRatingUserAction(CourseId));
+    if(ratingUser.Score){
+      setRating(ratingUser.Score);
+    }
+
     
-  }, [dispatch])
+  }, [dispatch,CourseId, ratingUser.Score])
 
   const handleComment = (CourseId,postcomment) => {
     dispatch(postCommentAction(CourseId, postcomment));
     setComment("");
   }
 
+
+  const handleRating = (CourseID, Scrore) => {
+    dispatch(ratingAction(CourseID,Scrore));
+  }
   const [data] = useState([
     {
       id: 0,
@@ -170,12 +186,12 @@ export default function Course(props) {
               </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-              <div className="box-tab">
-                <h3>COURSE DESCRIPTION</h3>
-                <p>
+              <span className="box-tab">
+                <span>COURSE DESCRIPTION</span>
+                <span>
                   {details.CourseDescriptions}
-                </p>
-              </div>
+                </span>
+              </span>
             </TabPanel>
             <TabPanel value={value} index={1}>
               <div className="box-tab">
@@ -202,6 +218,16 @@ export default function Course(props) {
                 }
               </div>
             </TabPanel>
+          </div>
+          <div>
+          Rating:
+          <Rating
+                    name="half-rating"
+                    value={rating}
+                    precision={0.5}
+                    onChange={(e) => setRating(e.target.value)}
+                    onClick={(e) => handleRating(CourseId,e.target.value)}
+          />
           </div>
           <div className="post-comment">
             Post Comment

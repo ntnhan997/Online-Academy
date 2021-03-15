@@ -8,7 +8,7 @@ import {
   TOPCOURSENEW_REQUEST_LIST,
   TOPCOURSENEW_SUCCESS_LIST,
   TOPCOURSENEW_FAIL_LIST,
-  INCREMENT_VIEW_COURSE
+  RATING_USER_COURSE
 } from "../constants/courseConstants";
 
 import axios from "axios";
@@ -53,5 +53,33 @@ const IncrementViewAction = (CourseId) => async (dispatch) => {
 } 
 
 
+const ratingAction = (CourseID, Score) => async (dispatch) => {
+  try {
+    await axios.post("/api/rating/", {CourseID, Score}, {
+      headers :{
+        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+      }
+    });
+    // dispatch({ type: INCREMENT_VIEW_COURSE, payload: data.data });
+  } catch (error) {
+    
+  }
+} 
 
-export { TopCourseViews, TopCourseRegistered, TopCoursenNew, IncrementViewAction };
+
+const getRatingUserAction = (CourseID) => async(dispatch) => {
+  try {
+    const data = await axios.get("/api/rating/" + CourseID, {
+      headers :{
+        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+      }
+    });
+    console.log(data.data);
+    dispatch({ type: RATING_USER_COURSE, payload: data.data });
+  } catch (error) {
+    
+  }
+}
+
+
+export { TopCourseViews, TopCourseRegistered, TopCoursenNew, IncrementViewAction, ratingAction, getRatingUserAction };
