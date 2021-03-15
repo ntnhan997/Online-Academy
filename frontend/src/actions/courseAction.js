@@ -8,6 +8,7 @@ import {
   TOPCOURSENEW_REQUEST_LIST,
   TOPCOURSENEW_SUCCESS_LIST,
   TOPCOURSENEW_FAIL_LIST,
+  INCREMENT_VIEW_COURSE
 } from "../constants/courseConstants";
 
 import axios from "axios";
@@ -42,4 +43,15 @@ const TopCoursenNew = () => async (dispatch) => {
   }
 };
 
-export { TopCourseViews, TopCourseRegistered, TopCoursenNew };
+const IncrementViewAction = (CourseId) => async (dispatch) => {
+  try {
+    await axios.put("/api/course/incrementviews", {CourseId});
+    // dispatch({ type: INCREMENT_VIEW_COURSE, payload: data.data });
+  } catch (error) {
+    
+  }
+} 
+
+
+
+export { TopCourseViews, TopCourseRegistered, TopCoursenNew, IncrementViewAction };

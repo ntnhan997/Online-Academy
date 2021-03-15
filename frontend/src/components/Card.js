@@ -2,8 +2,15 @@ import React from "react";
 import bootstrap from "../images/bootstrap.jpg";
 import Rating from "@material-ui/lab/Rating";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { IncrementViewAction } from "../actions/courseAction";
 
 export default function Card(props) {
+  const dispatch = useDispatch();
+
+  const handleIncrementView = (CourseId) => {
+    dispatch(IncrementViewAction(CourseId));
+  }
   const {
     id,
     title,
@@ -21,13 +28,13 @@ export default function Card(props) {
     <div className="card_item">
       <div className="product-grid">
         <div className="product-image">
-          <a href="fb.com">
+        <Link to={"/" + CategoryName + "/" + id} onClick={() => handleIncrementView(id)}>
             <img
               className="pic-1"
               src={bgPhoto ? bgPhoto : bootstrap}
               alt="bootstrap"
             />
-          </a>
+        </Link>
           <span className="product-new-label">
             {price ? price + "$" : "Sale"}
           </span>
@@ -36,7 +43,7 @@ export default function Card(props) {
         <div className="middle" />
         <div className="product-content">
           <h3 className="title">
-            <Link to={"/" + CategoryName + "/" + id}>
+            <Link to={"/" + CategoryName + "/" + id} onClick={() => handleIncrementView(id)}>
               {title ? title : "Title Title(2021)"}
             </Link>
             <br />
