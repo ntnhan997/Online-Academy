@@ -29,52 +29,52 @@ export default function ModalVideo(props) {
   // const classes = useStyles();
 
     const history = useHistory();
-    const [dataVideo] = useState([
-        {
-            idLesson: 0,
-            src : "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
-            status: true
-        },
-        {
-            idLesson: 1,
-            src: "http://media.w3.org/2010/05/bunny/movie.mp4",
-            status: true
-        },
-        {
-            idLesson: 2,
-            src : "http://media.w3.org/2010/05/sintel/trailer.mp4",
-            status: true
-        },
-        {
-            idLesson: 3,
-            src : "http://media.w3.org/2010/05/video/movie_300.webm",
-            status: false
-        },
-        {
-            idLesson: 4,
-            src : "http://media.w3.org/2010/05/video/movie_300.webm",
-            status: false
-        }
-    ])
+    // const [dataVideo] = useState([
+    //     {
+    //         idLesson: 0,
+    //         src : "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
+    //         status: true
+    //     },
+    //     {
+    //         idLesson: 1,
+    //         src: "http://media.w3.org/2010/05/bunny/movie.mp4",
+    //         status: true
+    //     },
+    //     {
+    //         idLesson: 2,
+    //         src : "http://media.w3.org/2010/05/sintel/trailer.mp4",
+    //         status: true
+    //     },
+    //     {
+    //         idLesson: 3,
+    //         src : "http://media.w3.org/2010/05/video/movie_300.webm",
+    //         status: false
+    //     },
+    //     {
+    //         idLesson: 4,
+    //         src : "http://media.w3.org/2010/05/video/movie_300.webm",
+    //         status: false
+    //     }
+    // ])
 
-    const handleVideo = (status, id) => {
-      if(status === false){
+    const handleVideo = (LecturePreview, CourseID) => {
+      if(LecturePreview === 0){
         alert("Da khoa");
       }else{
         history.push({
-          pathname: '/learning/javascript/' + id,
+          pathname: '/learning/javascript/' + CourseID+"/" + LectureID,
       });
       }
     }
-
+    const {data, LecturePreview, CourseID, LectureID} = props;
   return (
     <div>
-      <AccordionDetails onClick={() => handleVideo(dataVideo[props.data.idLesson].status, props.data.idLesson)}>
+      <AccordionDetails onClick={() => handleVideo(LecturePreview,CourseID, LectureID)}>
         <Typography className="lesson">
-          <span>{props.data.titleLesson}</span>
-          <span>{props.data.timeLesson}</span>
+          {/* <span>{props.data.titleLesson}</span>
+          <span>{props.data.timeLesson}</span> */}
           <span className="subLesson">
-            {dataVideo[props.data.idLesson].status ? "Học ngay" : "Đang khóa"}
+            {LecturePreview === 1 ? "Học ngay" : "Đang khóa"}
           </span>
         </Typography>
       </AccordionDetails>

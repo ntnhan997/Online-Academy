@@ -9,7 +9,8 @@ import {
   TOPCOURSENEW_SUCCESS_LIST,
   TOPCOURSENEW_FAIL_LIST,
   RATING_USER_COURSE,
-  GET_BUY_COURSE
+  GET_BUY_COURSE,
+  LECTURE_COURSE_LIST
 } from "../constants/courseConstants";
 
 import axios from "axios";
@@ -115,4 +116,19 @@ const BuyCourseAction = (CourseID) => async(dispatch) => {
   }
 }
 
-export { TopCourseViews, TopCourseRegistered, TopCoursenNew, IncrementViewAction, ratingAction, getRatingUserAction,getBuyCourseAction, BuyCourseAction };
+
+const lectureAction = (CourseID) => async(dispatch) => {
+  try {
+    const data = await axios.get("/api/lecture/"+ CourseID,{
+      headers :{
+        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+      }
+    });
+    dispatch({ type: LECTURE_COURSE_LIST, payload: data.data });
+  } catch (error) {
+    
+  }
+}
+
+
+export { TopCourseViews, TopCourseRegistered, TopCoursenNew, IncrementViewAction, ratingAction, getRatingUserAction,getBuyCourseAction, BuyCourseAction,lectureAction };

@@ -26,7 +26,7 @@ function App() {
           <Route exact path="/:CategoryName/:id" component={Course} />
           <Route
             exact
-            path="/learning/javascript/:id"
+            path="/learning/javascript/:CourseID/:LectureID"
             component={ContainVideo}
           />
           <Route exact path="/wishlist" component={WishListUser} />

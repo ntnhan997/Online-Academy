@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import ReactPlayer from 'react-player/lazy';
 import { useDispatch, useSelector } from "react-redux";
 import {useParams } from "react-router-dom";
+import { lectureAction } from "../../actions/courseAction";
 import { WishList } from "../../actions/wishListAction";
 import AccordionCourse from "./AccordionCourse";
 
 export default function ContainVideo(){
 
-    const wishList = useSelector(state => state.wishList);
-    const {wishlists} = wishList;
+    const { CourseID, LectureID } = useParams();
+    const lectureList = useSelector(state => state.lectureCourse);
+    const {lectures} = lectureList;
     const dispatch = useDispatch();
-    console.log(wishlists);
-    const { id } = useParams();
     const [data] = useState([
         {
           id: 0,
@@ -109,46 +109,47 @@ export default function ContainVideo(){
       }
       ])
       useEffect(() => {
-        dispatch(WishList());
+        dispatch(lectureAction(CourseID));
         return () =>{
         }
-    },[dispatch]);
+    }, [dispatch,CourseID]);
 
-      const [dataVideo] = useState([
-        {
-            idLesson: 0,
-            src : "https://www.youtube.com/watch?v=qQuxYw7u4tQ",
-            status: true
-        },
-        {
-            idLesson: 1,
-            src: "https://www.youtube.com/watch?v=96KHRlisbcY",
-            status: true
-        },
-        {
-            idLesson: 2,
-            src : "https://www.youtube.com/watch?v=sA7V0md_Xes",
-            status: false
-        },
-        {
-            idLesson: 3,
-            src : "http://media.w3.org/2010/05/video/movie_300.webm",
-            status: false
-        },
-        {
-            idLesson: 4,
-            src : "http://media.w3.org/2010/05/video/movie_300.webm",
-            status: false
-        }
-    ])
+    //   const [dataVideo] = useState([
+    //     {
+    //         idLesson: 0,
+    //         src : "https://www.youtube.com/watch?v=qQuxYw7u4tQ",
+    //         status: true
+    //     },
+    //     {
+    //         idLesson: 1,
+    //         src: "https://www.youtube.com/watch?v=96KHRlisbcY",
+    //         status: true
+    //     },
+    //     {
+    //         idLesson: 2,
+    //         src : "https://www.youtube.com/watch?v=sA7V0md_Xes",
+    //         status: false
+    //     },
+    //     {
+    //         idLesson: 3,
+    //         src : "http://media.w3.org/2010/05/video/movie_300.webm",
+    //         status: false
+    //     },
+    //     {
+    //         idLesson: 4,
+    //         src : "http://media.w3.org/2010/05/video/movie_300.webm",
+    //         status: false
+    //     }
+    // ])
+    // console.log(;
     return (
         
       <div className="containvideo">
         <div className="box-video">
-          <ReactPlayer url={dataVideo[id].src} controls />
+          <ReactPlayer url={lectures.find(item => item.LectureID == LectureID).LectureContent} controls />
         </div>
         <div className="box-course">
-          {data.map((item) => {
+          {lectures.map((item) => {
             return <AccordionCourse data={item} />;
           })}
         </div>

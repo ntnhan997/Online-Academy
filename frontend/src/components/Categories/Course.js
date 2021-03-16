@@ -15,7 +15,7 @@ import CourseSuggestion from "../HomePage/CourseSuggestion";
 import AccordionCourse from "./AccordionCourse";
 import { useDispatch, useSelector } from "react-redux";
 import { commentCourseAction, detailsCourseAction, postCommentAction } from "../../actions/detailsCourseAction";
-import {getBuyCourseAction, getRatingUserAction, ratingAction, BuyCourseAction } from "../../actions/courseAction";
+import {getBuyCourseAction, getRatingUserAction, ratingAction, BuyCourseAction, lectureAction } from "../../actions/courseAction";
 
 
 export default function Course(props) {
@@ -31,10 +31,11 @@ export default function Course(props) {
   const {ratingUser} = ratingOfUser;
 
 
-
   const check = useSelector(state => state.getBuyCourse);
   const {getBuy} = check;
 
+  const lectureList = useSelector(state => state.lectureCourse);
+  const {lectures} = lectureList;
   const [rating,setRating] = useState(0);
 
 
@@ -49,6 +50,7 @@ export default function Course(props) {
     dispatch(commentCourseAction(CourseId));
     dispatch(getRatingUserAction(CourseId));
     dispatch(getBuyCourseAction(CourseId));
+    dispatch(lectureAction(CourseId));
     if(ratingUser.Score){
       setRating(ratingUser.Score);
     }
@@ -69,52 +71,52 @@ export default function Course(props) {
   const handleBuy = (CourseID) => {
     dispatch(BuyCourseAction(CourseID));
   }
-  const [data] = useState([
-    {
-      id: 0,
-      title: "Phần 1: Giới Thiệu",
-      total: 2,
-      time: "06:28",
-      lesson: [{
-        idLesson: 0,
-        titleLesson: "1. Lời Khuyên trước khóa học",
-        timeLesson: "04:20",
-        status: true
-      },
-      {
-        idLesson: 1,
-        titleLesson: "2. Cài đặt môi trường",
-        timeLesson: "02:20",
-        status: false
-      }
-    ]
-  },
-  {
-    id: 1,
-    title: "Phần 2: Làm quen",
-    total: 16,
-    time: "01:52:50",
-    lesson: [{
-      idLesson: 2,
-      titleLesson: "3. Cách sử dụng JS trong HTML",
-      timeLesson: "04:20",
-      status: false
-    },
-    {
-      idLesson: 3,
-      titleLesson: "4. Cài đặt môi trường",
-      timeLesson: "02:20",
-      status: false
-    },
-    {
-      idLesson: 4,
-      titleLesson: "5. Cài đặt môi trường",
-      timeLesson: "02:20",
-      status: false
-    }
-  ]
-  }
-  ])
+  // const [data] = useState([
+  //   {
+  //     id: 0,
+  //     title: "Phần 1: Giới Thiệu",
+  //     total: 2,
+  //     time: "06:28",
+  //     lesson: [{
+  //       idLesson: 0,
+  //       titleLesson: "1. Lời Khuyên trước khóa học",
+  //       timeLesson: "04:20",
+  //       status: true
+  //     },
+  //     {
+  //       idLesson: 1,
+  //       titleLesson: "2. Cài đặt môi trường",
+  //       timeLesson: "02:20",
+  //       status: false
+  //     }
+  //   ]
+  // },
+  // {
+  //   id: 1,
+  //   title: "Phần 2: Làm quen",
+  //   total: 16,
+  //   time: "01:52:50",
+  //   lesson: [{
+  //     idLesson: 2,
+  //     titleLesson: "3. Cách sử dụng JS trong HTML",
+  //     timeLesson: "04:20",
+  //     status: false
+  //   },
+  //   {
+  //     idLesson: 3,
+  //     titleLesson: "4. Cài đặt môi trường",
+  //     timeLesson: "02:20",
+  //     status: false
+  //   },
+  //   {
+  //     idLesson: 4,
+  //     titleLesson: "5. Cài đặt môi trường",
+  //     timeLesson: "02:20",
+  //     status: false
+  //   }
+  // ]
+  // }
+  // ])
   
   
 
@@ -208,7 +210,7 @@ export default function Course(props) {
             </TabPanel>
             <TabPanel value={value} index={1}>
               <div className="box-tab">
-                {data.map((item,index) => {
+                {lectures.map((item,index) => {
                   return <AccordionCourse data={item} key={index} />;
                 })}
               </div>
