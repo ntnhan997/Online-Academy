@@ -8,7 +8,8 @@ import {
   TOPCOURSENEW_REQUEST_LIST,
   TOPCOURSENEW_SUCCESS_LIST,
   TOPCOURSENEW_FAIL_LIST,
-  RATING_USER_COURSE
+  RATING_USER_COURSE,
+  GET_BUY_COURSE
 } from "../constants/courseConstants";
 
 import axios from "axios";
@@ -82,4 +83,36 @@ const getRatingUserAction = (CourseID) => async(dispatch) => {
 }
 
 
-export { TopCourseViews, TopCourseRegistered, TopCoursenNew, IncrementViewAction, ratingAction, getRatingUserAction };
+const getBuyCourseAction = (CourseID) => async(dispatch) => {
+  try {
+    const data = await axios.get("/api/subscribedcourse/" + CourseID, {
+      headers :{
+        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+      }
+    });
+    console.log(data.data);
+    dispatch({ type: GET_BUY_COURSE, payload: data.data });
+  } catch (error) {
+    
+  }
+}
+
+const BuyCourseAction = (CourseID) => async(dispatch) => {
+  try {
+    await axios.post("/api/subscribedcourse/", {CourseID},{
+      headers :{
+        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+      }
+    });
+    const data = await axios.get("/api/subscribedcourse/" + CourseID, {
+      headers :{
+        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+      }
+    });
+    dispatch({ type: GET_BUY_COURSE, payload: data.data });
+  } catch (error) {
+    
+  }
+}
+
+export { TopCourseViews, TopCourseRegistered, TopCoursenNew, IncrementViewAction, ratingAction, getRatingUserAction,getBuyCourseAction, BuyCourseAction };

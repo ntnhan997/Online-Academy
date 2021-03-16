@@ -4,7 +4,8 @@ import {combineReducers , createStore, applyMiddleware, compose} from 'redux';
 import {TopNumberViewsReducer,
     TopCourseRegisteredReducer,
     TopCourseNewReducer,
-    RatingUserReducer
+    RatingUserReducer,
+    GetBuyCourseReducer
 } from "./reducers/courseReducer";
 import { ConfirmOTPReducer, LogInReducer, RegisterReducer } from "./reducers/userReducer";
 
@@ -26,7 +27,8 @@ const reducer = combineReducers({
     searchList: SearchReducer,
     detailsList: DetailsCourseReducer,
     commentList: CommentCourseReducer,
-    rating: RatingUserReducer
+    rating: RatingUserReducer,
+    getBuyCourse: GetBuyCourseReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

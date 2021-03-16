@@ -1,4 +1,4 @@
-import { COURSE_REQUEST_LIST, COURSE_SUCCESS_LIST, COURSE_FAIL_LIST, TOPCOURSEREGISTERED_FAIL_LIST,TOPCOURSEREGISTERED_SUCCESS_LIST,TOPCOURSEREGISTERED_REQUEST_LIST, RATING_USER_COURSE } from '../constants/courseConstants';
+import { COURSE_REQUEST_LIST, COURSE_SUCCESS_LIST, COURSE_FAIL_LIST, TOPCOURSEREGISTERED_FAIL_LIST,TOPCOURSEREGISTERED_SUCCESS_LIST,TOPCOURSEREGISTERED_REQUEST_LIST, RATING_USER_COURSE, GET_BUY_COURSE } from '../constants/courseConstants';
 
 
 const TopNumberViewsReducer = (state = { listViews: [] }, action )=>{
@@ -53,4 +53,14 @@ const RatingUserReducer = (state = { ratingUser: {} }, action )=>{
     }
 }
 
-export {TopNumberViewsReducer, TopCourseRegisteredReducer, TopCourseNewReducer, RatingUserReducer}
+const GetBuyCourseReducer = (state = { getBuy: {} }, action )=>{ 
+    switch(action.type){
+        case GET_BUY_COURSE:
+            return {getBuy: action.payload};
+        default:
+            return state;
+    }
+}
+
+
+export {TopNumberViewsReducer, TopCourseRegisteredReducer, TopCourseNewReducer, RatingUserReducer, GetBuyCourseReducer}

@@ -15,7 +15,7 @@ import CourseSuggestion from "../HomePage/CourseSuggestion";
 import AccordionCourse from "./AccordionCourse";
 import { useDispatch, useSelector } from "react-redux";
 import { commentCourseAction, detailsCourseAction, postCommentAction } from "../../actions/detailsCourseAction";
-import {getRatingUserAction, ratingAction } from "../../actions/courseAction";
+import {getBuyCourseAction, getRatingUserAction, ratingAction, BuyCourseAction } from "../../actions/courseAction";
 
 
 export default function Course(props) {
@@ -30,6 +30,11 @@ export default function Course(props) {
   const ratingOfUser = useSelector(state => state.rating);
   const {ratingUser} = ratingOfUser;
 
+
+
+  const check = useSelector(state => state.getBuyCourse);
+  const {getBuy} = check;
+
   const [rating,setRating] = useState(0);
 
 
@@ -43,6 +48,7 @@ export default function Course(props) {
     dispatch(detailsCourseAction(CourseId));
     dispatch(commentCourseAction(CourseId));
     dispatch(getRatingUserAction(CourseId));
+    dispatch(getBuyCourseAction(CourseId));
     if(ratingUser.Score){
       setRating(ratingUser.Score);
     }
@@ -58,6 +64,10 @@ export default function Course(props) {
 
   const handleRating = (CourseID, Scrore) => {
     dispatch(ratingAction(CourseID,Scrore));
+  }
+
+  const handleBuy = (CourseID) => {
+    dispatch(BuyCourseAction(CourseID));
   }
   const [data] = useState([
     {
@@ -161,10 +171,13 @@ export default function Course(props) {
                 </span>
               </div>
             </div>
-            <div className="course-header-right">
+            {
+              getBuy.bought === false &&  
+              <div className="course-header-right">
               <span>${details.CoursePrice}</span>
-              <button>BUY THIS COURSE</button>
+              <button type="button" onClick={() => handleBuy(CourseId)}>BUY THIS COURSE</button>
             </div>
+            }
           </div>
           <img
             src={details.CourseImage}
