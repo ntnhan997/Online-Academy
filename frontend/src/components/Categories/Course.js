@@ -15,7 +15,7 @@ import CourseSuggestion from "../HomePage/CourseSuggestion";
 import AccordionCourse from "./AccordionCourse";
 import { useDispatch, useSelector } from "react-redux";
 import { commentCourseAction, detailsCourseAction, postCommentAction } from "../../actions/detailsCourseAction";
-import {getBuyCourseAction, getRatingUserAction, ratingAction, BuyCourseAction, lectureAction } from "../../actions/courseAction";
+import {getBuyCourseAction, getRatingUserAction, ratingAction, BuyCourseAction, lectureAction, lectureActionNoUser } from "../../actions/courseAction";
 
 
 export default function Course(props) {
@@ -39,6 +39,9 @@ export default function Course(props) {
   const [rating,setRating] = useState(0);
 
 
+  const user = useSelector((state) => state.loginUser);
+  const { users } = user;
+
   const [postcomment, setComment] = useState("");
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -50,13 +53,23 @@ export default function Course(props) {
     dispatch(commentCourseAction(CourseId));
     dispatch(getRatingUserAction(CourseId));
     dispatch(getBuyCourseAction(CourseId));
-    dispatch(lectureAction(CourseId));
+    if(users !== null && getBuy.bought === true){ 
+      dispatch(lectureAction(CourseId)) 
+    }
+    if(users !== null && getBuy.bought === false){ 
+      dispatch(lectureActionNoUser(CourseId));
+    }
+    if((users === null))
+    {
+      dispatch(lectureActionNoUser(CourseId));
+    }
+    
     if(ratingUser.Score){
       setRating(ratingUser.Score);
     }
 
     
-  }, [dispatch,CourseId, ratingUser.Score])
+  }, [dispatch,CourseId, ratingUser.Score, getBuy.bought, users])
 
   const handleComment = (CourseId,postcomment) => {
     dispatch(postCommentAction(CourseId, postcomment));

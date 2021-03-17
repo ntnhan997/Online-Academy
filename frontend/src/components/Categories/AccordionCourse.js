@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ModalVideo from './ModalVideo';
 
-import parseJwt from "../../utils";
 import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({

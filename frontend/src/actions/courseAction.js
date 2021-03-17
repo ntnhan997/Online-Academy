@@ -130,5 +130,15 @@ const lectureAction = (CourseID) => async(dispatch) => {
   }
 }
 
+const lectureActionNoUser = (CourseID) => async(dispatch) => {
+  try {
+    const data = await axios.get("/api/lecture/nouser/"+ CourseID);
+    console.log(data.data);
+    dispatch({ type: LECTURE_COURSE_LIST, payload: data.data });
+  } catch (error) {
+    
+  }
+}
 
-export { TopCourseViews, TopCourseRegistered, TopCoursenNew, IncrementViewAction, ratingAction, getRatingUserAction,getBuyCourseAction, BuyCourseAction,lectureAction };
+
+export { TopCourseViews, TopCourseRegistered, TopCoursenNew, IncrementViewAction, ratingAction, getRatingUserAction,getBuyCourseAction, BuyCourseAction,lectureAction, lectureActionNoUser };
