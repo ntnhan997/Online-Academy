@@ -177,7 +177,6 @@ export default function Course(props) {
             </AppBar>
             <TabPanel value={value} index={0}>
               <span className="box-tab">
-                <span>COURSE DESCRIPTION</span>
                 <span>
                   {details.CourseDescriptions}
                 </span>
@@ -226,7 +225,7 @@ export default function Course(props) {
             </textarea>
             <button type="button" className="btn-comment" onClick={() => handleComment(CourseId,postcomment)}>Send</button>
           </div>
-          <CourseSuggestion />
+          <CourseSuggestion CategoryID = {details.CategoryID}/>
         </div>
       ) : (
         "Loading..."

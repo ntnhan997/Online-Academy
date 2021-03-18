@@ -23,25 +23,33 @@ export default function WishListUser() {
            {
                wishlists ? 
                wishlists.map((item, index) => {
-                   return <div className = "card-wishlist">
+                   return (
+                     <div className="card-wishlist">
                        <PopularWrapper key={index}>
-                   <Card
-                     key={item.CourseID}
-                     className="cardCourse"
-                     id={item.CourseID}
-                     title={item.CourseName}
-                     category={item.CategoryName}
-                     price={item.CoursePrice}
-                     bgPhoto={item.CourseImage}
-                     totalReviews={item.CourseReviews}
-                     ratingAverage={item.CourseRatings}
-                     descriptions={item.CourseDescriptions}
-                     TeacherName={item.TeacherName}
-                     Avatar={item.Avatar}
-                   />
-                 </PopularWrapper>
-                 <button onClick={(e) => handleDeleteWishList(item.CourseID)} className="btn solid">X</button>
-                 </div>
+                         <Card
+                           key={item.CourseID}
+                           className="cardCourse"
+                           id={item.CourseID}
+                           title={item.CourseName}
+                           category={item.CategoryName}
+                           price={item.CoursePrice}
+                           bgPhoto={item.CourseImage}
+                           totalReviews={item.CourseReviews}
+                           ratingAverage={item.CourseRatings}
+                           descriptions={item.CourseDescriptions}
+                           TeacherName={item.TeacherName}
+                           Avatar={item.Avatar}
+                           CategoryName={item.CategoryName}
+                         />
+                       </PopularWrapper>
+                       <button
+                         onClick={(e) => handleDeleteWishList(item.CourseID)}
+                         className="btn solid"
+                       >
+                         X
+                       </button>
+                     </div>
+                   );
                }) 
                : "Loading..."
            }

@@ -56,7 +56,7 @@ export default function Navbar() {
 
     // cleanup this component
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      // window.removeEventListener("scroll", handleScroll);
     };
   }, [check, dispatch]);
 

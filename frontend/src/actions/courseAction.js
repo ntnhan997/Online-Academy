@@ -10,7 +10,10 @@ import {
   TOPCOURSENEW_FAIL_LIST,
   RATING_USER_COURSE,
   GET_BUY_COURSE,
-  LECTURE_COURSE_LIST
+  LECTURE_COURSE_LIST,
+  COURSE_SUGGESTION_REQUEST,
+  COURSE_SUGGESTION_SUCCESS,
+  COURSE_SUGGESTION_FAIL
 } from "../constants/courseConstants";
 
 import axios from "axios";
@@ -140,5 +143,16 @@ const lectureActionNoUser = (CourseID) => async(dispatch) => {
   }
 }
 
+const CourseSuggestionAction = (CategoryID) => async (dispatch) => {
+  try {
+    dispatch({ type: COURSE_SUGGESTION_REQUEST });
+    const data = await axios.get("/api/course/coursesuggestion/" + CategoryID);
+    dispatch({ type: COURSE_SUGGESTION_SUCCESS, payload: data.data });
+  } catch (error) {
+    dispatch({ type: COURSE_SUGGESTION_FAIL, payload: error });
+  }
+};
 
-export { TopCourseViews, TopCourseRegistered, TopCoursenNew, IncrementViewAction, ratingAction, getRatingUserAction,getBuyCourseAction, BuyCourseAction,lectureAction, lectureActionNoUser };
+
+
+export { TopCourseViews, TopCourseRegistered, TopCoursenNew, IncrementViewAction, ratingAction, getRatingUserAction,getBuyCourseAction, BuyCourseAction,lectureAction, lectureActionNoUser, CourseSuggestionAction };

@@ -1,4 +1,4 @@
-import { COURSE_REQUEST_LIST, COURSE_SUCCESS_LIST, COURSE_FAIL_LIST, TOPCOURSEREGISTERED_FAIL_LIST,TOPCOURSEREGISTERED_SUCCESS_LIST,TOPCOURSEREGISTERED_REQUEST_LIST, RATING_USER_COURSE, GET_BUY_COURSE, LECTURE_COURSE_LIST } from '../constants/courseConstants';
+import { COURSE_REQUEST_LIST, COURSE_SUCCESS_LIST, COURSE_FAIL_LIST, TOPCOURSEREGISTERED_FAIL_LIST,TOPCOURSEREGISTERED_SUCCESS_LIST,TOPCOURSEREGISTERED_REQUEST_LIST, RATING_USER_COURSE, GET_BUY_COURSE, LECTURE_COURSE_LIST, COURSE_SUGGESTION_REQUEST, COURSE_SUGGESTION_SUCCESS, COURSE_SUGGESTION_FAIL } from '../constants/courseConstants';
 
 
 const TopNumberViewsReducer = (state = { listViews: [] }, action )=>{
@@ -43,6 +43,19 @@ const TopCourseNewReducer = (state = { topCourseNewLists: [] }, action )=>{
     }
 }
 
+const CourseSuggestionReducer = (state = { courseSuggestionLists: [] }, action )=>{ 
+    switch(action.type){
+        case COURSE_SUGGESTION_REQUEST:
+            return {loading: true, courseSuggestionLists: []};
+        case COURSE_SUGGESTION_SUCCESS: 
+            return {loading: false, courseSuggestionLists: action.payload};
+        case COURSE_SUGGESTION_FAIL:
+            return {loading: false, error: action.payload};
+        default:
+            return state;
+    }
+}
+
 
 const RatingUserReducer = (state = { ratingUser: {} }, action )=>{ 
     switch(action.type){
@@ -72,4 +85,12 @@ const LectureReducer = (state = { lectures: [] }, action )=>{
 }
 
 
-export {TopNumberViewsReducer, TopCourseRegisteredReducer, TopCourseNewReducer, RatingUserReducer, GetBuyCourseReducer, LectureReducer}
+export {
+  TopNumberViewsReducer,
+  TopCourseRegisteredReducer,
+  TopCourseNewReducer,
+  RatingUserReducer,
+  GetBuyCourseReducer,
+  LectureReducer,
+  CourseSuggestionReducer,
+};

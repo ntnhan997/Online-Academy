@@ -49,14 +49,14 @@ export default function Card(props) {
             <br />
             <span>Created by {TeacherName? TeacherName : "aaa"}</span>
           </h3>
-          <ul className="social">
+          {/* <ul className="social">
             <li>
               <a href="fb.com" data-tip="View Details">
                 <i className="fa fa-search" />
               </a>
             </li>
             
-          </ul>
+          </ul> */}
           <div>
             <Rating
               name="half-rating"
