@@ -10,7 +10,7 @@ import {TopNumberViewsReducer,
 } from "./reducers/courseReducer";
 import { ConfirmOTPReducer, LogInReducer, RegisterReducer } from "./reducers/userReducer";
 
-import {wishListReducer} from "./reducers/wishListReducer";
+import {CheckWishListReducer, wishListReducer} from "./reducers/wishListReducer";
 import { SearchReducer } from "./reducers/searchReducer";
 import { CommentCourseReducer, DetailsCourseReducer } from "./reducers/detailsCourseReducer";
 
@@ -30,7 +30,8 @@ const reducer = combineReducers({
     commentList: CommentCourseReducer,
     rating: RatingUserReducer,
     getBuyCourse: GetBuyCourseReducer,
-    lectureCourse: LectureReducer
+    lectureCourse: LectureReducer,
+    checkWL: CheckWishListReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

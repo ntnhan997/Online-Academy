@@ -1,4 +1,4 @@
-import { ITEM_REQUEST_WISHLIST, ITEM_SUCCESS_WISHLIST, ITEM_FAIL_WISHLIST, REMOVE_ITEM_WISHLIST} from '../constants/wishListConstants';
+import { ITEM_REQUEST_WISHLIST, ITEM_SUCCESS_WISHLIST, ITEM_FAIL_WISHLIST, REMOVE_ITEM_WISHLIST, CHECK_WISHLIST_REQUEST} from '../constants/wishListConstants';
 
 import axios from "axios";
 
@@ -17,24 +17,8 @@ const WishList = () => async (dispatch) => {
     }
 }
 
-
-
-// const addToCart = (id) => (dispatch) =>{
-//     try {
-//         const dataId = data.find(x => x.courseId === parseInt(id));
-
-//         dispatch({type: ADD_ITEM_WISHLIST, payload: [{
-//             ...dataId
-//         }]});
-//     } catch (error) {
-        
-//     }
-// }
-
-
 const removeFromWishList = (CourseID) => async (dispatch) => {
     try {
-        console.log(CourseID);
         await axios.delete("/api/favoritecourse", {
             headers :{
             "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
@@ -56,4 +40,31 @@ const removeFromWishList = (CourseID) => async (dispatch) => {
    
 }
 
-export {WishList, removeFromWishList}
+const addWishListAction = (CourseID) => async (dispatch) => {
+    try {
+        CourseID = Number(CourseID);
+        await axios.post("/api/favoritecourse/", {CourseID}, {
+            headers :{
+                "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+            }
+        })
+    } catch (error) {
+        
+    }
+}
+
+const checkWishListAction = (CourseID) => async (dispatch) => {
+    try {
+        CourseID = Number(CourseID);
+        const data = await axios.post("/api/favoritecourse/check", {CourseID}, {
+            headers :{
+                "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+            }
+        })
+        dispatch({type : CHECK_WISHLIST_REQUEST, payload: data.data})
+    } catch (error) {
+        
+    }
+}
+
+export {WishList, removeFromWishList, addWishListAction, checkWishListAction}

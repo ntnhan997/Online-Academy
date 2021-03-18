@@ -16,6 +16,7 @@ import AccordionCourse from "./AccordionCourse";
 import { useDispatch, useSelector } from "react-redux";
 import { commentCourseAction, detailsCourseAction, postCommentAction } from "../../actions/detailsCourseAction";
 import {getBuyCourseAction, getRatingUserAction, ratingAction, BuyCourseAction, lectureAction, lectureActionNoUser } from "../../actions/courseAction";
+import { addWishListAction, checkWishListAction } from "../../actions/wishListAction";
 
 
 export default function Course(props) {
@@ -42,6 +43,9 @@ export default function Course(props) {
   const user = useSelector((state) => state.loginUser);
   const { users } = user;
 
+  const wishlist = useSelector(state => state.checkWL);
+  const {hasWishList} = wishlist;
+
   const [postcomment, setComment] = useState("");
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -53,6 +57,7 @@ export default function Course(props) {
     dispatch(commentCourseAction(CourseId));
     dispatch(getRatingUserAction(CourseId));
     dispatch(getBuyCourseAction(CourseId));
+    dispatch(checkWishListAction(CourseId));
     if(users !== null && getBuy.bought === true){ 
       dispatch(lectureAction(CourseId)) 
     }
@@ -84,55 +89,11 @@ export default function Course(props) {
   const handleBuy = (CourseID) => {
     dispatch(BuyCourseAction(CourseID));
   }
-  // const [data] = useState([
-  //   {
-  //     id: 0,
-  //     title: "Phần 1: Giới Thiệu",
-  //     total: 2,
-  //     time: "06:28",
-  //     lesson: [{
-  //       idLesson: 0,
-  //       titleLesson: "1. Lời Khuyên trước khóa học",
-  //       timeLesson: "04:20",
-  //       status: true
-  //     },
-  //     {
-  //       idLesson: 1,
-  //       titleLesson: "2. Cài đặt môi trường",
-  //       timeLesson: "02:20",
-  //       status: false
-  //     }
-  //   ]
-  // },
-  // {
-  //   id: 1,
-  //   title: "Phần 2: Làm quen",
-  //   total: 16,
-  //   time: "01:52:50",
-  //   lesson: [{
-  //     idLesson: 2,
-  //     titleLesson: "3. Cách sử dụng JS trong HTML",
-  //     timeLesson: "04:20",
-  //     status: false
-  //   },
-  //   {
-  //     idLesson: 3,
-  //     titleLesson: "4. Cài đặt môi trường",
-  //     timeLesson: "02:20",
-  //     status: false
-  //   },
-  //   {
-  //     idLesson: 4,
-  //     titleLesson: "5. Cài đặt môi trường",
-  //     timeLesson: "02:20",
-  //     status: false
-  //   }
-  // ]
-  // }
-  // ])
-  
-  
 
+  const handleAddWL = (CourseID) => {
+    dispatch(addWishListAction(CourseID));
+    dispatch(checkWishListAction(CourseID));
+  }
 
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -185,6 +146,7 @@ export default function Course(props) {
                   ({details.CourseReviews} REVIEW)
                 </span>
               </div>
+              {(users != null && hasWishList.hasWishList === false) &&<button button type="button" onClick={() => handleAddWL(CourseId)}>+Add WishList</button>}
             </div>
             {
               getBuy.bought === false &&  

@@ -87,7 +87,7 @@ a {
 }
 
 .logo {
-    color: #fff;
+    color: #7fc7eb;
     font-size: 1.1rem;
     font-weight: 600;
     letter-spacing: 2px;
@@ -135,7 +135,7 @@ a {
 
 .nav-link>a {
     line-height: 3rem;
-    color: #fff;
+    color: #7fc7eb;
     padding: 0 0.8rem;
     letter-spacing: 1px;
     font-size: 0.95rem;
