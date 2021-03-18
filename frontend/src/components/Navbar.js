@@ -21,7 +21,10 @@ export default function Navbar() {
     }
   }
 
+
+
   useEffect(() => {
+   
     if (check === true) {
       localStorage.removeItem("accessToken_OA");
       dispatch(LogOut());
@@ -39,6 +42,9 @@ export default function Navbar() {
         );
       }
     };
+
+
+
     window.addEventListener("scroll", handleScroll);
 
     let acc = document.getElementsByClassName("accordion");
@@ -62,6 +68,7 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
+    
       <div className="container">
         <input type="checkbox" id="check" />
         <div className="logo-container">

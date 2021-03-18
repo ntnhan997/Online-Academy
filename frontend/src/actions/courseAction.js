@@ -79,7 +79,6 @@ const getRatingUserAction = (CourseID) => async(dispatch) => {
         "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
       }
     });
-    console.log(data.data);
     dispatch({ type: RATING_USER_COURSE, payload: data.data });
   } catch (error) {
     
@@ -94,7 +93,6 @@ const getBuyCourseAction = (CourseID) => async(dispatch) => {
         "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
       }
     });
-    console.log(data.data);
     dispatch({ type: GET_BUY_COURSE, payload: data.data });
   } catch (error) {
     

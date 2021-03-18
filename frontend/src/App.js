@@ -12,7 +12,7 @@ import WishListUser from "./components/WishList";
 import RegisterUser from "./components/RegisterUser";
 import LogIn from "./components/LogIn";
 import SearchFullText from "./components/SearchFullText";
-
+import ScrollTop from "./ScrollTop";
 function App() {
   return (
     <>
@@ -21,6 +21,7 @@ function App() {
       </div>
       <div className="app-body">
         <Switch>
+        <ScrollTop>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/categories/:name" component={Categories} />
           <Route exact path="/:CategoryName/:id" component={Course} />
@@ -33,6 +34,7 @@ function App() {
           <Route exact path="/register" component={RegisterUser} />
           <Route exact path="/login" component={LogIn} />
           <Route exact path="/Course/SearchFullText/result" component={SearchFullText} />
+          </ScrollTop>
         </Switch>
       </div>
       <div className="app-footer">
