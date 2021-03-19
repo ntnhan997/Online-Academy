@@ -7,7 +7,6 @@ export default function LogIn(props) {
   const [password, setPassword] = useState("");
   const user = useSelector((state) => state.loginUser);
   const { users } = user;
-  console.log(users);
 
   const dispatch = useDispatch();
   const handleLogIn = (userName, password) => {

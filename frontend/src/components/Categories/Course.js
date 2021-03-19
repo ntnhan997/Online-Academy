@@ -31,7 +31,6 @@ export default function Course(props) {
   const ratingOfUser = useSelector(state => state.rating);
   const {ratingUser} = ratingOfUser;
 
-
   const check = useSelector(state => state.getBuyCourse);
   const {getBuy} = check;
 
@@ -69,12 +68,12 @@ export default function Course(props) {
       dispatch(lectureActionNoUser(CourseId));
     }
     
-    if(ratingUser.Score){
-      setRating(ratingUser.Score);
+    if(ratingUser !== null){
+      setRating(Number(ratingUser.Score));
     }
 
     
-  }, [dispatch,CourseId, ratingUser.Score, getBuy.bought, users])
+  }, [dispatch,CourseId, ratingUser, getBuy.bought, users])
 
   const handleComment = (CourseId,postcomment) => {
     dispatch(postCommentAction(CourseId, postcomment));
@@ -82,8 +81,9 @@ export default function Course(props) {
   }
 
 
-  const handleRating = (CourseID, Scrore) => {
-    dispatch(ratingAction(CourseID,Scrore));
+  const handleRating = (CourseID, Score) => {
+    setRating(Score);
+    dispatch(ratingAction(CourseID,Score));
   }
 
   const handleBuy = (CourseID) => {
@@ -123,7 +123,10 @@ export default function Course(props) {
           <div className="course-header">
             <div className="course-header-left">
               <img
-                src={details.Avatar || "https://www.w3schools.com/howto/img_avatar.png" }
+                src={
+                  details.Avatar ||
+                  "https://www.w3schools.com/howto/img_avatar.png"
+                }
                 alt=""
               />
               <div className="course-header-left-box">
@@ -139,27 +142,32 @@ export default function Course(props) {
                 <span>
                   <Rating
                     name="half-rating"
-                    value={details.CourseRatings}
+                    value={Number(details.CourseRatings)}
                     precision={0.1}
                     readOnly
                   />{" "}
                   ({details.CourseReviews} REVIEW)
                 </span>
               </div>
-              {(users != null && hasWishList.hasWishList === false) &&<button button type="button" onClick={() => handleAddWL(CourseId)}>+Add WishList</button>}
+              {users != null && hasWishList.hasWishList === false && (
+                <button
+                  type="button"
+                  onClick={() => handleAddWL(CourseId)}
+                >
+                  +Add WishList
+                </button>
+              )}
             </div>
-            {
-              getBuy.bought === false &&  
+            {getBuy.bought === false && (
               <div className="course-header-right">
-              <span>${details.CoursePrice}</span>
-              <button type="button" onClick={() => handleBuy(CourseId)}>BUY THIS COURSE</button>
-            </div>
-            }
+                <span>${details.CoursePrice}</span>
+                <button type="button" onClick={() => handleBuy(CourseId)}>
+                  BUY THIS COURSE
+                </button>
+              </div>
+            )}
           </div>
-          <img
-            src={details.CourseImage}
-            alt=""
-          />
+          <img src={details.CourseImage} alt="" />
 
           <div className="tabs">
             <AppBar position="static">
@@ -177,14 +185,12 @@ export default function Course(props) {
             </AppBar>
             <TabPanel value={value} index={0}>
               <span className="box-tab">
-                <span>
-                  {details.CourseDescriptions}
-                </span>
+                <span>{details.CourseDescriptions}</span>
               </span>
             </TabPanel>
             <TabPanel value={value} index={1}>
               <div className="box-tab">
-                {lectures.map((item,index) => {
+                {lectures.map((item, index) => {
                   return <AccordionCourse data={item} key={index} />;
                 })}
               </div>
@@ -195,37 +201,51 @@ export default function Course(props) {
             <TabPanel value={value} index={3}>
               <div className="box-tab">
                 Review
-                {
-                  comments.map((item, index) => {
-                    return (
-                      <div className="comment" key={index}>
-                        <p className="name-comment">{item.FullName + " --- " + item.DateOfComment}</p>
-                        <span>{item.Comment}</span>
-                      </div>
-                    )
-                  })
-                }
+                {comments.map((item, index) => {
+                  return (
+                    <div className="comment" key={index}>
+                      <p className="name-comment">
+                        {item.FullName + " --- " + item.DateOfComment}
+                      </p>
+                      <span>{item.Comment}</span>
+                    </div>
+                  );
+                })}
               </div>
             </TabPanel>
           </div>
-          <div>
-          Rating:
-          <Rating
-                    name="half-rating"
-                    value={rating}
-                    precision={0.5}
-                    onChange={(e) => setRating(e.target.value)}
-                    onClick={(e) => handleRating(CourseId,e.target.value)}
-          />
-          </div>
-          <div className="post-comment">
-            Post Comment
-            <br/>
-            <textarea rows="9" cols="100" value={postcomment} onChange={(e) => setComment(e.target.value)}>
-            </textarea>
-            <button type="button" className="btn-comment" onClick={() => handleComment(CourseId,postcomment)}>Send</button>
-          </div>
-          <CourseSuggestion CategoryID = {details.CategoryID}/>
+          {users !== null && (
+            <>
+              <div>
+                Rating:
+                <Rating
+                  name="half-rating"
+                  value={Number(rating)}
+                  precision={0.5}
+                  // onChange={(e) => setRating(e.target.value)}
+                  onChange={(e) => handleRating(CourseId, e.target.value)}
+                />
+              </div>
+              <div className="post-comment">
+                Post Comment
+                <br />
+                <textarea
+                  rows="9"
+                  cols="100"
+                  value={postcomment}
+                  onChange={(e) => setComment(e.target.value)}
+                ></textarea>
+                <button
+                  type="button"
+                  className="btn-comment"
+                  onClick={() => handleComment(CourseId, postcomment)}
+                >
+                  Send
+                </button>
+              </div>
+            </>
+          )}
+          <CourseSuggestion CategoryID={details.CategoryID} />
         </div>
       ) : (
         "Loading..."

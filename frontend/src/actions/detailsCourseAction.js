@@ -10,7 +10,6 @@ import {
     try {
       const data = await axios.get("/api/course/" + CourseID);
       dispatch({ type: DETAILS_REQUEST_COURSE, payload: data.data });
-      console.log(data.data);
     } catch (error) {
     }
   };

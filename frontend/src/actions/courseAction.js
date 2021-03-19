@@ -60,6 +60,7 @@ const IncrementViewAction = (CourseId) => async (dispatch) => {
 
 const ratingAction = (CourseID, Score) => async (dispatch) => {
   try {
+    Score = Number(Score);
     await axios.post("/api/rating/", {CourseID, Score}, {
       headers :{
         "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
@@ -134,7 +135,6 @@ const lectureAction = (CourseID) => async(dispatch) => {
 const lectureActionNoUser = (CourseID) => async(dispatch) => {
   try {
     const data = await axios.get("/api/lecture/nouser/"+ CourseID);
-    console.log(data.data);
     dispatch({ type: LECTURE_COURSE_LIST, payload: data.data });
   } catch (error) {
     

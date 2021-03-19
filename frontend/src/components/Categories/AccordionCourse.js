@@ -42,7 +42,6 @@ export default function Accordions(props) {
   const check = useSelector(state => state.getBuyCourse);
   const {getBuy} = check;
   const {data} = props;
-  // console.log(parseJwt(JSON.parse(localStorage.getItem("accessToken_OA")).accessToken).userId);
   return (
     
     <div className={classes.root}>
