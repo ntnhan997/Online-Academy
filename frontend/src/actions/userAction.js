@@ -54,4 +54,22 @@ const LogOut =() =>  async(dispatch) => {
     }
 }
 
-export {requestOTP, confirmOTP, RegisterUserAction ,LogInAction, LogOut}
+
+const RefreshTokenAction = (Token) => async (dispatch) => {
+    try {
+        const data = await axios.post("/api/auth/refresh", {
+            accessToken: Token.accessToken,
+            refreshToken: Token.refreshToken
+        });
+        dispatch({type : USER_LOGIN_REQUSET, payload: data.data});
+        localStorage.removeItem("accessToken_OA");
+        data.data.refreshToken = Token.refreshToken;
+        data.data.authenticated = true;
+        console.log(data.data);
+        localStorage.setItem("accessToken_OA", JSON.stringify(data.data));
+    } catch (error) {
+        
+    }
+}
+
+export {requestOTP, confirmOTP, RegisterUserAction ,LogInAction, LogOut, RefreshTokenAction}

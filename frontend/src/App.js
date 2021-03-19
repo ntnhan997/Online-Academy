@@ -13,7 +13,39 @@ import RegisterUser from "./components/RegisterUser";
 import LogIn from "./components/LogIn";
 import SearchFullText from "./components/SearchFullText";
 import ScrollTop from "./ScrollTop";
+
+import jwt_decode from "jwt-decode";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RefreshTokenAction } from "./actions/userAction";
+
 function App() {
+
+  const user = useSelector((state) => state.loginUser);
+  const { users } = user;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    clearInterval();
+    if(users !== null){
+      const decode = jwt_decode(users.accessToken);
+      if(decode.exp < Date.now() / 1000){
+        dispatch(RefreshTokenAction({
+          accessToken: users.accessToken,
+          refreshToken: users.refreshToken
+        }));
+      }
+      
+        setInterval(() => {
+          if(decode.exp < Date.now() / 1000){
+          dispatch(RefreshTokenAction({
+            accessToken: users.accessToken,
+            refreshToken: users.refreshToken
+          }));
+        }
+        }, 7200000)
+    }
+  },[users, dispatch])
+
   return (
     <>
       <div className="app-header">
