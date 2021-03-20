@@ -14,6 +14,9 @@ app.get("/", (req,res) => {
 })
 
 
+app.use("/api/auth", require("./routes/auth.route"));
+
+
 app.listen(PORT, () => {
     console.log(`api running at http://localhost:${PORT}`);
 })
