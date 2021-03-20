@@ -27,7 +27,7 @@ export const PopularWrapper = styled.div`
   }
 
   .cards_wrap .card_item {
-    width: 20%;
+    width: 25%;
   }
 
   .product-grid {

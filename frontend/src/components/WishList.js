@@ -49,6 +49,7 @@ export default function WishListUser() {
                          X
                        </button>
                      </div>
+                   
                    );
                }) 
                : "Loading..."

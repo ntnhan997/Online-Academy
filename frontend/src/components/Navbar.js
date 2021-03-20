@@ -68,7 +68,6 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-    
       <div className="container">
         <input type="checkbox" id="check" />
         <div className="logo-container">
@@ -122,8 +121,18 @@ export default function Navbar() {
                 </div>
               </li>
               <li>
-                <input type="text" className="input-search" onChange={(e) => setSearch(e.target.value)}/>
-                <button type="button" className="btn-search" onClick={() => handleSearch(search)}>Search</button>
+                <input
+                  type="text"
+                  className="input-search"
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <button
+                  type="button"
+                  className="btn-search"
+                  onClick={() => handleSearch(search)}
+                >
+                  Search
+                </button>
               </li>
               {/* <li className="nav-link three">
                 <Link to="/">
@@ -172,13 +181,24 @@ export default function Navbar() {
           <div className="log-sign five">
             {users != null ? (
               <>
-              <Link
-                  to="/wishlist"
-                className="btn solid"
-                >
+                {/* <Link to="/wishlist" className="btn solid">
                   Wish List
-                </Link>
-                <p>{parseJwt(users.accessToken).FullName}</p>
+                </Link> */}
+                <div className="nav-links">
+                  <ul>
+                    <li className="nav-link four">
+                      <Link to="/">{parseJwt(users.accessToken).FullName}</Link>
+                      <div className="dropdown">
+                        <ul>
+                          <li className="dropdown-link">
+                            <Link to="/wishlist">Wish List</Link>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
                 <Link
                   to="/login"
                   className="btn transparent"

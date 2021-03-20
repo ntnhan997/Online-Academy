@@ -36,7 +36,7 @@ export default function Course(props) {
 
   const lectureList = useSelector(state => state.lectureCourse);
   const {lectures} = lectureList;
-  const [rating,setRating] = useState(0);
+  // const [rating,setRating] = useState(0);
 
 
   const user = useSelector((state) => state.loginUser);
@@ -49,6 +49,10 @@ export default function Course(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  // if(ratingUser !== null){
+  //     setRating(Number(ratingUser.Score));
+  //   }
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -68,12 +72,12 @@ export default function Course(props) {
       dispatch(lectureActionNoUser(CourseId));
     }
     
-    if(ratingUser !== null){
-      setRating(Number(ratingUser.Score));
-    }
+    // if(ratingUser !== null){
+    //   setRating(Number(ratingUser.Score));
+    // }
 
     
-  }, [dispatch,CourseId, ratingUser, getBuy.bought, users])
+  }, [dispatch,CourseId, getBuy.bought, users])
 
   const handleComment = (CourseId,postcomment) => {
     dispatch(postCommentAction(CourseId, postcomment));
@@ -82,7 +86,6 @@ export default function Course(props) {
 
 
   const handleRating = (CourseID, Score) => {
-    setRating(Score);
     dispatch(ratingAction(CourseID,Score));
   }
 
@@ -220,7 +223,7 @@ export default function Course(props) {
                 Rating:
                 <Rating
                   name="half-rating"
-                  value={Number(rating)}
+                  value={ratingUser !== null ? Number(ratingUser.Score) : 0}
                   precision={0.5}
                   // onChange={(e) => setRating(e.target.value)}
                   onChange={(e) => handleRating(CourseId, e.target.value)}
