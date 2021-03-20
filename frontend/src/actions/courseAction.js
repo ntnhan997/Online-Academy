@@ -13,10 +13,24 @@ import {
   LECTURE_COURSE_LIST,
   COURSE_SUGGESTION_REQUEST,
   COURSE_SUGGESTION_SUCCESS,
-  COURSE_SUGGESTION_FAIL
+  COURSE_SUGGESTION_FAIL,
+  HOTCOURSE_REQUEST_LIST,
+  HOTCOURSE_SUCCESS_LIST,
+  HOTCOURSE_FAIL_LIST
 } from "../constants/courseConstants";
 
 import axios from "axios";
+
+
+const HotCourseAction = () => async (dispatch) => {
+  try {
+    dispatch({ type: HOTCOURSE_REQUEST_LIST });
+    const data = await axios.get("/api/course/hotcourse");
+    dispatch({ type: HOTCOURSE_SUCCESS_LIST, payload: data.data });
+  } catch (error) {
+    dispatch({ type: HOTCOURSE_FAIL_LIST, payload: error });
+  }
+};
 
 const TopCourseViews = () => async (dispatch) => {
   try {
@@ -153,4 +167,4 @@ const CourseSuggestionAction = (CategoryID) => async (dispatch) => {
 
 
 
-export { TopCourseViews, TopCourseRegistered, TopCoursenNew, IncrementViewAction, ratingAction, getRatingUserAction,getBuyCourseAction, BuyCourseAction,lectureAction, lectureActionNoUser, CourseSuggestionAction };
+export { TopCourseViews, TopCourseRegistered, TopCoursenNew, IncrementViewAction, ratingAction, getRatingUserAction,getBuyCourseAction, BuyCourseAction,lectureAction, lectureActionNoUser, CourseSuggestionAction, HotCourseAction };

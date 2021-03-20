@@ -1,10 +1,21 @@
-import { COURSE_REQUEST_LIST, COURSE_SUCCESS_LIST, COURSE_FAIL_LIST, TOPCOURSEREGISTERED_FAIL_LIST,TOPCOURSEREGISTERED_SUCCESS_LIST,TOPCOURSEREGISTERED_REQUEST_LIST, RATING_USER_COURSE, GET_BUY_COURSE, LECTURE_COURSE_LIST, COURSE_SUGGESTION_REQUEST, COURSE_SUGGESTION_SUCCESS, COURSE_SUGGESTION_FAIL } from '../constants/courseConstants';
+import { COURSE_REQUEST_LIST, COURSE_SUCCESS_LIST, COURSE_FAIL_LIST, TOPCOURSEREGISTERED_FAIL_LIST,TOPCOURSEREGISTERED_SUCCESS_LIST,TOPCOURSEREGISTERED_REQUEST_LIST, RATING_USER_COURSE, GET_BUY_COURSE, LECTURE_COURSE_LIST, COURSE_SUGGESTION_REQUEST, COURSE_SUGGESTION_SUCCESS, COURSE_SUGGESTION_FAIL, HOTCOURSE_REQUEST_LIST, HOTCOURSE_SUCCESS_LIST, HOTCOURSE_FAIL_LIST } from '../constants/courseConstants';
+
+
+const HotCourseReducer = (state = { hotCourses: [] }, action )=>{
+    switch(action.type){
+        case HOTCOURSE_REQUEST_LIST:
+            return {loading: true, hotCourses: []};
+        case HOTCOURSE_SUCCESS_LIST: 
+            return {loading: false, hotCourses: action.payload};
+        case HOTCOURSE_FAIL_LIST:
+            return {loading: false, error: action.payload};
+        default:
+            return state;
+    }
+};
 
 
 const TopNumberViewsReducer = (state = { listViews: [] }, action )=>{
-    // if(action.type === ITEM_SUCCESS_WISHLIST){
-    //     console.log(action.payload);
-    // }
     switch(action.type){
         case COURSE_REQUEST_LIST:
             return {loading: true, listViews: []};
@@ -93,4 +104,5 @@ export {
   GetBuyCourseReducer,
   LectureReducer,
   CourseSuggestionReducer,
+  HotCourseReducer
 };

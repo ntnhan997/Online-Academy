@@ -7,7 +7,8 @@ import {TopNumberViewsReducer,
     RatingUserReducer,
     GetBuyCourseReducer,
     LectureReducer,
-    CourseSuggestionReducer
+    CourseSuggestionReducer,
+    HotCourseReducer
 } from "./reducers/courseReducer";
 import { ConfirmOTPReducer, LogInReducer, RegisterReducer } from "./reducers/userReducer";
 
@@ -33,7 +34,8 @@ const reducer = combineReducers({
     getBuyCourse: GetBuyCourseReducer,
     lectureCourse: LectureReducer,
     checkWL: CheckWishListReducer,
-    courseSuggestions: CourseSuggestionReducer
+    courseSuggestions: CourseSuggestionReducer,
+    hotCourseList: HotCourseReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

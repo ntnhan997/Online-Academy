@@ -21,7 +21,7 @@ const MostViewedCourses = () => {
 
   return (
     <div className="ListLatestCourse">
-      <h3>Most Viewed Courses</h3>
+      <h1>Most Viewed Courses</h1>
       {listViews[0] ? (
         <OwlCarousel
           className="owl-theme"

@@ -20,7 +20,7 @@ const MostRegisteredCategory = () => {
 
   return (
     <div className="ListLatestCourse">
-      <h3>Most Registered Category</h3>
+      <h1>Most Registered Category</h1>
       {topCourseRegisterLists[0] ? (
         <OwlCarousel
           className="owl-theme"
