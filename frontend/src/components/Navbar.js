@@ -184,7 +184,7 @@ export default function Navbar() {
                   </div>
                 </li>
               )}
-              {users !== null && parseJwt(users.accessToken).Role === 1 ? (
+              {(users !== null && parseJwt(users.accessToken).Role === 1) || (users !== null && parseJwt(users.accessToken).Role === 2) ? (
                 ""
               ) : (
                 <li>
@@ -257,7 +257,7 @@ export default function Navbar() {
                 <div className="nav-links">
                   <ul>
                     <li className="nav-link four">
-                      <Link to="/">{parseJwt(users.accessToken).FullName}</Link>
+                      <Link to="/" style={{width : "200px"}}>{parseJwt(users.accessToken).FullName}</Link>
                       {users !== null &&
                       parseJwt(users.accessToken).Role === 3 ? (
                         <div className="dropdown">
@@ -265,11 +265,24 @@ export default function Navbar() {
                             <li className="dropdown-link">
                               <Link to="/wishlist">Wish List</Link>
                             </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Update Acccount</Link>
+                            </li>
                           </ul>
                         </div>
-                      ) : (
+                      ) : users !== null &&
+                      parseJwt(users.accessToken).Role === 2 ? 
+                      <div className="dropdown">
+                          <ul>
+                            <li className="dropdown-link">
+                              <Link to="/">Update Acccount</Link>
+                            </li>
+                          </ul>
+                        </div>
+                      : (
                         ""
                       )}
+
                     </li>
                   </ul>
                 </div>

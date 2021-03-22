@@ -22,6 +22,8 @@ import parseJwt from "./utils";
 import Admin from "./pages/Admin";
 import CreateTeacher from "./components/Admin/CreateTeacher";
 import ListedTeacher from "./components/Admin/ListedTeacher";
+import Teacher from "./pages/Teacher";
+import CreateCourse from "./components/Teacher/CreateCourse";
 
 function App() {
 
@@ -60,10 +62,23 @@ function App() {
           <ScrollTop>
             {users !== null && parseJwt(users.accessToken).Role === 1 ? (
               <>
-              <Route exact path="/" component={Admin} />
-              <Route exact path="/admin/createteacher" component={CreateTeacher} />
-              <Route exact path="/admin/listedteacher" component={ListedTeacher} />
-              <Route exact path="/login" component={LogIn} />
+                <Route exact path="/" component={Admin} />
+                <Route
+                  exact
+                  path="/admin/createteacher"
+                  component={CreateTeacher}
+                />
+                <Route
+                  exact
+                  path="/admin/listedteacher"
+                  component={ListedTeacher}
+                />
+                <Route exact path="/login" component={LogIn} />
+              </>
+            ) : users !== null && parseJwt(users.accessToken).Role === 2 ? (
+              <>
+                <Route exact path="/" component={CreateCourse} />
+                <Route exact path="/login" component={LogIn} />
               </>
             ) : (
               <>

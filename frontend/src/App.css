@@ -744,3 +744,11 @@ a {
     justify-content: center;
     align-items: center;
 }
+
+
+/* create course */
+
+.createcourse {
+    margin-top: 100px;
+    padding: 10px 70px;
+}
