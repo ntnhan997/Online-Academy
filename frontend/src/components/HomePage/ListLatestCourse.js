@@ -47,7 +47,7 @@ const ListLatestCourse = () => {
                   totalReviews={item.CourseReviews}
                   ratingAverage={item.CourseRatings}
                   descriptions={item.CourseDescriptions}
-                  TeacherName={item.TeacherName}
+                  TeacherName={item.FullName}
                   Avatar={item.Avatar}
                   CategoryName= {item.CategoryName}
                 />

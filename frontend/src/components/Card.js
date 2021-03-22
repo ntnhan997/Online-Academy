@@ -4,7 +4,7 @@ import Rating from "@material-ui/lab/Rating";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { IncrementViewAction } from "../actions/courseAction";
-
+let defaultAvatar = "https://www.w3schools.com/howto/img_avatar.png";
 export default function Card(props) {
   const dispatch = useDispatch();
 
@@ -83,7 +83,7 @@ export default function Card(props) {
             <h4>Lecturer</h4>
             <ul>
               <li>
-                <img src={Avatar} alt="aaaa" />
+                <img src={Avatar? Avatar : defaultAvatar} alt="aaaa" />
               </li>
               {/* <li>
                 <img src={l2} alt="aaaa" />

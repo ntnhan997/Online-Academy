@@ -723,3 +723,24 @@ a {
     padding: 10px 20px;
     cursor: pointer;
 }
+
+
+/* Admin */
+
+.admin {
+    margin-top: 100px;
+    padding: 10px 70px;
+    width: 100%;
+}
+
+
+/* createteacher */
+
+.createteacher {
+    width: 100%;
+    margin-top: 100px;
+    padding: 10px 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

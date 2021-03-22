@@ -18,6 +18,9 @@ import jwt_decode from "jwt-decode";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RefreshTokenAction } from "./actions/userAction";
+import parseJwt from "./utils";
+import Admin from "./pages/Admin";
+import CreateTeacher from "./components/Admin/CreateTeacher";
 
 function App() {
 
@@ -53,19 +56,33 @@ function App() {
       </div>
       <div className="app-body">
         <Switch>
-        <ScrollTop>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/categories/:name" component={Categories} />
-          <Route exact path="/:CategoryName/:id" component={Course} />
-          <Route
-            exact
-            path="/learning/javascript/:CourseID/:LectureID"
-            component={ContainVideo}
-          />
-          <Route exact path="/wishlist" component={WishListUser} />
-          <Route exact path="/register" component={RegisterUser} />
-          <Route exact path="/login" component={LogIn} />
-          <Route exact path="/Course/SearchFullText/result" component={SearchFullText} />
+          <ScrollTop>
+            {users !== null && parseJwt(users.accessToken).Role === 1 ? (
+              <>
+              <Route exact path="/" component={Admin} />
+              <Route exact path="/admin/createteacher" component={CreateTeacher} />
+              <Route exact path="/login" component={LogIn} />
+              </>
+            ) : (
+              <>
+                <Route exact path="/" component={HomePage} />
+                <Route exact path="/categories/:name" component={Categories} />
+                <Route exact path="/:CategoryName/:id" component={Course} />
+                <Route
+                  exact
+                  path="/learning/javascript/:CourseID/:LectureID"
+                  component={ContainVideo}
+                />
+                <Route exact path="/wishlist" component={WishListUser} />
+                <Route exact path="/register" component={RegisterUser} />
+                <Route exact path="/login" component={LogIn} />
+                <Route
+                  exact
+                  path="/Course/SearchFullText/result"
+                  component={SearchFullText}
+                />
+              </>
+            )}
           </ScrollTop>
         </Switch>
       </div>

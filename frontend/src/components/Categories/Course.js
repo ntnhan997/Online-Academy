@@ -134,7 +134,7 @@ export default function Course(props) {
               />
               <div className="course-header-left-box">
                 <p>Teacher</p>
-                <span>{details.TeacherName}</span>
+                <span>{details.FullName}</span>
               </div>
               <div className="course-header-left-box">
                 <p>Categories</p>

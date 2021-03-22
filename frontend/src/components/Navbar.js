@@ -18,7 +18,9 @@ export default function Navbar() {
   const handleSearch = (search) => {
     if(search !== ""){
       history.push("/Course/SearchFullText/result?name=" + search);
+      setSearch("");
     }
+
   }
 
 
@@ -81,59 +83,125 @@ export default function Navbar() {
               <li className="nav-link one">
                 <Link to="/">Home</Link>
               </li>
-              <li className="nav-link two">
-                <Link to="/SearchFullText">
-                  Categories
-                  <i className="fas fa-caret-down" />
-                </Link>
-                <div className="dropdown">
-                  <ul>
-                    <li className="dropdown-link">
-                      <Link to="/">Link 1</Link>
-                    </li>
-                    <li className="dropdown-link">
-                      <Link to="/">Link 2</Link>
-                    </li>
-                    <li className="dropdown-link">
-                      <Link to="/">
-                        Link 3<i className="fas fa-caret-down" />
-                      </Link>
-                      <div className="dropdown second">
-                        <ul>
-                          <li className="dropdown-link">
-                            <Link to="/">Link 1</Link>
-                          </li>
-                          <li className="dropdown-link">
-                            <Link to="/">Link 2</Link>
-                          </li>
-                          <li className="dropdown-link">
-                            <Link to="/">Link 3</Link>
-                          </li>
-                          <div className="arrow" />
-                        </ul>
-                      </div>
-                    </li>
-                    <li className="dropdown-link">
-                      <Link to="/">Link 4</Link>
-                    </li>
-                    <div className="arrow" />
-                  </ul>
-                </div>
-              </li>
-              <li>
-                <input
-                  type="text"
-                  className="input-search"
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-                <button
-                  type="button"
-                  className="btn-search"
-                  onClick={() => handleSearch(search)}
-                >
-                  Search
-                </button>
-              </li>
+              {users !== null && parseJwt(users.accessToken).Role === 1 ? (
+                <li className="nav-link two">
+                  <Link to="/SearchFullText">
+                    Feature
+                    <i className="fas fa-caret-down" />
+                  </Link>
+                  <div className="dropdown">
+                    <ul>
+                      <li className="dropdown-link">
+                        <Link to="/">Category</Link>
+                      </li>
+                      <li className="dropdown-link">
+                        <Link to="/">
+                          Teacher
+                          <i className="fas fa-caret-down" />
+                        </Link>
+                        <div className="dropdown second">
+                          <ul>
+                            <li className="dropdown-link">
+                              <Link to="/">Listed</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/admin/createteacher">Create</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Delete</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Update</Link>
+                            </li>
+                            <div className="arrow" />
+                          </ul>
+                        </div>
+                      </li>
+                      <li className="dropdown-link">
+                        <Link to="/">
+                          Link 3<i className="fas fa-caret-down" />
+                        </Link>
+                        <div className="dropdown second">
+                          <ul>
+                            <li className="dropdown-link">
+                              <Link to="/">Link 1</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Link 2</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Link 3</Link>
+                            </li>
+                            <div className="arrow" />
+                          </ul>
+                        </div>
+                      </li>
+                      <li className="dropdown-link">
+                        <Link to="/">Link 4</Link>
+                      </li>
+                      <div className="arrow" />
+                    </ul>
+                  </div>
+                </li>
+              ) : (
+                <li className="nav-link two">
+                  <Link to="/SearchFullText">
+                    Categories
+                    <i className="fas fa-caret-down" />
+                  </Link>
+                  <div className="dropdown">
+                    <ul>
+                      <li className="dropdown-link">
+                        <Link to="/">Link 1</Link>
+                      </li>
+                      <li className="dropdown-link">
+                        <Link to="/">Link 2</Link>
+                      </li>
+                      <li className="dropdown-link">
+                        <Link to="/">
+                          Link 3<i className="fas fa-caret-down" />
+                        </Link>
+                        <div className="dropdown second">
+                          <ul>
+                            <li className="dropdown-link">
+                              <Link to="/">Link 1</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Link 2</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Link 3</Link>
+                            </li>
+                            <div className="arrow" />
+                          </ul>
+                        </div>
+                      </li>
+                      <li className="dropdown-link">
+                        <Link to="/">Link 4</Link>
+                      </li>
+                      <div className="arrow" />
+                    </ul>
+                  </div>
+                </li>
+              )}
+              {users !== null && parseJwt(users.accessToken).Role === 1 ? "" : (
+                <li>
+                  <input
+                    type="text"
+                    className="input-search"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                  <button
+                    type="button"
+                    className="btn-search"
+                    onClick={() => handleSearch(search)}
+                  >
+                    Search
+                  </button>
+                </li>
+              )}
+
               {/* <li className="nav-link three">
                 <Link to="/">
                   Services
