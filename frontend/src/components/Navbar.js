@@ -102,7 +102,7 @@ export default function Navbar() {
                         <div className="dropdown second">
                           <ul>
                             <li className="dropdown-link">
-                              <Link to="/">Listed</Link>
+                              <Link to="/admin/listedteacher">Listed</Link>
                             </li>
                             <li className="dropdown-link">
                               <Link to="/admin/createteacher">Create</Link>
@@ -184,7 +184,9 @@ export default function Navbar() {
                   </div>
                 </li>
               )}
-              {users !== null && parseJwt(users.accessToken).Role === 1 ? "" : (
+              {users !== null && parseJwt(users.accessToken).Role === 1 ? (
+                ""
+              ) : (
                 <li>
                   <input
                     type="text"
@@ -256,13 +258,18 @@ export default function Navbar() {
                   <ul>
                     <li className="nav-link four">
                       <Link to="/">{parseJwt(users.accessToken).FullName}</Link>
-                      <div className="dropdown">
-                        <ul>
-                          <li className="dropdown-link">
-                            <Link to="/wishlist">Wish List</Link>
-                          </li>
-                        </ul>
-                      </div>
+                      {users !== null &&
+                      parseJwt(users.accessToken).Role === 3 ? (
+                        <div className="dropdown">
+                          <ul>
+                            <li className="dropdown-link">
+                              <Link to="/wishlist">Wish List</Link>
+                            </li>
+                          </ul>
+                        </div>
+                      ) : (
+                        ""
+                      )}
                     </li>
                   </ul>
                 </div>

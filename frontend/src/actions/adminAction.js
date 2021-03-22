@@ -1,5 +1,5 @@
 import {
-    ADMIN_CREATE_USER
+    ADMIN_LISTED_TEACHER
   } from "../constants/AdminConstants";
   
   import axios from "axios";
@@ -15,6 +15,18 @@ import {
     } catch (error) {
     }
   };
+
+  const ListedTeacherAction = () => async (dispatch) => {
+    try {
+        const list = await axios.get("/api/admin/listedteacher", {
+            headers :{
+                "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+              }
+        });
+        dispatch({ type: ADMIN_LISTED_TEACHER , payload: list.data});
+    } catch (error) {
+    }
+  }; 
   
-  export { CreateUserAction };
+  export { CreateUserAction, ListedTeacherAction };
   

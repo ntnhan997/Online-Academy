@@ -21,6 +21,7 @@ import { RefreshTokenAction } from "./actions/userAction";
 import parseJwt from "./utils";
 import Admin from "./pages/Admin";
 import CreateTeacher from "./components/Admin/CreateTeacher";
+import ListedTeacher from "./components/Admin/ListedTeacher";
 
 function App() {
 
@@ -61,6 +62,7 @@ function App() {
               <>
               <Route exact path="/" component={Admin} />
               <Route exact path="/admin/createteacher" component={CreateTeacher} />
+              <Route exact path="/admin/listedteacher" component={ListedTeacher} />
               <Route exact path="/login" component={LogIn} />
               </>
             ) : (
