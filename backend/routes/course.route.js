@@ -18,4 +18,9 @@ router.get("/mostregisteredcourses", async (req, res) => {
   res.send(list);
 });
 
+router.get("/hotcourse", async (req, res) => {
+  const list = await courseModel.hotcourse();
+  res.send(list);
+});
+
 module.exports = router;
