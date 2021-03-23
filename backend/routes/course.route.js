@@ -54,4 +54,20 @@ router.get("/fulltextsearch/result", async (req, res) => {
   res.send(list[0]);
 });
 
+router.post("/", async (req, res) => {
+  const course = req.body;
+  course.LastUpdate = moment().format("YYYY-MM-DD HH:mm:ss");
+  course.NumberOfViews = 0;
+  course.CourseRatings = 0;
+  course.CourseReviews = 0;
+  course.NumberOfRegistered = 0;
+  course.CourseStatus = 0;
+  const list = await courseModel.addcourse(course);
+  res.status(201).send({
+    complete: true,
+  });
+});
+
+
+
 module.exports = router;
