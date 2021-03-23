@@ -29,5 +29,13 @@ router.get("/coursesuggestion/:CategoryID", async (req, res) => {
   res.send(list);
 });
 
+router.put("/addregistered", async (req, res) => {
+  //tang luot dang ky
+  const id = req.body.CourseId;
+  const list = await courseModel.addregister(id);
+  res.send({
+    mes: "ok",
+  });
+});
 
 module.exports = router;
