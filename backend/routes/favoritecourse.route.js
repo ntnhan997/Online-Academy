@@ -11,5 +11,18 @@ router.get("/", auth,  async(req,res) => {
     res.send(list);
 })
 
+router.delete("/", auth, async (req, res) => {
+    const idCourse = req.body.CourseID;
+    console.log(idCourse);
+    const idUser = req.body.userId;
+    console.log(idUser);
+    if (idCourse === 0) {
+      return res.status(304).end();
+    }
+    await favoritecourseModel.delete(idCourse, idUser);
+    res.send({
+      complete: true,
+    });
+  });
 
 module.exports = router;
