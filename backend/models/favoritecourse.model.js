@@ -6,6 +6,9 @@ module.exports = {
     },
     delete(idCourse){
         return db("favoritecourse").where("CourseID", idCourse).del();
+    },
+    add(favorite){
+        return db("favoritecourse").insert(favorite);
     }
 
 
