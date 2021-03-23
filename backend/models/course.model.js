@@ -132,4 +132,10 @@ module.exports = {
       .increment("NumberOfRegistered")
       .where("CourseID", "=", id);
   },
+  incrementviews(id) {
+    return db
+      .from("course")
+      .increment("NumberOfViews")
+      .where("CourseID", "=", id);
+  },
 };
