@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", require("./routes/auth.route"));
 app.use("/api/user", userRoute);
 app.use("/api/course", courseRoute);
+app.use("/api/lecture", require("./routes/lecture.route"));
 
 
 app.listen(PORT, () => {
