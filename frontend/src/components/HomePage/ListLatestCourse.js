@@ -8,7 +8,7 @@ import Card from "../Card";
 
 import { PopularWrapper } from "./PopularStyle";
 import { useDispatch, useSelector } from "react-redux";
-import { TopCourseViews } from "../../actions/courseAction";
+import { TopCoursenNew } from "../../actions/courseAction";
 
 const ListLatestCourse = () => {
   const list = useSelector((state) => state.topCourseNewList);
@@ -16,7 +16,7 @@ const ListLatestCourse = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(TopCourseViews());
+    dispatch(TopCoursenNew());
   }, [dispatch]);
 
   return (

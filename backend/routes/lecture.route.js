@@ -16,7 +16,7 @@ router.post("/createbyteacher",  async(req,res) => {
     list.Lecture.map(item => item.CourseID = CourseID[0]);
     const Lecture = await lectureModel.addLectureByTeacher(list.Lecture);
     console.log(Lecture);
-    res.send(list.Lecture);
+    res.send(Lecture);
 })
 
 module.exports = router;
