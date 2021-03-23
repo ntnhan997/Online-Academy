@@ -53,6 +53,15 @@ module.exports = {
       .orderBy("LastUpdate", "desc")
       .limit(10);
   },
+  async idRegister() {
+    const idMost = await db
+      .select("CategoryID")
+      .from("category")
+      .groupBy("CategoryID")
+      .orderBy("TotalRegistered", "desc")
+      .limit(1);
+    return idMost;
+  },
   async mostregisteredcourses(id) {
     return await db
       .select(
