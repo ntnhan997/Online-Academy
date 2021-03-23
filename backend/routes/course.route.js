@@ -23,4 +23,11 @@ router.get("/hotcourse", async (req, res) => {
   res.send(list);
 });
 
+router.get("/coursesuggestion/:CategoryID", async (req, res) => {
+  const CategoryID = req.params.CategoryID;
+  const list = await courseModel.coursesuggestion(CategoryID);
+  res.send(list);
+});
+
+
 module.exports = router;
