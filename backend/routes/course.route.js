@@ -68,6 +68,13 @@ router.post("/", async (req, res) => {
   });
 });
 
-
+router.get("/:CourseId", async (req, res) => {
+  const CourseID = req.params.CourseId || 0;
+  const course = await courseModel.single(CourseID);
+  if (course === null) {
+    return res.status(204).end();
+  }
+  res.send(course[0]);
+});
 
 module.exports = router;
