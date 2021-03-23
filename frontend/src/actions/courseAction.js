@@ -177,7 +177,12 @@ const CreateCourseByTeacherAction = (Course, Lecture) => async (dispatch) => {
     })
     console.log(Lecture);
     Lecture.map(item => delete item.id);
-    const data = await axios.post("/api/lecture/createbyteacher", {Course,Lecture});
+    const data = await axios.post("/api/lecture/createbyteacher", {Course,Lecture}, {
+      headers: {
+        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA"))
+          .accessToken,
+      },
+    });
     // dispatch({ type: COURSE_SUGGESTION_SUCCESS, payload: data.data });
   } catch (error) {
   }
