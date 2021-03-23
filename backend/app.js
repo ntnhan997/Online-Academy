@@ -17,6 +17,8 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", require("./routes/auth.route"));
 app.use("/api/user", userRoute);
+app.use("/api/course", courseRoute);
+
 
 app.listen(PORT, () => {
   console.log(`api running at http://localhost:${PORT}`);
