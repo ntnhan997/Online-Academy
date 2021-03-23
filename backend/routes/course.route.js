@@ -12,4 +12,10 @@ router.get("/top10newcourse", async (req, res) => {
   res.send(list);
 });
 
+router.get("/mostregisteredcourses", async (req, res) => {
+  const id = await courseModel.idRegister();
+  const list = await courseModel.mostregisteredcourses(id);
+  res.send(list);
+});
+
 module.exports = router;
