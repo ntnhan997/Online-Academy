@@ -38,4 +38,13 @@ router.put("/addregistered", async (req, res) => {
   });
 });
 
+router.put("/incrementviews", async (req, res) => {
+  const id = req.body.CourseId;
+  const list = await courseModel.incrementviews(id);
+  res.send({
+    mes: "ok",
+  });
+});
+
+
 module.exports = router;
