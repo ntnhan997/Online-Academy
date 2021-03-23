@@ -25,4 +25,14 @@ router.delete("/", auth, async (req, res) => {
     });
   });
 
+  router.post('/',auth, validate(favorite_schema) ,async(req,res) => {
+    const favorite = req.body;
+    favorite.AccountID = req.body.userId;
+    delete favorite.userId;
+    const id = await favoritecourseModel.add(favorite);
+    res.status(201).send({
+        complete: true
+    });
+})
+
 module.exports = router;
