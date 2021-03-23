@@ -9,6 +9,9 @@ module.exports = {
     },
     add(favorite){
         return db("favoritecourse").insert(favorite);
+    },
+    check(favorite){
+        return db("favoritecourse").where("CourseID", favorite.CourseID).andWhere("AccountID", favorite.AccountID);
     }
 
 
