@@ -138,4 +138,23 @@ module.exports = {
       .increment("NumberOfViews")
       .where("CourseID", "=", id);
   },
+  async fulltextsearch(str, price, rating) {
+    if (price === "asc" || price === "desc") {
+      return await db.raw(
+        `SELECT * FROM course,category, teacher WHERE course.CourseID = teacher.CourseID AND course.CategoryID = category.CategoryID AND MATCH(CourseName) against ("${str}") ORDER BY CoursePrice ${
+          price === "asc" ? "asc" : "desc"
+        }`
+      );
+    }
+    if (rating === "asc" || rating === "desc") {
+      return await db.raw(
+        `SELECT * FROM course,category, teacher WHERE course.CourseID = teacher.CourseID AND course.CategoryID = category.CategoryID AND MATCH(CourseName) against ("${str}") ORDER BY CourseRatings ${
+          rating === "asc" ? "asc" : "desc"
+        }`
+      );
+    }
+    return await db.raw(
+      `SELECT * FROM course, category, teacher WHERE course.CourseID = teacher.CourseID AND course.CategoryID = category.CategoryID AND MATCH(CourseName) against ("${str}")`
+    );
+  },
 };
