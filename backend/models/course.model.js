@@ -157,4 +157,7 @@ module.exports = {
       `SELECT * FROM course, category, teacher WHERE course.CourseID = teacher.CourseID AND course.CategoryID = category.CategoryID AND MATCH(CourseName) against ("${str}")`
     );
   },
+  addcourse(course) {
+    return db("course").insert(course);
+  },
 };
