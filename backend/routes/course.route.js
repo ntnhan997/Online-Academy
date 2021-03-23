@@ -46,5 +46,12 @@ router.put("/incrementviews", async (req, res) => {
   });
 });
 
+router.get("/fulltextsearch/result", async (req, res) => {
+  const name = req.query.name;
+  const price = req.query.price;
+  const rating = req.query.rating;
+  const list = await courseModel.fulltextsearch(name, price, rating);
+  res.send(list[0]);
+});
 
 module.exports = router;
