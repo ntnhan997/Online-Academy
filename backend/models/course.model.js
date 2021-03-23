@@ -160,4 +160,15 @@ module.exports = {
   addcourse(course) {
     return db("course").insert(course);
   },
+
+  async single(CourseId) {
+    const list = await db.raw(
+      `SELECT course.CourseID, course.CourseImage, course.CourseName, course.CourseSummary, course.CourseDescriptions, course.NumberOfViews, course.CourseRatings, course.CourseReviews, course.NumberOfRegistered, course.CoursePrice, category.CategoryID, course.CourseStatus, category.CategoryName, account.AccountID, account.FullName FROM course, category, teacher, account WHERE course.CourseID = ${CourseId} AND course.CategoryID = category.CategoryID AND teacher.CourseID = course.CourseID`
+    );
+    if (list.length === 0) {
+      return null;
+    }
+
+    return list[0];
+  },
 };
