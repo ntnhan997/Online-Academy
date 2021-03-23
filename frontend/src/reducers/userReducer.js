@@ -1,4 +1,4 @@
-import {CONFIRM_OTP, USER_REGISTER_REQUEST, USER_LOGIN_REQUSET} from "../constants/userConstants";
+import {CONFIRM_OTP, USER_REGISTER_REQUEST, USER_LOGIN_REQUSET ,USER_GETBYID_REQUEST, UPDATE_USER_REQUEST} from "../constants/userConstants";
 
 
 const ConfirmOTPReducer = (state = { ConfirmOTP: {} }, action )=>{
@@ -30,4 +30,25 @@ const LogInReducer = ( state = { users: {} }, action) => {
 }
 
 
-export {ConfirmOTPReducer, RegisterReducer,LogInReducer}
+const UserByIdReducer = ( state = { getUserById: {} }, action) => {
+    switch(action.type){
+        case USER_GETBYID_REQUEST:
+            return {getUserById: action.payload};
+        default:
+            return state;
+    }
+}
+
+
+
+const UpdateUserReducer = ( state = { checkUpdateUser: {} }, action) => {
+    switch(action.type){
+        case UPDATE_USER_REQUEST:
+            return {checkUpdateUser: action.payload};
+        default:
+            return state;
+    }
+}
+
+
+export {ConfirmOTPReducer, RegisterReducer,LogInReducer, UserByIdReducer, UpdateUserReducer}

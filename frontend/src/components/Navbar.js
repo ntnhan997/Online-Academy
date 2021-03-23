@@ -257,7 +257,7 @@ export default function Navbar() {
                 <div className="nav-links">
                   <ul>
                     <li className="nav-link four">
-                      <Link to="/" style={{width : "200px"}}>{parseJwt(users.accessToken).FullName}</Link>
+                      <Link to="/" style={{width : "200px", display: "flex", justifyContent: "center"}}>{parseJwt(users.accessToken).FullName}</Link>
                       {users !== null &&
                       parseJwt(users.accessToken).Role === 3 ? (
                         <div className="dropdown">
@@ -266,7 +266,7 @@ export default function Navbar() {
                               <Link to="/wishlist">Wish List</Link>
                             </li>
                             <li className="dropdown-link">
-                              <Link to="/">Update Acccount</Link>
+                              <Link to="/update-account">Update Acccount</Link>
                             </li>
                           </ul>
                         </div>

@@ -1,4 +1,4 @@
-import {CONFIRM_OTP, USER_REGISTER_REQUEST, USER_LOGIN_REQUSET} from "../constants/userConstants";
+import {CONFIRM_OTP, USER_REGISTER_REQUEST, USER_LOGIN_REQUSET, USER_GETBYID_REQUEST, UPDATE_USER_REQUEST} from "../constants/userConstants";
 
 import axios from "axios";
 
@@ -65,11 +65,46 @@ const RefreshTokenAction = (Token) => async (dispatch) => {
         localStorage.removeItem("accessToken_OA");
         data.data.refreshToken = Token.refreshToken;
         data.data.authenticated = true;
-        console.log(data.data);
         localStorage.setItem("accessToken_OA", JSON.stringify(data.data));
     } catch (error) {
         
     }
 }
 
-export {requestOTP, confirmOTP, RegisterUserAction ,LogInAction, LogOut, RefreshTokenAction}
+const GetUserByIdAction = () => async (dispatch) => {
+    try {
+        const data = await axios.get("/api/user/", {
+            headers :{
+                "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+            }
+        });
+        dispatch({type : USER_GETBYID_REQUEST, payload: data.data});
+    } catch (error) {
+        
+    }
+}
+
+const UpdateUserAction = (User) => async (dispatch) => {
+    try {
+        const data = await axios.put("/api/user/", User , {
+            headers :{
+                "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+            }
+        });
+        dispatch({type : UPDATE_USER_REQUEST, payload: data.data});
+        const Token = JSON.parse(localStorage.getItem("accessToken_OA"));
+        const datas = await axios.post("/api/auth/refresh", {
+            accessToken: Token.accessToken,
+            refreshToken: Token.refreshToken
+        });
+        dispatch({type : USER_LOGIN_REQUSET, payload: datas.data});
+        localStorage.removeItem("accessToken_OA");
+        datas.data.refreshToken = Token.refreshToken;
+        datas.data.authenticated = true;
+        localStorage.setItem("accessToken_OA", JSON.stringify(datas.data));
+    } catch (error) {
+        
+    }
+}
+
+export {requestOTP, confirmOTP, RegisterUserAction ,LogInAction, LogOut, RefreshTokenAction ,GetUserByIdAction, UpdateUserAction}

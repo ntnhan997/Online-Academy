@@ -1,6 +1,23 @@
+const { default: UpdateUser } = require("../../frontend/src/components/UpdateUser");
 const db = require("../utils/db");
 
 module.exports = {
+  async singleById(AccountID) {
+    const list = await db
+      .select("account.FullName", "account.Email")
+      .from("account")
+      .where("AccountID", "=", AccountID);
+    if (list.length === 0) {
+      return null;
+    }
+
+    return list;
+  },
+  async UpdateUser(user){
+    return db.raw(`UPDATE account SET FullName = '${user.FullName}', Email = '${user.Email}' , Password = '${user.Password}' WHERE AccountID = ${user.AccountID}`);
+  }
+  ,
+
   async singleByUserName(username) {
     const list = await db
       .select("*")

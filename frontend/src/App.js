@@ -22,8 +22,9 @@ import parseJwt from "./utils";
 import Admin from "./pages/Admin";
 import CreateTeacher from "./components/Admin/CreateTeacher";
 import ListedTeacher from "./components/Admin/ListedTeacher";
-import Teacher from "./pages/Teacher";
+// import Teacher from "./pages/Teacher";
 import CreateCourse from "./components/Teacher/CreateCourse";
+import UpdateUser from "./components/UpdateUser";
 
 function App() {
 
@@ -91,6 +92,7 @@ function App() {
                   component={ContainVideo}
                 />
                 <Route exact path="/wishlist" component={WishListUser} />
+                <Route exact path="/update-account" component={UpdateUser} />
                 <Route exact path="/register" component={RegisterUser} />
                 <Route exact path="/login" component={LogIn} />
                 <Route

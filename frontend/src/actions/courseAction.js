@@ -175,9 +175,8 @@ const CreateCourseByTeacherAction = (Course, Lecture) => async (dispatch) => {
     Lecture.map(item => {
         return item.LecturePreview = item.LecturePreview === "true" ? 1: 0
     })
-    console.log(Lecture);
     Lecture.map(item => delete item.id);
-    const data = await axios.post("/api/lecture/createbyteacher", {Course,Lecture}, {
+    await axios.post("/api/lecture/createbyteacher", {Course,Lecture}, {
       headers: {
         "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA"))
           .accessToken,
