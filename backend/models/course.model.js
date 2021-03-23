@@ -120,4 +120,16 @@ module.exports = {
       .orderBy("NumberOfRegistered", "desc")
       .limit(5);
   },
+  async addregister(id) {
+    // tang luot dang ky
+    await db
+      .from("course")
+      .where("CourseID", "=", id)
+      .innerJoin("category", "category.CategoryID", "course.CategoryID")
+      .increment("TotalRegistered");
+    return await db
+      .from("course")
+      .increment("NumberOfRegistered")
+      .where("CourseID", "=", id);
+  },
 };
