@@ -30,6 +30,18 @@ router.post("/requestOTP", async (req, res) => {
   });
 });
 
+router.post("/confirmOTP", async (req, res) => {
+  // xac nhan otp
+  if (otpMail === req.body.otp) {
+    return res.json({
+      confirmOTP: true,
+    });
+  }
+  return res.send({
+    confirmOTP: false,
+  });
+});
+
 router.post("/register", async (req, res) => {
   // dang nhap
   const user = req.body;
