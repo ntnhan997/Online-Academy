@@ -53,4 +53,29 @@ module.exports = {
       .orderBy("LastUpdate", "desc")
       .limit(10);
   },
+  async mostregisteredcourses(id) {
+    return await db
+      .select(
+        "course.CourseID",
+        "course.CourseImage",
+        "course.CourseName",
+        "course.CourseSummary",
+        "course.CourseDescriptions",
+        "course.NumberOfViews",
+        "course.CourseRatings",
+        "course.CourseReviews",
+        "course.NumberOfRegistered",
+        "course.CoursePrice",
+        "category.CategoryID",
+        "course.CourseStatus",
+        "category.CategoryName",
+        "account.AccountID",
+        "account.FullName"
+      )
+      .from("course")
+      .whereIn("course.CategoryID", [id[0].CategoryID])
+      .innerJoin("category", "category.CategoryID", "course.CategoryID")
+      .innerJoin("teacher", "course.CourseID", "teacher.CourseID")
+      .innerJoin("account", "account.AccountID", "teacher.AccountID");
+  },
 };
