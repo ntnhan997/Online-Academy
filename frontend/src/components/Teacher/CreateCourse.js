@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -14,10 +14,11 @@ import FormLabel from '@material-ui/core/FormLabel';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-
+import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
 
 import { makeStyles } from '@material-ui/core/styles';
+import { CreateCourseByTeacherAction, GetNameCategoryAction } from '../../actions/courseAction';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
 export default function CreateCourse() {
   
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const list = useSelector(state => state.getCategoryName);
+  const {getCategory} = list;
 
   const [courseStatus, setCourseStatus] = useState(true);
     const [courseName, setCourseName] = useState("");
@@ -44,15 +49,15 @@ export default function CreateCourse() {
     const [courseSummary, setCourseSummary] = useState("");
     const [coursePrice, setCoursePrice] = useState("");
     const [courseDescriptions, setCourseDescriptions] = useState("");
+    const [categoryName, setCategoryName] = useState("");
 
     const [inputFields, setInputFields] = useState([
-      { id: uuidv4(), LectureName: '', LectureURL: '', LecturePreview: true },
+      { id: uuidv4(), LectureName: '', LectureContent: '', LecturePreview: true },
     ]);
   
     const handleSubmit = (e,course, lecture) => {
       e.preventDefault();
-      console.log("course", course);
-      console.log("lecture", lecture);
+      dispatch(CreateCourseByTeacherAction(course,lecture));
     };
   
     const handleChangeInput = (id, event) => {
@@ -67,7 +72,7 @@ export default function CreateCourse() {
     }
   
     const handleAddFields = () => {
-      setInputFields([...inputFields, { id: uuidv4(),  LectureName: '', LectureURL: '', LecturePreview: true }])
+      setInputFields([...inputFields, { id: uuidv4(),  LectureName: '', LectureContent: '', LecturePreview: true }])
     }
   
     const handleRemoveFields = id => {
@@ -75,6 +80,10 @@ export default function CreateCourse() {
       values.splice(values.findIndex(value => value.id === id), 1);
       setInputFields(values);
     }
+
+    useEffect(() => {
+     dispatch(GetNameCategoryAction()); 
+    },[dispatch])
 
   return (
     <Container className="createcourse">
@@ -133,7 +142,21 @@ export default function CreateCourse() {
         <FormControlLabel value="true" control={<Radio />} label="complete" />
         <FormControlLabel value="false" control={<Radio />} label="incomplete" />
       </RadioGroup>
+      
     </FormControl>
+    <FormControl className={classes.formControl}>
+        <InputLabel id="demo-simple-select-label">Category Name</InputLabel>
+        <Select
+         name="LecturePreview"
+          labelId="Lecture Preview"
+          value={categoryName}
+          onChange={(event) => setCategoryName(event.target.value)}
+        >
+          {getCategory.map((item) => 
+              <MenuItem value={item.CategoryID} >{item.CategoryName}</MenuItem>
+            )}
+        </Select>
+      </FormControl>
         {inputFields.map((inputField) => (
           <div key={inputField.id}>
             <TextField
@@ -144,10 +167,10 @@ export default function CreateCourse() {
               onChange={(event) => handleChangeInput(inputField.id, event)}
             />
             <TextField
-              name="LectureURL"
+              name="LectureContent"
               label="Lecture URL"
               variant="filled"
-              value={inputField.LectureURL}
+              value={inputField.LectureContent}
               onChange={(event) => handleChangeInput(inputField.id, event)}
             />
         <FormControl className={classes.formControl}>
@@ -181,7 +204,7 @@ export default function CreateCourse() {
           color="primary"
           type="submit"
           endIcon={<Icon>send</Icon>}
-          onClick={(e) => handleSubmit(e,{courseName, courseImage, courseSummary, coursePrice, courseDescriptions, courseStatus}, inputFields)}
+          onClick={(e) => handleSubmit(e,{courseName, courseImage, courseSummary, coursePrice, courseDescriptions, courseStatus, categoryName}, inputFields)}
         >
           Add
         </Button>

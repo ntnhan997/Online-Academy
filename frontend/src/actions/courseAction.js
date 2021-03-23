@@ -16,11 +16,11 @@ import {
   COURSE_SUGGESTION_FAIL,
   HOTCOURSE_REQUEST_LIST,
   HOTCOURSE_SUCCESS_LIST,
-  HOTCOURSE_FAIL_LIST
+  HOTCOURSE_FAIL_LIST,
+  CATEGORY_REQUEST_NAME
 } from "../constants/courseConstants";
 
 import axios from "axios";
-
 
 const HotCourseAction = () => async (dispatch) => {
   try {
@@ -64,96 +64,92 @@ const TopCoursenNew = () => async (dispatch) => {
 
 const IncrementViewAction = (CourseId) => async (dispatch) => {
   try {
-    await axios.put("/api/course/incrementviews", {CourseId});
+    await axios.put("/api/course/incrementviews", { CourseId });
     // dispatch({ type: INCREMENT_VIEW_COURSE, payload: data.data });
-  } catch (error) {
-    
-  }
-} 
-
+  } catch (error) {}
+};
 
 const ratingAction = (CourseID, Score) => async (dispatch) => {
   try {
     Score = Number(Score);
-    await axios.post("/api/rating/", {CourseID, Score}, {
-      headers :{
-        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+    await axios.post(
+      "/api/rating/",
+      { CourseID, Score },
+      {
+        headers: {
+          "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA"))
+            .accessToken,
+        },
       }
-    });
+    );
     // dispatch({ type: INCREMENT_VIEW_COURSE, payload: data.data });
-  } catch (error) {
-    
-  }
-} 
+  } catch (error) {}
+};
 
-
-const getRatingUserAction = (CourseID) => async(dispatch) => {
+const getRatingUserAction = (CourseID) => async (dispatch) => {
   try {
     const data = await axios.get("/api/rating/" + CourseID, {
-      headers :{
-        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
-      }
+      headers: {
+        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA"))
+          .accessToken,
+      },
     });
     dispatch({ type: RATING_USER_COURSE, payload: data.data });
-  } catch (error) {
-    
-  }
-}
+  } catch (error) {}
+};
 
-
-const getBuyCourseAction = (CourseID) => async(dispatch) => {
+const getBuyCourseAction = (CourseID) => async (dispatch) => {
   try {
     const data = await axios.get("/api/subscribedcourse/" + CourseID, {
-      headers :{
-        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
-      }
+      headers: {
+        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA"))
+          .accessToken,
+      },
     });
     dispatch({ type: GET_BUY_COURSE, payload: data.data });
-  } catch (error) {
-    
-  }
-}
+  } catch (error) {}
+};
 
-const BuyCourseAction = (CourseID) => async(dispatch) => {
+const BuyCourseAction = (CourseID) => async (dispatch) => {
   try {
-    await axios.post("/api/subscribedcourse/", {CourseID},{
-      headers :{
-        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+    await axios.post(
+      "/api/subscribedcourse/",
+      { CourseID },
+      {
+        headers: {
+          "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA"))
+            .accessToken,
+        },
       }
-    });
+    );
     const data = await axios.get("/api/subscribedcourse/" + CourseID, {
-      headers :{
-        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
-      }
+      headers: {
+        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA"))
+          .accessToken,
+      },
     });
     dispatch({ type: GET_BUY_COURSE, payload: data.data });
-  } catch (error) {
-    
-  }
-}
+  } catch (error) {}
+};
 
-
-const lectureAction = (CourseID) => async(dispatch) => {
+const lectureAction = (CourseID) => async (dispatch) => {
   try {
-    const data = await axios.get("/api/lecture/"+ CourseID,{
-      headers :{
-        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
-      }
+    const data = await axios.get("/api/lecture/" + CourseID, {
+      headers: {
+        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA"))
+          .accessToken,
+      },
     });
     dispatch({ type: LECTURE_COURSE_LIST, payload: data.data });
-  } catch (error) {
-    
-  }
-}
+  } catch (error) {}
+};
 
-const lectureActionNoUser = (CourseID) => async(dispatch) => {
+const lectureActionNoUser = (CourseID) => async (dispatch) => {
   try {
-    const data = await axios.get("/api/lecture/nouser/"+ CourseID);
+    const data = await axios.get("/api/lecture/nouser/" + CourseID);
     dispatch({ type: LECTURE_COURSE_LIST, payload: data.data });
-  } catch (error) {
-    
-  }
-}
+  } catch (error) {}
+};
 
 const CourseSuggestionAction = (CategoryID) => async (dispatch) => {
   try {
@@ -165,6 +161,54 @@ const CourseSuggestionAction = (CategoryID) => async (dispatch) => {
   }
 };
 
+const CreateCourseByTeacherAction = (Course, Lecture) => async (dispatch) => {
+  try {
+    Course = {
+      CourseName: Course.courseName,
+      CourseImage: Course.courseImage,
+      CourseSummary: Course.courseSummary,
+      CoursePrice: Course.coursePrice,
+      CourseDescriptions: Course.courseDescriptions,
+      CourseStatus: Course.courseStatus === "true" ? 1 : 0,
+      CategoryID: Course.categoryName
+    }
+    Lecture.map(item => {
+        return item.LecturePreview = item.LecturePreview === "true" ? 1: 0
+    })
+    console.log(Lecture);
+    Lecture.map(item => delete item.id);
+    const data = await axios.post("/api/lecture/createbyteacher", {Course,Lecture});
+    // dispatch({ type: COURSE_SUGGESTION_SUCCESS, payload: data.data });
+  } catch (error) {
+  }
+};
 
 
-export { TopCourseViews, TopCourseRegistered, TopCoursenNew, IncrementViewAction, ratingAction, getRatingUserAction,getBuyCourseAction, BuyCourseAction,lectureAction, lectureActionNoUser, CourseSuggestionAction, HotCourseAction };
+const GetNameCategoryAction = () => async (dispatch) => {
+  try {
+    const data = await axios.get("/api/category/");
+    dispatch({ type: CATEGORY_REQUEST_NAME, payload: data.data });
+  } catch (error) {
+
+  }
+};
+
+
+
+
+export {
+  TopCourseViews,
+  TopCourseRegistered,
+  TopCoursenNew,
+  IncrementViewAction,
+  ratingAction,
+  getRatingUserAction,
+  getBuyCourseAction,
+  BuyCourseAction,
+  lectureAction,
+  lectureActionNoUser,
+  CourseSuggestionAction,
+  HotCourseAction,
+  CreateCourseByTeacherAction,
+  GetNameCategoryAction
+};

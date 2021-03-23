@@ -1,4 +1,4 @@
-import { COURSE_REQUEST_LIST, COURSE_SUCCESS_LIST, COURSE_FAIL_LIST, TOPCOURSEREGISTERED_FAIL_LIST,TOPCOURSEREGISTERED_SUCCESS_LIST,TOPCOURSEREGISTERED_REQUEST_LIST, RATING_USER_COURSE, GET_BUY_COURSE, LECTURE_COURSE_LIST, COURSE_SUGGESTION_REQUEST, COURSE_SUGGESTION_SUCCESS, COURSE_SUGGESTION_FAIL, HOTCOURSE_REQUEST_LIST, HOTCOURSE_SUCCESS_LIST, HOTCOURSE_FAIL_LIST } from '../constants/courseConstants';
+import { COURSE_REQUEST_LIST, COURSE_SUCCESS_LIST, COURSE_FAIL_LIST, TOPCOURSEREGISTERED_FAIL_LIST,TOPCOURSEREGISTERED_SUCCESS_LIST,TOPCOURSEREGISTERED_REQUEST_LIST, RATING_USER_COURSE, GET_BUY_COURSE, LECTURE_COURSE_LIST, COURSE_SUGGESTION_REQUEST, COURSE_SUGGESTION_SUCCESS, COURSE_SUGGESTION_FAIL, HOTCOURSE_REQUEST_LIST, HOTCOURSE_SUCCESS_LIST, HOTCOURSE_FAIL_LIST,CATEGORY_REQUEST_NAME } from '../constants/courseConstants';
 
 
 const HotCourseReducer = (state = { hotCourses: [] }, action )=>{
@@ -96,6 +96,16 @@ const LectureReducer = (state = { lectures: [] }, action )=>{
 }
 
 
+const GetNameCategoryReducer = (state = { getCategory: [] }, action )=>{ 
+    switch(action.type){
+        case CATEGORY_REQUEST_NAME:
+            return {getCategory: action.payload};
+        default:
+            return state;
+    }
+}
+
+
 export {
   TopNumberViewsReducer,
   TopCourseRegisteredReducer,
@@ -104,5 +114,6 @@ export {
   GetBuyCourseReducer,
   LectureReducer,
   CourseSuggestionReducer,
-  HotCourseReducer
+  HotCourseReducer,
+  GetNameCategoryReducer
 };
