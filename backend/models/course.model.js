@@ -87,4 +87,10 @@ module.exports = {
       .innerJoin("teacher", "course.CourseID", "teacher.CourseID")
       .innerJoin("account", "account.AccountID", "teacher.AccountID");
   },
+  async hotcourse() {
+    const list = await db.raw(
+      "SELECT course.CourseID, course.CourseImage, course.CourseName, course.CourseSummary, course.CourseDescriptions, course.NumberOfViews, course.CourseRatings, course.CourseReviews, course.NumberOfRegistered, course.CoursePrice, category.CategoryID, course.CourseStatus, category.CategoryName, account.AccountID, account.FullName FROM course, category, teacher, account  WHERE TIMESTAMPDIFF(DAY, course.LastUpdate, UTC_DATE()) < 7 AND category.CategoryID = course.CategoryID AND account.AccountID = teacher.AccountID AND course.CourseID = teacher.CourseID ORDER BY course.NumberOfViews DESC LIMIT 4"
+    );
+    return list[0];
+  },
 };
