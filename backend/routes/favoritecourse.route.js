@@ -35,4 +35,19 @@ router.delete("/", auth, async (req, res) => {
     });
 })
 
+router.post('/check',auth, validate(favorite_schema) ,async(req,res) => {
+    const favorite = req.body;
+    favorite.AccountID = req.body.userId;
+    delete favorite.userId;
+    const list = await favoritecourseModel.check(favorite);
+    if(list.length >= 1){
+      return res.send({
+        hasWishList: true
+      })
+    }
+    return res.send({
+      hasWishList:false
+    })
+  })
+
 module.exports = router;
