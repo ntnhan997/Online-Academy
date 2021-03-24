@@ -65,7 +65,7 @@ function App() {
       <div className="app-body">
         <Switch>
           <ScrollTop>
-            {users !== null && parseJwt(users.accessToken).Role === 1 ? (
+            {users !== null && users.authenticated === true && parseJwt(users.accessToken).Role === 1 ? (
               <>
                 <Route exact path="/" component={Admin} />
                 <Route
@@ -90,7 +90,7 @@ function App() {
                 />
                 <Route exact path="/login" component={LogIn} />
               </>
-            ) : users !== null && parseJwt(users.accessToken).Role === 2 ? (
+            ) : users !== null && users.authenticated === true && parseJwt(users.accessToken).Role === 2 ? (
               <>
                 <Route exact path="/" component={CreateCourse} />
                 <Route exact path="/login" component={LogIn} />

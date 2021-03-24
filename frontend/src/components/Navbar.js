@@ -82,7 +82,7 @@ export default function Navbar() {
               <li className="nav-link one">
                 <Link to="/">Home</Link>
               </li>
-              {users !== null && parseJwt(users.accessToken).Role === 1 ? (
+              {users !== null  && users.authenticated === true && parseJwt(users.accessToken).Role === 1 ? (
                 <li className="nav-link two">
                   <Link to="/SearchFullText">
                     Feature
@@ -220,7 +220,7 @@ export default function Navbar() {
                   </div>
                 </li>
               )}
-              {(users !== null && parseJwt(users.accessToken).Role === 1) || (users !== null && parseJwt(users.accessToken).Role === 2) ? (
+              {(users !== null && users.authenticated === true && parseJwt(users.accessToken).Role === 1) || (users !== null && users.authenticated === true && parseJwt(users.accessToken).Role === 2) ? (
                 ""
               ) : (
                 <li>
@@ -293,7 +293,7 @@ export default function Navbar() {
                 <div className="nav-links">
                   <ul>
                     <li className="nav-link four">
-                      <Link to="/" style={{width : "200px", display: "flex", justifyContent: "center"}}>{parseJwt(users.accessToken).FullName}</Link>
+                      <Link to="/" style={{width : "200px", display: "flex", justifyContent: "center"}}>{ (users !== null && users.authenticated === true) ? parseJwt(users.accessToken).FullName : ""} </Link>
                       {users !== null &&
                       parseJwt(users.accessToken).Role === 3 ? (
                         <div className="dropdown">
@@ -309,7 +309,7 @@ export default function Navbar() {
                             </li>
                           </ul>
                         </div>
-                      ) : users !== null &&
+                      ) : users !== null && users.authenticated === true &&
                       parseJwt(users.accessToken).Role === 2 ? 
                       <div className="dropdown">
                           <ul>

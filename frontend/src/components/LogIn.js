@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LogInAction } from "../actions/userAction";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Icon from "@material-ui/core/Icon";
 
 export default function LogIn(props) {
   const [userName, setUserName] = useState("");
@@ -23,16 +26,35 @@ export default function LogIn(props) {
       <form action="">
         <ul>
           <li>
-            <label htmlFor="">User Name:</label>
-            <input type="text" onChange={(e) => setUserName(e.target.value)} />
+            <TextField
+              name="UserName"
+              label="User Name"
+              variant="filled"
+              value={userName}
+              onChange={(event) => setUserName(event.target.value)}
+            />
           </li>
+          <br />
           <li>
-            <label htmlFor="">Password:</label>
-            <input type="text" onChange={(e) => setPassword(e.target.value)} />
+            <TextField
+              name="Password"
+              label="Password"
+              variant="filled"
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
           </li>
-          <button type="button" onClick={() => handleLogIn(userName, password)}>
+          <br />
+          <Button
+            variant="contained"
+            color="primary"
+            type="button"
+            endIcon={<Icon>send</Icon>}
+            onClick={(e) => handleLogIn(userName, password)}
+          >
             Log In
-          </button>
+          </Button>
         </ul>
       </form>
     </div>

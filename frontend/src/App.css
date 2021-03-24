@@ -109,6 +109,7 @@ a {
     margin: 0 0.2rem;
     transition: 0.3s;
     text-transform: uppercase;
+    cursor: pointer;
 }
 
 .btn.solid,
@@ -786,4 +787,17 @@ a {
     display: inline-block;
     width: 350px;
     padding: 20px;
+}
+
+.btnRegister--none {
+    display: none;
+}
+
+.show {
+    display: block;
+    color: red;
+}
+
+.hidden {
+    display: none;
 }
