@@ -1,6 +1,7 @@
 import {
     ADMIN_LISTED_TEACHER,
-    ADMIN_LISTED_STUDENT
+    ADMIN_LISTED_STUDENT,
+    ADD_CATEGORY_REQUEST
   } from "../constants/AdminConstants";
   
 
@@ -23,5 +24,14 @@ const ListedStudentReducer = (state = { listedStudents: [] }, action )=>{
     }
 };
 
+const AddCategoryReducer = (state = { addCategory: [] }, action )=>{
+    switch(action.type){
+        case ADD_CATEGORY_REQUEST: 
+            return { addCategory: action.payload};
+        default:
+            return state;
+    }
+};
 
-export {ListedTeacherReducer, ListedStudentReducer}
+
+export {ListedTeacherReducer, ListedStudentReducer, AddCategoryReducer}

@@ -1,6 +1,7 @@
 import {
     ADMIN_LISTED_TEACHER,
-    ADMIN_LISTED_STUDENT
+    ADMIN_LISTED_STUDENT,
+    ADD_CATEGORY_REQUEST
   } from "../constants/AdminConstants";
   
   import axios from "axios";
@@ -41,6 +42,18 @@ import {
     }
   }; 
   
+  const AddCategoryAction = (category) => async (dispatch) => {
+    try {
+        const list = await axios.post("/api/category/",category , {
+            headers :{
+                "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
+              }
+        });
+        dispatch({ type: ADD_CATEGORY_REQUEST , payload: list.data});
+    } catch (error) {
+    }
+  }; 
   
-  export { CreateUserAction, ListedTeacherAction, ListedStudentAction };
+  
+  export { CreateUserAction, ListedTeacherAction, ListedStudentAction, AddCategoryAction };
   

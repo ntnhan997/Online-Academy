@@ -18,7 +18,7 @@ import { ConfirmOTPReducer, LogInReducer, RegisterReducer, UpdateUserReducer, Us
 import {CheckWishListReducer, wishListReducer} from "./reducers/wishListReducer";
 import { SearchReducer } from "./reducers/searchReducer";
 import { CommentCourseReducer, DetailsCourseReducer } from "./reducers/detailsCourseReducer";
-import { ListedStudentReducer, ListedTeacherReducer } from "./reducers/adminReducer";
+import { AddCategoryReducer, ListedStudentReducer, ListedTeacherReducer } from "./reducers/adminReducer";
 
 const users = JSON.parse(localStorage.getItem("accessToken_OA")) || null;
 const initialState = {loginUser: {users}};
@@ -46,7 +46,8 @@ const reducer = combineReducers({
     getUserId: UserByIdReducer,
     checkUpdateUser : UpdateUserReducer,
     enrolledLists: EnrolledListReducer,
-    courseListTeachers: CourseListTeacherReducer
+    courseListTeachers: CourseListTeacherReducer,
+    addCategorys: AddCategoryReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
