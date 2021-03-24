@@ -20,4 +20,9 @@ router.post('/',auth, async(req,res) => {
     });
 })
 
+router.get("/listedteacher",auth, async(req,res) => {
+    const list = await adminModel.listedTeacher();
+    res.status(201).send(list[0]);
+})
+
 module.exports = router;
