@@ -14,6 +14,12 @@ router.get("/:idCourse", auth, async (req, res) => {
   res.send(list);
 });
 
+router.get("/nouser/:idCourse", async (req, res) => {
+  const idCourse = req.params.idCourse;
+  const list = await lectureModel.allByCourseIdNoUser(idCourse);
+  res.send(list);
+});
+
 router.post("/createbyteacher", auth, async (req, res) => {
   const list = req.body;
 
