@@ -9,4 +9,12 @@ module.exports = {
         await db("course").where("CourseID", rating.CourseID).increment("CourseReviews");
         return await db("rating").insert(rating);
     }
+    ,
+    async single(CourseID,AccountID){
+        const list = await db("rating").where("AccountID","=", AccountID).andWhere("CourseID","=", CourseID);
+        if(list.length === 0){
+            return null;
+        }
+        return list;
+    }
 }
