@@ -30,7 +30,7 @@ app.use("/api/teacher", require("./routes/teacher.route"));
 app.use("/api/admin", require("./routes/admin.route"));
 app.use("/api/comment", require("./routes/comment.route"));
 app.use("/api/subscribedcourse", require("./routes/subscribedcourse.route"));
-
+app.use("/api/rating", require("./routes/rating.route"));
 
 app.use((req,res,next) => {
   res.status(404).send({
