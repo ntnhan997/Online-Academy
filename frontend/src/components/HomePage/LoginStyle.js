@@ -21,7 +21,7 @@ export const LoginWrapper = styled.div`
     padding: 30px;
     border-radius: 5px;
     box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
-    margin: 100px 0;
+    margin: 150px 0;
   }
   .wrapper .title-text {
     display: flex;
