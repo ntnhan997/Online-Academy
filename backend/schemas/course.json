@@ -1,0 +1,44 @@
+{
+    "required": ["CourseImage", "CourseName", "CourseSummary", "CourseDescriptions", "CourseRatings", "CourseReviews", "NumberOfRegistered", "CoursePrice", "LastUpdate", "CategoryID", "Documentations", "CourseStatus"],
+    "additionalProperties": true,
+    "properties": {
+        "CourseImage": {
+            "type": "string"
+        },
+        "CourseName": {
+            "type": "string"
+        },
+        "CourseSummary": {
+            "type": "string"
+        },
+        "CourseDescriptions": {
+            "type": "string"
+        },
+        "CourseRatings": {
+            "type": "number"
+        },
+        "CourseReviews": {
+            "type": "integer"
+        },
+        "NumberOfRegistered": {
+            "type": "integer"
+        },
+        "CoursePrice": {
+            "type": "integer"
+        },
+        "LastUpdate": {
+            "type": "string"
+        },
+        "CategoryID": {
+            "type": "integer"
+        },
+        "Documentations": {
+            "type": "string"
+        },
+        "CourseStatus": {
+            "type": "int"
+        }
+
+
+    }
+}
