@@ -6,14 +6,14 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import InboxIcon from "@material-ui/icons/Inbox";
-import Icon from '@material-ui/core/Icon';
+import Icon from "@material-ui/core/Icon";
 import PersonIcon from "@material-ui/icons/Person";
 import CommentIcon from "@material-ui/icons/Comment";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
 import CourseSuggestion from "../HomePage/CourseSuggestion";
 import { v4 as uuidv4 } from "uuid";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
@@ -41,7 +41,7 @@ import {
   BuyCourseAction,
   lectureAction,
   lectureActionNoUser,
-  AddLectureByTeacherAction
+  AddLectureByTeacherAction,
 } from "../../actions/courseAction";
 import {
   addWishListAction,
@@ -107,16 +107,16 @@ export default function Course(props) {
     e.preventDefault();
     dispatch(AddLectureByTeacherAction(CourseId, lecture));
     Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Add Category Success',
+      position: "center",
+      icon: "success",
+      title: "Add Category Success",
       showConfirmButton: true,
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-          props.history.push("/");
+        props.history.push("/");
       }
-    }) 
+    });
   };
 
   const handleChangeInput = (id, event) => {
@@ -249,7 +249,11 @@ export default function Course(props) {
                 (users !== null
                   ? parseJwt(users.accessToken).Role !== 2
                   : "") && (
-                  <button type="button" onClick={() => handleAddWL(CourseId)}>
+                  <button
+                    className="Add-wishList"
+                    type="button"
+                    onClick={() => handleAddWL(CourseId)}
+                  >
                     +Add WishList
                   </button>
                 )}
@@ -346,60 +350,69 @@ export default function Course(props) {
               </div>
             </>
           )}
-          { (users !== null && parseJwt(users.accessToken).Role === 2) &&  inputFields.map((inputField) => (
-            <FormControl component="fieldset">
-           <div key={inputField.id}>
-              <TextField
-                name="LectureName"
-                label="Lecture Name"
-                variant="filled"
-                value={inputField.LectureName}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              />
-              {"    "}
-              <TextField
-                name="LectureContent"
-                label="Lecture URL"
-                variant="filled"
-                value={inputField.LectureContent}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              />
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">
-                  Lecture Preview
-                </InputLabel>
-                <Select
-                  name="LecturePreview"
-                  labelId="Lecture Preview"
-                  value={inputField.lecturePreview}
-                  onChange={(event) => handleChangeInput(inputField.id, event)}
-                >
-                  <MenuItem value="true">Public</MenuItem>
-                  <MenuItem value="false">Private</MenuItem>
-                </Select>
+          {users !== null &&
+            parseJwt(users.accessToken).Role === 2 &&
+            inputFields.map((inputField) => (
+              <FormControl component="fieldset">
+                <div key={inputField.id}>
+                  <TextField
+                    name="LectureName"
+                    label="Lecture Name"
+                    variant="filled"
+                    value={inputField.LectureName}
+                    onChange={(event) =>
+                      handleChangeInput(inputField.id, event)
+                    }
+                  />
+                  {"    "}
+                  <TextField
+                    name="LectureContent"
+                    label="Lecture URL"
+                    variant="filled"
+                    value={inputField.LectureContent}
+                    onChange={(event) =>
+                      handleChangeInput(inputField.id, event)
+                    }
+                  />
+                  <FormControl className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-label">
+                      Lecture Preview
+                    </InputLabel>
+                    <Select
+                      name="LecturePreview"
+                      labelId="Lecture Preview"
+                      value={inputField.lecturePreview}
+                      onChange={(event) =>
+                        handleChangeInput(inputField.id, event)
+                      }
+                    >
+                      <MenuItem value="true">Public</MenuItem>
+                      <MenuItem value="false">Private</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <IconButton
+                    disabled={inputFields.length === 1}
+                    onClick={() => handleRemoveFields(inputField.id)}
+                  >
+                    <RemoveIcon />
+                  </IconButton>
+                  <IconButton onClick={handleAddFields}>
+                    <AddIcon />
+                  </IconButton>
+                </div>
               </FormControl>
-              <IconButton
-                disabled={inputFields.length === 1}
-                onClick={() => handleRemoveFields(inputField.id)}
-              >
-                <RemoveIcon />
-              </IconButton>
-              <IconButton onClick={handleAddFields}>
-                <AddIcon />
-              </IconButton>
-            </div></FormControl>
-          ))}
+            ))}
           <br />
           <Button
-          className={classes.button}
-          variant="contained"
-          color="primary"
-          type="submit"
-          endIcon={<Icon>send</Icon>}
-          onClick={(e) =>  handleSubmit(e,CourseId, inputFields)}
-        >
-          Add Category
-        </Button>
+            className={classes.button}
+            variant="contained"
+            color="primary"
+            type="submit"
+            endIcon={<Icon>send</Icon>}
+            onClick={(e) => handleSubmit(e, CourseId, inputFields)}
+          >
+            Add Category
+          </Button>
 
           {users !== null && parseJwt(users.accessToken).Role !== 2 && (
             <CourseSuggestion CategoryID={details.CategoryID} />
