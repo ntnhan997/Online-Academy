@@ -616,7 +616,9 @@ a {
 }
 
 .card-wishlist {
-    width: 400px;
+    display: inline-block;
+    width: 350px;
+    padding: 20px;
 }
 
 
@@ -685,6 +687,10 @@ a {
     margin-top: 100px;
     padding: 10px 70px;
     background-color: #ccc;
+}
+
+.radiosearch {
+    display: flex;
 }
 
 
