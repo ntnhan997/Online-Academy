@@ -1,124 +1,153 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {requestOTP, confirmOTP, RegisterUserAction} from '../actions/userAction';
-import TextField from "@material-ui/core/TextField";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  requestOTP,
+  confirmOTP,
+  RegisterUserAction,
+} from "../actions/userAction";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
+import { SignUpWrapper } from "./HomePage/SignUpStyle";
 
 export default function RegisterUser() {
-  const [userName,setUserName] = useState("");
-  const [password,setPassword] = useState("");
-  const [fullName,setFullName] = useState("");
-  const [email,setEmail] = useState("");
-  const [otp,setOTP] = useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [otp, setOTP] = useState("");
 
-  const list = useSelector(state => state.confirmOTP);
-  const {ConfirmOTP} = list;
+  const list = useSelector((state) => state.confirmOTP);
+  const { ConfirmOTP } = list;
 
-  const handleRegister = (userName,password,fullName,email) => {
-    dispatch(RegisterUserAction({userName,password,fullName,email}));
-  }
+  const handleRegister = (userName, password, fullName, email) => {
+    dispatch(RegisterUserAction({ userName, password, fullName, email }));
+  };
 
   const dispatch = useDispatch();
-    return (
-      <div className="register">
-        <form action="">
-          <ul>
-            <li>
-            <TextField
-              name="UserName"
-              label="User Name"
-              variant="filled"
-              value={userName}
-              onChange={(event) => setUserName(event.target.value)}
-            />
-            </li>
-            <br/>
-            <li>
-            <TextField
-              name="Password"
-              label="Password"
-              variant="filled"
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-            </li>
-            <br/>
-            <li>
-            <TextField
-              name="FullName"
-              label="Full Name"
-              variant="filled"
-              type="text"
-              value={fullName}
-              onChange={(event) => setFullName(event.target.value)}
-            />
-            </li>
-            <br/>
-            <li>
-            <TextField
-              name="Email"
-              label="Email"
-              variant="filled"
-              type="text"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-            </li>
-            <br/>
-            <li>
-            <Button
-            variant="contained"
-            color="primary"
-            type="button"
-            disabled={ConfirmOTP.confirmOTP === true}
-            endIcon={<Icon>send</Icon>}
-            onClick={(e) => dispatch(requestOTP(userName, email))}
-          >
-            Send OTP
-          </Button>
-              {/* //<button type="button" onClick={() => dispatch(requestOTP(userName, email))} disabled={ConfirmOTP.confirmOTP === true}>Send OTP</button> */}
-              <TextField
-              name="OTP"
-              label="OTP"
-              variant="filled"
-              type="text"
-              value={otp}
-              disabled={ConfirmOTP.confirmOTP === true}
-              onChange={(event) => setOTP(event.target.value)}
-            />
-          <span className={ConfirmOTP.confirmOTP === false ? "show" : "hidden"}>Wrong OTP</span>
+  return (
+    <SignUpWrapper>
+      <div className="body">
+        <div className="wrapper">
+          <div className="title-text">
+            <div className="title signup">Sign Up</div>
+            <div className="title login">Login form</div>
+          </div>
+          <div className="form-container">
+            <div className="form-inner">
+              {/*--------------------------- Signup ----------------------------*/}
+              <form action="#" className="login">
+                <div className="field">
+                  <input
+                    name="UserName"
+                    type="text"
+                    placeholder="username"
+                    required
+                    value={userName}
+                    onChange={(event) => setUserName(event.target.value)}
+                  />
+                </div>
+                <div className="field">
+                  <input
+                    name="Password"
+                    type="password"
+                    placeholder="password"
+                    required
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                  />
+                </div>
+                <div className="field">
+                  <input
+                    name="FullName"
+                    type="text"
+                    placeholder="full name"
+                    required
+                    value={fullName}
+                    onChange={(event) => setFullName(event.target.value)}
+                  />
+                </div>
+                <div className="field">
+                  <input
+                    name="Email"
+                    type="text"
+                    placeholder="name@email.com"
+                    required
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                  />
+                </div>
 
-              {/* //<input type="text" onChange={(e) => setOTP(e.target.value)} disabled={ConfirmOTP.confirmOTP === true}/> */}
+                <div className="field">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    type="button"
+                    disabled={ConfirmOTP.confirmOTP === true}
+                    endIcon={<Icon>send</Icon>}
+                    onClick={(e) => dispatch(requestOTP(userName, email))}
+                  >
+                    Send OTP
+                  </Button>
+                </div>
 
-              <Button
-            variant="contained"
-            color="primary"
-            type="button"
-            disabled={ConfirmOTP.confirmOTP === true}
-            endIcon={<Icon>send</Icon>}
-            onClick={(e) => dispatch(confirmOTP(otp))}
-          >
-            confirm
-          </Button>
-            </li>
-            <br />
-            {/* <Button
-            variant="contained"
-            color="primary"
-            type="button"
-            className="btnRegister"
-            disabled={ConfirmOTP.confirmOTP !== true}
-            endIcon={<Icon>send</Icon>}
-            onClick={(e) => handleRegister(userName,password,fullName,email)}
-          >
-            Register
-          </Button> */}
+                <div className="field">
+                  <input
+                    name="OTP"
+                    type="text"
+                    placeholder="enter your OTP code received"
+                    required
+                    value={otp}
+                    disabled={ConfirmOTP.confirmOTP === true}
+                    onChange={(event) => setOTP(event.target.value)}
+                  />
+                  <span
+                    className={
+                      ConfirmOTP.confirmOTP === false ? "show" : "hidden"
+                    }
+                  >
+                    Wrong OTP
+                  </span>
+                </div>
 
-          <button type="button" className={ConfirmOTP.confirmOTP !== true  ? "btnRegister--none": "btn solid"} onClick={(e) => handleRegister(userName,password,fullName,email)}>Register</button>
-          </ul>
-        </form>
+                <div className="field">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    type="button"
+                    disabled={ConfirmOTP.confirmOTP === true}
+                    endIcon={<Icon>send</Icon>}
+                    onClick={(e) => dispatch(confirmOTP(otp))}
+                  >
+                    confirm
+                  </Button>
+                </div>
+                {/* submit sign up */}
+
+                <div className="field btn">
+                  <div
+                    className={
+                      ConfirmOTP.confirmOTP === true ? "btn-layer" : ""
+                    }
+                  />
+                  <button
+                    type="button"
+                    className={
+                      ConfirmOTP.confirmOTP !== true
+                        ? "btnRegister--none"
+                        : "btn solid button"
+                    }
+                    onClick={(e) =>
+                      handleRegister(userName, password, fullName, email)
+                    }
+                  >
+                    Sign up
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-    );
+    </SignUpWrapper>
+  );
 }
