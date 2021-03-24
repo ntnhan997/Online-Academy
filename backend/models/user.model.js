@@ -62,5 +62,8 @@ module.exports = {
     ,
     delete(id){
         return db("account").where("AccountID", id).update({ AccountDeleted: 1});
-    }
+    },
+    all(){
+      return db.select("*").from("account").where("AccountDeleted	", 0);
+  }
 };
