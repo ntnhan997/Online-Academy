@@ -92,7 +92,24 @@ export default function Navbar() {
                   <div className="dropdown">
                     <ul>
                       <li className="dropdown-link">
-                        <Link to="/">Category</Link>
+                        <Link to="/">Category<i className="fas fa-caret-down" /></Link>
+                        <div className="dropdown second">
+                          <ul>
+                            <li className="dropdown-link">
+                              <Link to="/">Listed</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Create</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Delete</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Update</Link>
+                            </li>
+                            <div className="arrow" />
+                          </ul>
+                        </div>
                       </li>
                       <li className="dropdown-link">
                         <Link to="/">
@@ -119,25 +136,45 @@ export default function Navbar() {
                       </li>
                       <li className="dropdown-link">
                         <Link to="/">
-                          Link 3<i className="fas fa-caret-down" />
+                          Student<i className="fas fa-caret-down" />
                         </Link>
                         <div className="dropdown second">
                           <ul>
                             <li className="dropdown-link">
-                              <Link to="/">Link 1</Link>
+                              <Link to="/admin/listedstudent">Listed</Link>
                             </li>
                             <li className="dropdown-link">
-                              <Link to="/">Link 2</Link>
+                              <Link to="/">Create</Link>
                             </li>
                             <li className="dropdown-link">
-                              <Link to="/">Link 3</Link>
+                              <Link to="/">Delete</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Update</Link>
                             </li>
                             <div className="arrow" />
                           </ul>
                         </div>
                       </li>
                       <li className="dropdown-link">
-                        <Link to="/">Link 4</Link>
+                        <Link to="/">Course<i className="fas fa-caret-down" /></Link>
+                        <div className="dropdown second">
+                          <ul>
+                            <li className="dropdown-link">
+                              <Link to="/">Listed</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Create</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Delete</Link>
+                            </li>
+                            <li className="dropdown-link">
+                              <Link to="/">Update</Link>
+                            </li>
+                            <div className="arrow" />
+                          </ul>
+                        </div>
                       </li>
                       <div className="arrow" />
                     </ul>

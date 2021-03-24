@@ -27,6 +27,7 @@ import CreateCourse from "./components/Teacher/CreateCourse";
 import UpdateUser from "./components/UpdateUser";
 import Enrolled from "./components/Enrolled";
 import ListCourseTeacher from "./components/Teacher/ListCourseTeacher";
+import ListedStudent from "./components/Admin/ListedStudent";
 
 function App() {
 
@@ -76,6 +77,11 @@ function App() {
                   path="/admin/listedteacher"
                   component={ListedTeacher}
                 />
+                <Route
+                  exact
+                  path="/admin/listedstudent"
+                  component={ListedStudent}
+                />
                 <Route exact path="/login" component={LogIn} />
               </>
             ) : users !== null && parseJwt(users.accessToken).Role === 2 ? (
@@ -83,6 +89,7 @@ function App() {
                 <Route exact path="/" component={CreateCourse} />
                 <Route exact path="/login" component={LogIn} />
                 <Route exact path="/ListCourseTeacher" component={ListCourseTeacher} />
+              
               </>
             ) : (
               <>
