@@ -42,7 +42,6 @@ export default function SearchFullText() {
     url += "&rating=desc";
   }
   useEffect(() => {
-      console.log(url);
     dispatch(SearchAction(url));
   }, [dispatch, url]);
   return (

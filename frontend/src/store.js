@@ -19,6 +19,7 @@ import {CheckWishListReducer, wishListReducer} from "./reducers/wishListReducer"
 import { SearchReducer } from "./reducers/searchReducer";
 import { CommentCourseReducer, DetailsCourseReducer } from "./reducers/detailsCourseReducer";
 import { AddCategoryReducer, ListedStudentReducer, ListedTeacherReducer } from "./reducers/adminReducer";
+import { CourseByCategoryReducer } from "./reducers/categoryReducer";
 
 const users = JSON.parse(localStorage.getItem("accessToken_OA")) || null;
 const initialState = {loginUser: {users}};
@@ -47,7 +48,8 @@ const reducer = combineReducers({
     checkUpdateUser : UpdateUserReducer,
     enrolledLists: EnrolledListReducer,
     courseListTeachers: CourseListTeacherReducer,
-    addCategorys: AddCategoryReducer
+    addCategorys: AddCategoryReducer,
+    courseByCategorys: CourseByCategoryReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

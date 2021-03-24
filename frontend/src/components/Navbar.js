@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import parseJwt from "../utils";
 import { LogOut } from "../actions/userAction";
+import { GetNameCategoryAction } from "../actions/courseAction";
 
 export default function Navbar() {
   const user = useSelector((state) => state.loginUser);
@@ -10,6 +11,8 @@ export default function Navbar() {
 
   const dispatch = useDispatch();
   const history = useHistory();
+  const list = useSelector(state => state.getCategoryName);
+  const {getCategory} = list;
   const [check, setCheck] = useState(false);
 
   const [search,setSearch] = useState("");
@@ -25,7 +28,7 @@ export default function Navbar() {
 
 
   useEffect(() => {
-   
+    dispatch(GetNameCategoryAction());
     if (check === true) {
       localStorage.removeItem("accessToken_OA");
       dispatch(LogOut());
@@ -187,34 +190,12 @@ export default function Navbar() {
                   </Link>
                   <div className="dropdown">
                     <ul>
-                      <li className="dropdown-link">
-                        <Link to="/">Link 1</Link>
+                      {getCategory.map(item => 
+                        <li className="dropdown-link">
+                        <Link to={"/category/" + item.CategoryName + "/" + item.CategoryID}>{item.CategoryName}</Link>
                       </li>
-                      <li className="dropdown-link">
-                        <Link to="/">Link 2</Link>
-                      </li>
-                      <li className="dropdown-link">
-                        <Link to="/">
-                          Link 3<i className="fas fa-caret-down" />
-                        </Link>
-                        <div className="dropdown second">
-                          <ul>
-                            <li className="dropdown-link">
-                              <Link to="/">Link 1</Link>
-                            </li>
-                            <li className="dropdown-link">
-                              <Link to="/">Link 2</Link>
-                            </li>
-                            <li className="dropdown-link">
-                              <Link to="/">Link 3</Link>
-                            </li>
-                            <div className="arrow" />
-                          </ul>
-                        </div>
-                      </li>
-                      <li className="dropdown-link">
-                        <Link to="/">Link 4</Link>
-                      </li>
+                        
+                        )}             
                       <div className="arrow" />
                     </ul>
                   </div>

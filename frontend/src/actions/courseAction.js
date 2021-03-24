@@ -196,12 +196,7 @@ const CreateCourseByTeacherAction = (Course, Lecture) => async (dispatch) => {
 
 const GetNameCategoryAction = () => async (dispatch) => {
   try {
-    const data = await axios.get("/api/category/", {
-      headers: {
-        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA"))
-          .accessToken,
-      }
-    });
+    const data = await axios.get("/api/category/");
     dispatch({ type: CATEGORY_REQUEST_NAME, payload: data.data });
   } catch (error) {
 

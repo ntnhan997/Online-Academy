@@ -29,6 +29,7 @@ import Enrolled from "./components/Enrolled";
 import ListCourseTeacher from "./components/Teacher/ListCourseTeacher";
 import ListedStudent from "./components/Admin/ListedStudent";
 import CreateCategory from "./components/Admin/CreateCategory";
+import CourseByCategory from "./components/CourseByCategory";
 
 function App() {
 
@@ -104,6 +105,7 @@ function App() {
                 <Route exact path="/enrolled" component={Enrolled} />
                 
                 <Route exact path="/:CategoryName/:id" component={Course} />
+                <Route exact path="/category/:CategoryName/:CategoryID" component={CourseByCategory} />
                 <Route
                   exact
                   path="/learning/javascript/:CourseID/:LectureID"
