@@ -8,8 +8,8 @@ import {
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import { SignUpWrapper } from "./HomePage/SignUpStyle";
-
-export default function RegisterUser() {
+import Swal from 'sweetalert2';
+export default function RegisterUser(props) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
@@ -21,6 +21,17 @@ export default function RegisterUser() {
 
   const handleRegister = (userName, password, fullName, email) => {
     dispatch(RegisterUserAction({ userName, password, fullName, email }));
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Add Category Success',
+      showConfirmButton: true,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+          props.history.push("/");
+      }
+    }) 
   };
 
   const dispatch = useDispatch();

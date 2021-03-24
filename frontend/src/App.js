@@ -30,6 +30,7 @@ import ListCourseTeacher from "./components/Teacher/ListCourseTeacher";
 import ListedStudent from "./components/Admin/ListedStudent";
 import CreateCategory from "./components/Admin/CreateCategory";
 import CourseByCategory from "./components/CourseByCategory";
+import Teacher from "./pages/Teacher";
 
 function App() {
 
@@ -93,7 +94,8 @@ function App() {
               </>
             ) : users !== null && users.authenticated === true && parseJwt(users.accessToken).Role === 2 ? (
               <>
-                <Route exact path="/" component={CreateCourse} />
+                <Route exact path="/" component={Teacher} />
+                <Route exact path="/createcourse" component={CreateCourse} />
                 <Route exact path="/login" component={LogIn} />
                 <Route exact path="/ListCourseTeacher" component={ListCourseTeacher} />
                 <Route exact path="/:CategoryName/:id" component={Course} />

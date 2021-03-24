@@ -193,6 +193,25 @@ const CreateCourseByTeacherAction = (Course, Lecture) => async (dispatch) => {
   }
 };
 
+const AddLectureByTeacherAction = (CourseID, Lecture) => async (dispatch) => {
+  try {
+    Lecture.map(item => {
+        return item.LecturePreview = item.LecturePreview === "true" ? 1: 0
+    })
+    Lecture.map(item => delete item.id);
+    await axios.post("/api/lecture/addlecturebyteacher", {CourseID, Lecture}, {
+      headers: {
+        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA"))
+          .accessToken,
+      },
+    });
+    // dispatch({ type: COURSE_SUGGESTION_SUCCESS, payload: data.data });
+  } catch (error) {
+  }
+};
+
+
+
 
 const GetNameCategoryAction = () => async (dispatch) => {
   try {
@@ -251,5 +270,6 @@ export {
   CreateCourseByTeacherAction,
   GetNameCategoryAction,
   EnrolledListAction,
-  ListCourseTeacherAction
+  ListCourseTeacherAction,
+  AddLectureByTeacherAction
 };

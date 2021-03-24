@@ -16,7 +16,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
-
+import Swal from 'sweetalert2';
 import { makeStyles } from '@material-ui/core/styles';
 import { CreateCourseByTeacherAction, GetNameCategoryAction } from '../../actions/courseAction';
 
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
   },
 }))
-export default function CreateCourse() {
+export default function CreateCourse(props) {
   
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -58,6 +58,17 @@ export default function CreateCourse() {
     const handleSubmit = (e,course, lecture) => {
       e.preventDefault();
       dispatch(CreateCourseByTeacherAction(course,lecture));
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Add Category Success',
+        showConfirmButton: true,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            props.history.push("/");
+        }
+      }) 
     };
   
     const handleChangeInput = (id, event) => {
