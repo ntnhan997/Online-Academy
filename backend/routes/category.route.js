@@ -20,5 +20,17 @@ router.get("/:id", async(req,res) => {
     res.send(category); 
 })
 
+router.post('/', auth ,validate(category_schema) ,async(req,res) => {
+    const category = req.body;
+    delete category.userId;
+    category.CategoryDeleted = 0;
+    category.TotalRegistered = 0;
+    const id = await categoryModel.add(category);
+    res.status(201).send({
+        complete: true
+    });
+})
+
+
 
 module.exports = router;
