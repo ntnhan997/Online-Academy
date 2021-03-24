@@ -15,4 +15,7 @@ module.exports = {
     add(category){
         return db("category").insert(category);
     },
+    delete(id){
+        return db("category").where("CategoryID", id).update({ CategoryDeleted: 1});
+    }
 }
