@@ -1,0 +1,12 @@
+{
+    "required": ["CategoryName"],
+    "additionalProperties": true,
+    "properties": {
+        "CategoryName": {
+            "type": "string"
+        },
+        "CategoryDeleted": {
+            "type": "integer"
+        }
+    }
+}
