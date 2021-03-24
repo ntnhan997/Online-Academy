@@ -24,7 +24,7 @@ app.use("/api/course", courseRoute);
 app.use("/api/favoritecourse", favoriteCourseRoute);
 app.use("/api/lecture", require("./routes/lecture.route"));
 app.use("/api/teacher", require("./routes/teacher.route"));
-
+app.use("/api/admin", require("./routes/admin.route"));
 app.use("/api/subscribedcourse", require("./routes/subscribedcourse.route"));
 
 
