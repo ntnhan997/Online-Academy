@@ -18,5 +18,19 @@ router.post("/",auth ,async(req,res) => {
     res.send(list);
 })
 
+router.get("/:CourseID", auth, async (req,res) => {
+    const CourseID = req.params.CourseID;
+    const AccountID = req.body.userId;
+    const list = await subscribedcourseModel.getBuy(CourseID,AccountID);
+    if(list.length >= 1){
+        return res.send({
+            bought: true
+        })
+    }
+    return res.send({
+        bought: false
+    })
+})
+
 
 module.exports = router;
