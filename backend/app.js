@@ -6,6 +6,7 @@ require("express-async-errors");
 
 const userRoute = require("./routes/user.route");
 const courseRoute = require("./routes/course.route");
+const categoryRoute = require("./routes/category.route");
 const favoriteCourseRoute = require("./routes/favoritecourse.route");
 const PORT = process.env.PORT || 5000;
 
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", require("./routes/auth.route"));
 app.use("/api/user", userRoute);
 app.use("/api/course", courseRoute);
+app.use("/api/category", categoryRoute);
 app.use("/api/favoritecourse", favoriteCourseRoute);
 app.use("/api/lecture", require("./routes/lecture.route"));
 app.use("/api/teacher", require("./routes/teacher.route"));
