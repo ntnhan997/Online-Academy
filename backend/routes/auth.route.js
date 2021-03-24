@@ -42,4 +42,26 @@ router.post("/", async (req,res) => {
     })
 })
 
+router.post("/refresh",async (req,res) => {
+    const {accessToken, refreshToken} = req.body;
+
+    const { userId, FullName, Role } = jwt.verify(accessToken, "academyonline2021aksd", {
+        ignoreExpiration: true
+    })
+
+    const ret = await userModel.isValidRefreshToken(userId, refreshToken);
+    if(ret === true){
+        const newAccessToken = jwt.sign({userId, FullName, Role}, "academyonline2021aksd", {
+            expiresIn: 7200
+        })
+        return res.send({
+            accessToken: newAccessToken
+        })
+    }
+    res.status(400).send({
+        message: "Invalid refresh token"
+    })
+})
+
+
 module.exports = router;
