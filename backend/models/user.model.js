@@ -51,7 +51,6 @@ module.exports = {
       return "username";
     }
   },
-  ,
 
     async isValidRefreshToken(id, rfToken){
         const list = await db("account").where("AccountID", id).andWhere("rfToken", rfToken);
@@ -59,5 +58,9 @@ module.exports = {
             return true;
         }
         return false;
+    }
+    ,
+    delete(id){
+        return db("account").where("AccountID", id).update({ AccountDeleted: 1});
     }
 };
