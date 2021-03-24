@@ -8,4 +8,7 @@ module.exports = {
     listedTeacher(){
         return db.raw("SELECT account.AccountID, account.UserName, account.FullName, account.Email FROM account WHERE account.AccountTypeID = 2");
     },
+    listedStudent(){
+        return db.raw("SELECT account.AccountID, account.UserName, account.FullName, account.Email FROM account WHERE account.AccountTypeID = 3");
+    }
 }
