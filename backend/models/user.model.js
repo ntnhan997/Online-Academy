@@ -1,4 +1,3 @@
-const { default: UpdateUser } = require("../../frontend/src/components/UpdateUser");
 const db = require("../utils/db");
 
 module.exports = {

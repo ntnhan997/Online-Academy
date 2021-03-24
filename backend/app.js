@@ -5,6 +5,7 @@ const app = express();
 require("express-async-errors");
 
 const userRoute = require("./routes/user.route");
+const courseRoute = require("./routes/course.route");
 const favoriteCourseRoute = require("./routes/favoritecourse.route");
 const PORT = process.env.PORT || 5000;
 

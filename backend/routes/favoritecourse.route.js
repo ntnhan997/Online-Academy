@@ -25,7 +25,7 @@ router.delete("/", auth, async (req, res) => {
     });
   });
 
-  router.post('/',auth, validate(favorite_schema) ,async(req,res) => {
+  router.post('/',auth ,async(req,res) => {
     const favorite = req.body;
     favorite.AccountID = req.body.userId;
     delete favorite.userId;
@@ -35,7 +35,7 @@ router.delete("/", auth, async (req, res) => {
     });
 })
 
-router.post('/check',auth, validate(favorite_schema) ,async(req,res) => {
+router.post('/check',auth,async(req,res) => {
     const favorite = req.body;
     favorite.AccountID = req.body.userId;
     delete favorite.userId;
