@@ -47,8 +47,8 @@ export const PopularWrapper = styled.div`
   .product-grid .product-image img {
     opacity: 1;
     display: block;
-    width: 100%;
-    height: 400px;
+    width: 360px;
+    height: 390px;
     background-repeat: no-repeat;
     background-size: cover;
     transition: 0.5s ease;
