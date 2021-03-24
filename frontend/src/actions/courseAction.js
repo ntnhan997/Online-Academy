@@ -125,8 +125,8 @@ const BuyCourseAction = (CourseID) => async (dispatch) => {
       }
     );
     await axios.put(
-      "/api/addregistered/",
-      { CourseID }
+      "/api/course/addregistered/",
+       {CourseID} 
     );
     const data = await axios.get("/api/subscribedcourse/" + CourseID, {
       headers: {

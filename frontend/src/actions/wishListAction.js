@@ -11,6 +11,7 @@ const WishList = () => async (dispatch) => {
                 "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA")).accessToken
             }
         });
+        console.log(datas.data);
         dispatch({type: ITEM_SUCCESS_WISHLIST, payload: datas.data});
     } catch (error) {
         dispatch({type: ITEM_FAIL_WISHLIST, payload: error});  
