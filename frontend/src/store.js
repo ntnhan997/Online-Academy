@@ -9,7 +9,8 @@ import {TopNumberViewsReducer,
     LectureReducer,
     CourseSuggestionReducer,
     HotCourseReducer,
-    GetNameCategoryReducer
+    GetNameCategoryReducer,
+    EnrolledListReducer
 } from "./reducers/courseReducer";
 import { ConfirmOTPReducer, LogInReducer, RegisterReducer, UpdateUserReducer, UserByIdReducer } from "./reducers/userReducer";
 
@@ -41,7 +42,8 @@ const reducer = combineReducers({
     listedTeacher: ListedTeacherReducer,
     getCategoryName: GetNameCategoryReducer,
     getUserId: UserByIdReducer,
-    checkUpdateUser : UpdateUserReducer
+    checkUpdateUser : UpdateUserReducer,
+    enrolledLists: EnrolledListReducer
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

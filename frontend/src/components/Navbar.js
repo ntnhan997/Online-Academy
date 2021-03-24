@@ -266,6 +266,9 @@ export default function Navbar() {
                               <Link to="/wishlist">Wish List</Link>
                             </li>
                             <li className="dropdown-link">
+                              <Link to="/enrolled">Enrolled List</Link>
+                            </li>
+                            <li className="dropdown-link">
                               <Link to="/update-account">Update Acccount</Link>
                             </li>
                           </ul>

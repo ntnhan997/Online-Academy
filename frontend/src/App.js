@@ -25,6 +25,7 @@ import ListedTeacher from "./components/Admin/ListedTeacher";
 // import Teacher from "./pages/Teacher";
 import CreateCourse from "./components/Teacher/CreateCourse";
 import UpdateUser from "./components/UpdateUser";
+import Enrolled from "./components/Enrolled";
 
 function App() {
 
@@ -85,6 +86,8 @@ function App() {
               <>
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/categories/:name" component={Categories} />
+                <Route exact path="/enrolled" component={Enrolled} />
+                
                 <Route exact path="/:CategoryName/:id" component={Course} />
                 <Route
                   exact
@@ -100,6 +103,7 @@ function App() {
                   path="/Course/SearchFullText/result"
                   component={SearchFullText}
                 />
+              
               </>
             )}
           </ScrollTop>

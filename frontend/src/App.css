@@ -676,7 +676,9 @@ a {
 }
 
 .card-search {
-    width: 500px;
+    display: inline-block;
+    width: 350px;
+    padding: 20px;
 }
 
 .sort-search {
@@ -764,4 +766,18 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+
+/* enrolled */
+
+.enrolled {
+    margin-top: 100px;
+    padding: 10px 110px;
+}
+
+.card-enrolled {
+    display: inline-block;
+    width: 350px;
+    padding: 20px;
 }

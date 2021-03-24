@@ -18,6 +18,7 @@ import {
   TOPCOURSENEW_REQUEST_LIST,
   TOPCOURSENEW_SUCCESS_LIST,
   TOPCOURSENEW_FAIL_LIST,
+  ENROLL_LIST_REQUEST
 } from "../constants/courseConstants";
 
 const HotCourseReducer = (state = { hotCourses: [] }, action) => {
@@ -127,6 +128,15 @@ const GetNameCategoryReducer = (state = { getCategory: [] }, action) => {
   }
 };
 
+const EnrolledListReducer = (state = { enrolledList: [] }, action) => {
+  switch (action.type) {
+    case ENROLL_LIST_REQUEST:
+      return { enrolledList: action.payload };
+    default:
+      return state;
+  }
+};
+
 export {
   TopNumberViewsReducer,
   TopCourseRegisteredReducer,
@@ -137,4 +147,5 @@ export {
   CourseSuggestionReducer,
   HotCourseReducer,
   GetNameCategoryReducer,
+  EnrolledListReducer
 };
