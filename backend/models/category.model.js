@@ -12,4 +12,7 @@ module.exports = {
 
         return list;
     },
+    add(category){
+        return db("category").insert(category);
+    },
 }
