@@ -12,7 +12,6 @@ export default function Navbar() {
   const history = useHistory();
   const [check, setCheck] = useState(false);
 
-
   const [search,setSearch] = useState("");
 
   const handleSearch = (search) => {
@@ -99,7 +98,7 @@ export default function Navbar() {
                               <Link to="/">Listed</Link>
                             </li>
                             <li className="dropdown-link">
-                              <Link to="/">Create</Link>
+                              <Link to="/admin/createcategory">Create</Link>
                             </li>
                             <li className="dropdown-link">
                               <Link to="/">Delete</Link>
