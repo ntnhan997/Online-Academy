@@ -49,6 +49,7 @@ const MostRegisteredCategory = () => {
                   TeacherName={item.FullName}
                   Avatar={item.Avatar}
                   CategoryName = {item.CategoryName}
+                  CourseStatus = {item.CourseStatus}
                 />
               </PopularWrapper>
             );

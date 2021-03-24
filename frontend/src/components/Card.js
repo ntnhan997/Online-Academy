@@ -22,7 +22,8 @@ export default function Card(props) {
     descriptions,
     TeacherName,
     Avatar,
-    CategoryName
+    CategoryName,
+    CourseStatus
   } = props;
   return (
     <div className="card_item">
@@ -38,7 +39,7 @@ export default function Card(props) {
           <span className="product-new-label">
             {price ? price + "$" : "Sale"}
           </span>
-          <span className="product-discount-label">0%</span>
+          <span className="product-discount-label">{CourseStatus === 1? "Complete": "Incomplete" }</span>
         </div>
         <div className="middle" />
         <div className="product-content">

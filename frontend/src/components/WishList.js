@@ -40,6 +40,7 @@ export default function WishListUser() {
                            TeacherName={item.TeacherName}
                            Avatar={item.Avatar}
                            CategoryName={item.CategoryName}
+                           CourseStatus = {item.CourseStatus}
                          />
                        </PopularWrapper>
                        <button

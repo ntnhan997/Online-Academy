@@ -12,7 +12,7 @@ export default function SearchFullText (){
     const [price,setPrice] = useState(true);
     const [rating,setRating] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const newsPerPage = 2;
+    const newsPerPage = 6;
     const indexOfLastNews = currentPage * newsPerPage;
     const indexOfFirstNews = indexOfLastNews - newsPerPage;
     const currentTodos =[...searchs.slice(indexOfFirstNews, indexOfLastNews)];
@@ -39,7 +39,7 @@ export default function SearchFullText (){
     }, [dispatch, url])
     return (
         <>
-        <div className="sort-search">
+        <div className="sort-search"> 
             <span onClick={() => setPrice(!price)}>Price: {price? "Increment" : "Decrement"}</span>
             <span onClick={() => setRating(!rating)}>Rating: {rating? "Increment" : "Decrement"}</span>
         </div>
@@ -62,6 +62,7 @@ export default function SearchFullText (){
                       TeacherName={item.TeacherName}
                       Avatar={item.Avatar}
                       CategoryName = {item.CategoryName}
+                      CourseStatus = {item.CourseStatus}
                     />
                   </PopularWrapper>
                   </div>)
