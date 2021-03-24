@@ -16,4 +16,16 @@ router.get("/:id", async(req,res) => {
     res.send(list[0]);
 })
 
+router.post('/' ,auth, async(req,res) => {
+    const comment = req.body;
+    const AccountID = req.body.userId;
+    delete comment.userId;
+    comment.AccountID = AccountID;
+    comment.DateOfComment = moment().format("YYYY-MM-DD HH:mm:ss");
+    const id = await commentModel.add(comment);
+    res.status(201).send({
+        complete: true
+    });
+})
+
 module.exports = router;
