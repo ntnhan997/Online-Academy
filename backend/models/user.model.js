@@ -51,4 +51,13 @@ module.exports = {
       return "username";
     }
   },
+  ,
+
+    async isValidRefreshToken(id, rfToken){
+        const list = await db("account").where("AccountID", id).andWhere("rfToken", rfToken);
+        if(list.length > 0){
+            return true;
+        }
+        return false;
+    }
 };
