@@ -21,6 +21,8 @@ app.use("/api/course", courseRoute);
 app.use("/api/favoritecourse", favoriteCourseRoute);
 app.use("/api/lecture", require("./routes/lecture.route"));
 
+app.use("/api/subscribedcourse", require("./routes/subscribedcourse.route"));
+
 
 app.listen(PORT, () => {
   console.log(`api running at http://localhost:${PORT}`);
