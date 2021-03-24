@@ -40,4 +40,17 @@ router.post("/createbyteacher", auth, async (req, res) => {
   });
 });
 
+router.post("/addlecturebyteacher", auth, async(req,res) => {
+    const list = req.body;
+ 
+    list.Lecture.map(item => item.CourseID = list.CourseID);
+
+    const Lecture = await lectureModel.addLectureByTeacher(list.Lecture);
+    let teacher = {};
+    teacher.AccountID = list.userId; 
+    teacher.CourseID = list.CourseID;
+    await teacherModel.add(teacher);
+    res.send(Lecture);
+})
+
 module.exports = router;
