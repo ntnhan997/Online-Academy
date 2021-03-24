@@ -96,7 +96,12 @@ function App() {
                 <Route exact path="/" component={CreateCourse} />
                 <Route exact path="/login" component={LogIn} />
                 <Route exact path="/ListCourseTeacher" component={ListCourseTeacher} />
-              
+                <Route exact path="/:CategoryName/:id" component={Course} />
+                <Route
+                  exact
+                  path="/learning/:CourseID/:LectureID"
+                  component={ContainVideo}
+                />
               </>
             ) : (
               <>
@@ -108,7 +113,7 @@ function App() {
                 <Route exact path="/category/:CategoryName/:CategoryID" component={CourseByCategory} />
                 <Route
                   exact
-                  path="/learning/javascript/:CourseID/:LectureID"
+                  path="/learning/:CourseID/:LectureID"
                   component={ContainVideo}
                 />
                 <Route exact path="/wishlist" component={WishListUser} />

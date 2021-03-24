@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { commentCourseAction, detailsCourseAction, postCommentAction } from "../../actions/detailsCourseAction";
 import {getBuyCourseAction, getRatingUserAction, ratingAction, BuyCourseAction, lectureAction, lectureActionNoUser } from "../../actions/courseAction";
 import { addWishListAction, checkWishListAction } from "../../actions/wishListAction";
+import parseJwt from "../../utils";
 
 
 export default function Course(props) {
@@ -152,7 +153,7 @@ export default function Course(props) {
                   ({details.CourseReviews} REVIEW)
                 </span>
               </div>
-              {users != null && hasWishList.hasWishList === false && (
+              {users != null && hasWishList.hasWishList === false && (users !== null ? parseJwt(users.accessToken).Role !== 2 : "") && (
                 <button
                   type="button"
                   onClick={() => handleAddWL(CourseId)}
@@ -161,7 +162,7 @@ export default function Course(props) {
                 </button>
               )}
             </div>
-            {getBuy.bought === false && (
+            {(getBuy.bought === false && (users !== null ? parseJwt(users.accessToken).Role !== 2 : "") )&& (
               <div className="course-header-right">
                 <span>${details.CoursePrice}</span>
                 <button type="button" onClick={() => handleBuy(CourseId)}>
@@ -219,7 +220,7 @@ export default function Course(props) {
           </div>
           {users !== null && (
             <>
-              <div>
+              { parseJwt(users.accessToken).Role !== 2 && <div>
                 Rating:
                 <Rating
                   name="half-rating"
@@ -228,7 +229,7 @@ export default function Course(props) {
                   // onChange={(e) => setRating(e.target.value)}
                   onChange={(e) => handleRating(CourseId, e.target.value)}
                 />
-              </div>
+              </div>}
               <div className="post-comment">
                 Post Comment
                 <br />
@@ -248,7 +249,10 @@ export default function Course(props) {
               </div>
             </>
           )}
-          <CourseSuggestion CategoryID={details.CategoryID} />
+          {
+            ((users !== null && parseJwt(users.accessToken).Role !== 2) && <CourseSuggestion CategoryID={details.CategoryID} />)
+          }
+          
         </div>
       ) : (
         "Loading..."

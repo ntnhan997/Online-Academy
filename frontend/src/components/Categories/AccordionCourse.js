@@ -7,10 +7,12 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ModalVideo from './ModalVideo';
 
 import { useSelector } from 'react-redux';
+import parseJwt from '../../utils';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
+    float: "left"
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -53,9 +55,8 @@ export default function Accordions(props) {
         >
           <Typography className={classes.heading}>{props.data.title}</Typography>
           <Typography className={classes.secondaryHeading}>{data.LectureName}</Typography>
-          {/* <Typography className={classes.baHeading}>{props.data.time}</Typography> */}
         </AccordionSummary>
-        <ModalVideo data={data.LectureContent} LecturePreview={users !== null && getBuy.bought === true? 1 :data.LecturePreview} CourseID= {data.CourseID} LectureID= {data.LectureID}/>
+        <ModalVideo data={data.LectureContent} LecturePreview={(users !== null && getBuy.bought === true) || (users !== null ? parseJwt(users.accessToken).Role === 2 : "") ? 1 :data.LecturePreview} CourseID= {data.CourseID} LectureID= {data.LectureID}/>
         {/* {
           props.data.lesson.map(item => {
             return <ModalVideo data={item}/>

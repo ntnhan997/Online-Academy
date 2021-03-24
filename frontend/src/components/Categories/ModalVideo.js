@@ -20,7 +20,7 @@ export default function ModalVideo(props) {
         alert("Da khoa");
       }else{
         history.push({
-          pathname: '/learning/javascript/' + CourseID+"/" + LectureID,
+          pathname: '/learning/' + CourseID+"/" + LectureID,
       });
       }
     }
