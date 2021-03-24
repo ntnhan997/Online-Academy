@@ -1,6 +1,8 @@
 const express = require("express");
 const category_schema = require("../schemas/category.json");
 
+const validate = require("../middlewares/validate.mdw");
+
 const categoryModel = require("../models/category.model");
 const router = express.Router();
 
