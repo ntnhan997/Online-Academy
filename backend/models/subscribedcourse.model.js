@@ -8,5 +8,8 @@ module.exports = {
     BuyCourse(course){
         return db("subscribedcourse").insert(course);
     },
+    getBuy(CourseID,AccountID){
+        return db("subscribedcourse").where("CourseID", "=", CourseID).andWhere("AccountID", "=", AccountID);
+    },
    
 }
