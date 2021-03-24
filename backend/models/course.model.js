@@ -5,6 +5,7 @@ module.exports = {
     return db
       .select(
         "course.CourseID",
+        "course.CourseStatus",
         "course.CourseImage",
         "course.CourseName",
         "course.CourseSummary",
@@ -31,6 +32,7 @@ module.exports = {
     return db
       .select(
         "course.CourseID",
+        "course.CourseStatus",
         "course.CourseImage",
         "course.CourseName",
         "course.CourseSummary",
@@ -53,6 +55,12 @@ module.exports = {
       .orderBy("LastUpdate", "desc")
       .limit(10);
   },
+  async hotcourse() {
+    const list = await db.raw(
+      "SELECT course.CourseID,course.CourseStatus, course.CourseImage, course.CourseName, course.CourseSummary, course.CourseDescriptions, course.NumberOfViews, course.CourseRatings, course.CourseReviews, course.NumberOfRegistered, course.CoursePrice, category.CategoryID, course.CourseStatus, category.CategoryName, account.AccountID, account.FullName FROM course, category, teacher, account  WHERE TIMESTAMPDIFF(DAY, course.LastUpdate, UTC_DATE()) < 7 AND category.CategoryID = course.CategoryID AND account.AccountID = teacher.AccountID AND course.CourseID = teacher.CourseID ORDER BY course.NumberOfViews DESC LIMIT 4"
+    );
+    return list[0];
+  },
   async idRegister() {
     const idMost = await db
       .select("CategoryID")
@@ -66,6 +74,7 @@ module.exports = {
     return await db
       .select(
         "course.CourseID",
+        "course.CourseStatus",
         "course.CourseImage",
         "course.CourseName",
         "course.CourseSummary",
@@ -87,39 +96,6 @@ module.exports = {
       .innerJoin("teacher", "course.CourseID", "teacher.CourseID")
       .innerJoin("account", "account.AccountID", "teacher.AccountID");
   },
-  async hotcourse() {
-    const list = await db.raw(
-      "SELECT course.CourseID, course.CourseImage, course.CourseName, course.CourseSummary, course.CourseDescriptions, course.NumberOfViews, course.CourseRatings, course.CourseReviews, course.NumberOfRegistered, course.CoursePrice, category.CategoryID, course.CourseStatus, category.CategoryName, account.AccountID, account.FullName FROM course, category, teacher, account  WHERE TIMESTAMPDIFF(DAY, course.LastUpdate, UTC_DATE()) < 7 AND category.CategoryID = course.CategoryID AND account.AccountID = teacher.AccountID AND course.CourseID = teacher.CourseID ORDER BY course.NumberOfViews DESC LIMIT 4"
-    );
-    return list[0];
-  },
-  coursesuggestion(CategoryID) {
-    return db
-      .select(
-        "course.CourseID",
-        "course.CourseImage",
-        "course.CourseName",
-        "course.CourseSummary",
-        "course.CourseDescriptions",
-        "course.NumberOfViews",
-        "course.CourseRatings",
-        "course.CourseReviews",
-        "course.NumberOfRegistered",
-        "course.CoursePrice",
-        "category.CategoryID",
-        "course.CourseStatus",
-        "category.CategoryName",
-        "account.AccountID",
-        "account.FullName"
-      )
-      .from("course")
-      .innerJoin("category", "category.CategoryID", "course.CategoryID")
-      .innerJoin("teacher", "course.CourseID", "teacher.CourseID")
-      .innerJoin("account", "account.AccountID", "teacher.AccountID")
-      .where("course.CategoryID", CategoryID)
-      .orderBy("NumberOfRegistered", "desc")
-      .limit(5);
-  },
   async addregister(id) {
     // tang luot dang ky
     await db
@@ -132,6 +108,7 @@ module.exports = {
       .increment("NumberOfRegistered")
       .where("CourseID", "=", id);
   },
+
   incrementviews(id) {
     return db
       .from("course")
@@ -163,12 +140,40 @@ module.exports = {
 
   async single(CourseId) {
     const list = await db.raw(
-      `SELECT course.CourseID, course.CourseImage, course.CourseName, course.CourseSummary, course.CourseDescriptions, course.NumberOfViews, course.CourseRatings, course.CourseReviews, course.NumberOfRegistered, course.CoursePrice, category.CategoryID, course.CourseStatus, category.CategoryName, account.AccountID, account.FullName FROM course, category, teacher, account WHERE course.CourseID = ${CourseId} AND course.CategoryID = category.CategoryID AND teacher.CourseID = course.CourseID`
+      `SELECT course.CourseID, course.CourseImage, course.CourseName, course.CourseSummary, course.CourseDescriptions, course.NumberOfViews, course.CourseRatings, course.CourseReviews, course.NumberOfRegistered, course.CoursePrice, category.CategoryID, course.CourseStatus, category.CategoryName, account.AccountID, account.FullName FROM course, category, teacher, account WHERE course.CourseID = ${CourseId} AND course.CategoryID = category.CategoryID AND teacher.CourseID = course.CourseID AND account.AccountID = teacher.AccountID`
     );
     if (list.length === 0) {
       return null;
     }
 
     return list[0];
+  },
+  coursesuggestion(CategoryID) {
+    return db
+      .select(
+        "course.CourseID",
+        "course.CourseImage",
+        "course.CourseName",
+        "course.CourseSummary",
+        "course.CourseDescriptions",
+        "course.CourseStatus",
+        "course.NumberOfViews",
+        "course.CourseRatings",
+        "course.CourseReviews",
+        "course.NumberOfRegistered",
+        "course.CoursePrice",
+        "category.CategoryID",
+        "course.CourseStatus",
+        "category.CategoryName",
+        "account.AccountID",
+        "account.FullName"
+      )
+      .from("course")
+      .innerJoin("category", "category.CategoryID", "course.CategoryID")
+      .innerJoin("teacher", "course.CourseID", "teacher.CourseID")
+      .innerJoin("account", "account.AccountID", "teacher.AccountID")
+      .where("course.CategoryID", CategoryID)
+      .orderBy("NumberOfRegistered", "desc")
+      .limit(5);
   },
 };
