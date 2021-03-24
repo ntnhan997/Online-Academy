@@ -10,4 +10,13 @@ router.get("/", auth, async (req,res) => {
     return res.send(list[0]);
 })
 
+router.post("/",auth ,async(req,res) => {
+    const Course = req.body;
+    Course.AccountID = req.body.userId;
+    delete Course.userId;
+    const list = await subscribedcourseModel.BuyCourse(Course);
+    res.send(list);
+})
+
+
 module.exports = router;
