@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LogInAction } from "../actions/userAction";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Icon from "@material-ui/core/Icon";
+import { LoginWrapper } from "./HomePage/LoginStyle";
 
 export default function LogIn(props) {
   const [userName, setUserName] = useState("");
@@ -21,42 +19,58 @@ export default function LogIn(props) {
       props.history.push("/");
     }
   });
+
   return (
-    <div className="login">
-      <form action="">
-        <ul>
-          <li>
-            <TextField
-              name="UserName"
-              label="User Name"
-              variant="filled"
-              value={userName}
-              onChange={(event) => setUserName(event.target.value)}
-            />
-          </li>
-          <br />
-          <li>
-            <TextField
-              name="Password"
-              label="Password"
-              variant="filled"
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </li>
-          <br />
-          <Button
-            variant="contained"
-            color="primary"
-            type="button"
-            endIcon={<Icon>send</Icon>}
-            onClick={(e) => handleLogIn(userName, password)}
-          >
-            Log In
-          </Button>
-        </ul>
-      </form>
-    </div>
+    <LoginWrapper>
+      <div className="body">
+        <div className="wrapper">
+          <div className="title-text">
+            <div className="title login">Login</div>
+            <div className="title signup">Signup Form</div>
+          </div>
+          <div className="form-container">
+            <div className="form-inner">
+              {/*--------------------------- login ----------------------------*/}
+              <form action="#" className="login">
+                <div className="field">
+                  <input
+                    name="UserName"
+                    type="text"
+                    placeholder="username"
+                    required
+                    value={userName}
+                    onChange={(event) => setUserName(event.target.value)}
+                  />
+                </div>
+                <div className="field">
+                  <input
+                    name="Password"
+                    type="password"
+                    placeholder="password"
+                    required
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                  />
+                </div>
+                {/* submit login */}
+                <div className="field btn">
+                  <div className="btn-layer" />
+                  <button
+                    className="button"
+                    type="button"
+                    onClick={(e) => handleLogIn(userName, password)}
+                  >
+                    Login
+                  </button>
+                </div>
+                <div className="signup-link">
+                  Not a member? <a href>Signup now</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </LoginWrapper>
   );
 }
