@@ -18,7 +18,8 @@ import {
   TOPCOURSENEW_REQUEST_LIST,
   TOPCOURSENEW_SUCCESS_LIST,
   TOPCOURSENEW_FAIL_LIST,
-  ENROLL_LIST_REQUEST
+  ENROLL_LIST_REQUEST,
+  COURSE_LISTTEACHER_REQUEST
 } from "../constants/courseConstants";
 
 const HotCourseReducer = (state = { hotCourses: [] }, action) => {
@@ -137,6 +138,15 @@ const EnrolledListReducer = (state = { enrolledList: [] }, action) => {
   }
 };
 
+const CourseListTeacherReducer = (state = { courseListTeacher: [] }, action) => {
+  switch (action.type) {
+    case COURSE_LISTTEACHER_REQUEST:
+      return { courseListTeacher: action.payload };
+    default:
+      return state;
+  }
+};
+
 export {
   TopNumberViewsReducer,
   TopCourseRegisteredReducer,
@@ -147,5 +157,6 @@ export {
   CourseSuggestionReducer,
   HotCourseReducer,
   GetNameCategoryReducer,
-  EnrolledListReducer
+  EnrolledListReducer,
+  CourseListTeacherReducer
 };

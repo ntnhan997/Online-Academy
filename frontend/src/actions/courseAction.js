@@ -18,7 +18,8 @@ import {
   HOTCOURSE_SUCCESS_LIST,
   HOTCOURSE_FAIL_LIST,
   CATEGORY_REQUEST_NAME,
-  ENROLL_LIST_REQUEST
+  ENROLL_LIST_REQUEST,
+  COURSE_LISTTEACHER_REQUEST
 } from "../constants/courseConstants";
 
 import axios from "axios";
@@ -212,6 +213,21 @@ const EnrolledListAction = () => async (dispatch) => {
   }
 };
 
+const ListCourseTeacherAction = () => async (dispatch) => {
+  try {
+    const data = await axios.get("/api/teacher/", {
+      headers: {
+        "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA"))
+          .accessToken,
+      }
+    });
+    dispatch({ type: COURSE_LISTTEACHER_REQUEST, payload: data.data });
+  } catch (error) {
+
+  }
+};
+
+
 
 
 
@@ -230,5 +246,6 @@ export {
   HotCourseAction,
   CreateCourseByTeacherAction,
   GetNameCategoryAction,
-  EnrolledListAction
+  EnrolledListAction,
+  ListCourseTeacherAction
 };

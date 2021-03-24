@@ -1,22 +1,22 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { EnrolledListAction } from "../actions/courseAction";
-import { PopularWrapper } from "./HomePage/PopularStyle";
-import Card from "./Card";
+import { PopularWrapper } from "../HomePage/PopularStyle";
+import Card from "../Card";
+import { ListCourseTeacherAction } from "../../actions/courseAction";
 
-export default function Enrolled() {
+export default function ListCourseTeacher() {
  
-    const list = useSelector(state => state.enrolledLists);
-    const {enrolledList} = list;
+    const list = useSelector(state => state.courseListTeachers);
+    const {courseListTeacher} = list;
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(EnrolledListAction());
+        dispatch(ListCourseTeacherAction());
     },[dispatch]);
   return (
     <div className="enrolled">
         {
-             enrolledList ? 
-             enrolledList.map((item, index) => {
+             courseListTeacher ? 
+             courseListTeacher.map((item, index) => {
                  return (
                    <div className="card-enrolled">
                      <PopularWrapper key={index}>
@@ -45,3 +45,6 @@ export default function Enrolled() {
     </div>
   );
 }
+
+
+

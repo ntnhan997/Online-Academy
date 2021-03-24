@@ -26,6 +26,7 @@ import ListedTeacher from "./components/Admin/ListedTeacher";
 import CreateCourse from "./components/Teacher/CreateCourse";
 import UpdateUser from "./components/UpdateUser";
 import Enrolled from "./components/Enrolled";
+import ListCourseTeacher from "./components/Teacher/ListCourseTeacher";
 
 function App() {
 
@@ -81,6 +82,7 @@ function App() {
               <>
                 <Route exact path="/" component={CreateCourse} />
                 <Route exact path="/login" component={LogIn} />
+                <Route exact path="/ListCourseTeacher" component={ListCourseTeacher} />
               </>
             ) : (
               <>

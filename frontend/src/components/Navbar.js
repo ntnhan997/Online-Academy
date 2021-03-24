@@ -280,6 +280,9 @@ export default function Navbar() {
                             <li className="dropdown-link">
                               <Link to="/">Update Acccount</Link>
                             </li>
+                            <li className="dropdown-link">
+                              <Link to="/ListCourseTeacher">List Course</Link>
+                            </li>
                           </ul>
                         </div>
                       : (
