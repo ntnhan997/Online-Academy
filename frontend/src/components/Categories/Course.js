@@ -183,6 +183,12 @@ export default function Course(props) {
 
   const handleBuy = (CourseID) => {
     dispatch(BuyCourseAction(CourseID));
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Buy Course Success",
+      showConfirmButton: true,
+    });
   };
 
   const handleAddWL = (CourseID) => {
