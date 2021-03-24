@@ -124,6 +124,10 @@ const BuyCourseAction = (CourseID) => async (dispatch) => {
         },
       }
     );
+    await axios.put(
+      "/api/addregistered/",
+      { CourseID }
+    );
     const data = await axios.get("/api/subscribedcourse/" + CourseID, {
       headers: {
         "x-access-token": JSON.parse(localStorage.getItem("accessToken_OA"))
