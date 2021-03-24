@@ -1,0 +1,9 @@
+{
+    "required": ["CourseID"],
+    "additionalProperties": true,
+    "properties": {
+        "CourseID": {
+            "type": "integer"
+        }
+    }
+}
