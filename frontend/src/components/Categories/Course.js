@@ -409,16 +409,18 @@ export default function Course(props) {
               </FormControl>
             ))}
           <br />
-          <Button
-            className={classes.button}
-            variant="contained"
-            color="primary"
-            type="submit"
-            endIcon={<Icon>send</Icon>}
-            onClick={(e) => handleSubmit(e, CourseId, inputFields)}
-          >
-            Add Category
-          </Button>
+          {users !== null && parseJwt(users.accessToken).Role === 2 && (
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              type="submit"
+              endIcon={<Icon>send</Icon>}
+              onClick={(e) => handleSubmit(e, CourseId, inputFields)}
+            >
+              Add Category
+            </Button>
+          )}
 
           {users !== null && parseJwt(users.accessToken).Role !== 2 && (
             <CourseSuggestion CategoryID={details.CategoryID} />
